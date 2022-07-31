@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->string('photo')->nullable();
+            $table->string('thumbnail')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('edit_user_id')->nullable();
             $table->timestamps();

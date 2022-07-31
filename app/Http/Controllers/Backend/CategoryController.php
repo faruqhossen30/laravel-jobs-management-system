@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Faker\Core\Uuid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+
+use function PHPUnit\Framework\fileExists;
 
 class CategoryController extends Controller
 {
@@ -43,10 +47,23 @@ class CategoryController extends Controller
             'name' => 'required'
         ]);
 
+        $thumbnailname = null;
+        if ($request->file('thumbnail')) {
+            $extention = $request->file('thumbnail')->getClientOriginalExtension();
+            $uniquename = uniqid().'.'.$extention;
+
+            $request->file('thumbnail')->storeAs(
+                'categories',
+                $uniquename
+            );
+            $thumbnailname = $uniquename;
+        }
+
         $data = [
             'name' => $request->name,
             'slug' => $request->name,
             'user_id' => Auth::user()->id,
+            'thumbnail' => $thumbnailname
         ];
 
         Category::create($data);
@@ -91,10 +108,23 @@ class CategoryController extends Controller
             'name' => 'required'
         ]);
 
+        $thumbnailname = null;
+        if ($request->file('thumbnail')) {
+            $extention = $request->file('thumbnail')->getClientOriginalExtension();
+            $uniquename = uniqid().'.'.$extention;
+
+            $request->file('thumbnail')->storeAs(
+                'categories',
+                $uniquename
+            );
+            $thumbnailname = $uniquename;
+        }
+
         $data = [
             'name' => $request->name,
             'slug' => $request->name,
-            'edit_user_id' => Auth::user()->id,
+            'user_id' => Auth::user()->id,
+            'thumbnail' => $thumbnailname
         ];
 
         Category::firstwhere('id', $id)->update($data);
@@ -110,6 +140,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+        $file = Category::firstwhere('id', $id)->thumbnail;
+        if($file){
+            Storage::disk('local')->delete('categories/' . $file);
+        }
         Category::firstwhere('id', $id)->delete();
         Session::flash('delete');
         return redirect()->route('category.index');

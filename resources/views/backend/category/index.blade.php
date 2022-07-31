@@ -11,7 +11,7 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <a href="#" type="button" class="btn btn-inverse-primary btn-icon-text">
+                <a href="{{route('category.create')}}" type="button" class="btn btn-inverse-primary btn-icon-text">
                     <i class="btn-icon-prepend" data-feather="plus-circle"></i>
                     Create
                 </a>
