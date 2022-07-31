@@ -3,16 +3,14 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use Faker\Core\Uuid;
 use Illuminate\Http\Request;
+use App\Models\Jobindustry;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
-use function PHPUnit\Framework\fileExists;
 
-class CategoryController extends Controller
+class JobindustryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +19,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::get();
-        return view('backend.category.index', compact('categories'));
+        $jobindustries = Jobindustry::get();
+        return view('backend.jobindustry.index',compact('jobindustries'));
+
     }
 
     /**
@@ -32,7 +31,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('backend.category.create');
+        return view('backend.jobindustry.create');
     }
 
     /**
@@ -53,7 +52,7 @@ class CategoryController extends Controller
             $uniquename = uniqid().'.'.$extention;
 
             $request->file('thumbnail')->storeAs(
-                'public/category',
+                'public/jobindustry',
                 $uniquename
             );
             $thumbnailname = $uniquename;
@@ -66,9 +65,9 @@ class CategoryController extends Controller
             'thumbnail' => $thumbnailname
         ];
 
-        Category::create($data);
+        Jobindustry::create($data);
         Session::flash('create');
-        return redirect()->route('category.index');
+        return redirect()->route('jobindustry.index');
     }
 
     /**
@@ -79,8 +78,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = Category::firstWhere('id',$id);
-        return view('backend.category.show', compact('category'));
+        $jobindustry = Jobindustry::firstWhere('id',$id);
+        return view('backend.jobindustry.show', compact('jobindustry'));
     }
 
     /**
@@ -91,8 +90,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::firstWhere('id',$id);
-        return view('backend.category.edit', compact('category'));
+        $jobindustry = Jobindustry::firstWhere('id',$id);
+        return view('backend.jobindustry.edit', compact('jobindustry'));
     }
 
     /**
@@ -114,7 +113,7 @@ class CategoryController extends Controller
             $uniquename = uniqid().'.'.$extention;
 
             $request->file('thumbnail')->storeAs(
-                'public/category',
+                'public/jobindustry',
                 $uniquename
             );
             $thumbnailname = $uniquename;
@@ -127,9 +126,9 @@ class CategoryController extends Controller
             'thumbnail' => $thumbnailname
         ];
 
-        Category::firstwhere('id', $id)->update($data);
+        Jobindustry::firstwhere('id', $id)->update($data);
         Session::flash('update');
-        return redirect()->route('category.index');
+        return redirect()->route('jobindustry.index');
     }
 
     /**
@@ -140,12 +139,12 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $file = Category::firstwhere('id', $id)->thumbnail;
+        $file = Jobindustry::firstwhere('id', $id)->thumbnail;
         if($file){
-            Storage::disk('local')->delete('public/category/' . $file);
+            Storage::disk('local')->delete('public/jobindustry/' . $file);
         }
-        Category::firstwhere('id', $id)->delete();
+        Jobindustry::firstwhere('id', $id)->delete();
         Session::flash('delete');
-        return redirect()->route('category.index');
+        return redirect()->route('jobindustry.index');
     }
 }

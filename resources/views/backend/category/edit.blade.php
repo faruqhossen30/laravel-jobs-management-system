@@ -20,7 +20,7 @@
           </div>
           <div class="mb-3">
             <label for="exampleInputPhoto" class="form-label">Photo</label>
-            <input type="file" name="photo" class="form-control" id="exampleInputPhoto" >
+            <input type="file" name="thumbnail" class="form-control" id="exampleInputPhoto" >
           </div>
 
           <button type="submit" class="btn btn-primary me-2">Update</button>

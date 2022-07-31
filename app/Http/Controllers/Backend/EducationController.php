@@ -3,16 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use Faker\Core\Uuid;
 use Illuminate\Http\Request;
+use App\Models\Education;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
-use function PHPUnit\Framework\fileExists;
-
-class CategoryController extends Controller
+class EducationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +18,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::get();
-        return view('backend.category.index', compact('categories'));
+        $educations = Education::get();
+        return view('backend.education.index',compact('educations'));
     }
 
     /**
@@ -32,7 +29,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('backend.category.create');
+        return view('backend.education.create');
     }
 
     /**
@@ -53,7 +50,7 @@ class CategoryController extends Controller
             $uniquename = uniqid().'.'.$extention;
 
             $request->file('thumbnail')->storeAs(
-                'public/category',
+                'public/education',
                 $uniquename
             );
             $thumbnailname = $uniquename;
@@ -66,9 +63,9 @@ class CategoryController extends Controller
             'thumbnail' => $thumbnailname
         ];
 
-        Category::create($data);
+        Education::create($data);
         Session::flash('create');
-        return redirect()->route('category.index');
+        return redirect()->route('education.index');
     }
 
     /**
@@ -79,8 +76,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = Category::firstWhere('id',$id);
-        return view('backend.category.show', compact('category'));
+        $education = Education::firstWhere('id',$id);
+        return view('backend.education.show', compact('education'));
     }
 
     /**
@@ -91,8 +88,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::firstWhere('id',$id);
-        return view('backend.category.edit', compact('category'));
+        $education = Education::firstWhere('id',$id);
+        return view('backend.education.edit', compact('education'));
     }
 
     /**
@@ -114,7 +111,7 @@ class CategoryController extends Controller
             $uniquename = uniqid().'.'.$extention;
 
             $request->file('thumbnail')->storeAs(
-                'public/category',
+                'public/education',
                 $uniquename
             );
             $thumbnailname = $uniquename;
@@ -127,9 +124,9 @@ class CategoryController extends Controller
             'thumbnail' => $thumbnailname
         ];
 
-        Category::firstwhere('id', $id)->update($data);
+        Education::firstwhere('id', $id)->update($data);
         Session::flash('update');
-        return redirect()->route('category.index');
+        return redirect()->route('education.index');
     }
 
     /**
@@ -140,12 +137,12 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $file = Category::firstwhere('id', $id)->thumbnail;
+        $file = Education::firstwhere('id', $id)->thumbnail;
         if($file){
-            Storage::disk('local')->delete('public/category/' . $file);
+            Storage::disk('local')->delete('public/education/' . $file);
         }
-        Category::firstwhere('id', $id)->delete();
+        Education::firstwhere('id', $id)->delete();
         Session::flash('delete');
-        return redirect()->route('category.index');
+        return redirect()->route('education.index');
     }
 }

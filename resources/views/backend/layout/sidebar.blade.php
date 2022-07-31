@@ -30,6 +30,24 @@
             <li class="nav-item">
               <a href="{{ route('category.index') }}" class="nav-link {{ active_class(['email/inbox']) }}">Category</a>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('jobindustry.index') }}" class="nav-link {{ active_class(['email/inbox']) }}">Job Industry</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('education.index') }}" class="nav-link {{ active_class(['email/inbox']) }}">Education</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('skill.index') }}" class="nav-link {{ active_class(['email/inbox']) }}">Skill</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('careerlavel.index') }}" class="nav-link {{ active_class(['email/inbox']) }}">Career level</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('salaryperiod.index') }}" class="nav-link {{ active_class(['email/inbox']) }}">Salary Period</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('jobtype.index') }}" class="nav-link {{ active_class(['email/inbox']) }}">Job Type</a>
+            </li>
           </ul>
         </div>
       </li>

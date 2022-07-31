@@ -3,16 +3,14 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use Faker\Core\Uuid;
+use App\Models\CareerLevel;
 use Illuminate\Http\Request;
+use App\Models\SalaryPeriod;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
-use function PHPUnit\Framework\fileExists;
-
-class CategoryController extends Controller
+class salaryperiodController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +19,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::get();
-        return view('backend.category.index', compact('categories'));
+        $salaryperiods = SalaryPeriod::get();
+        return view('backend.salaryperiod.index',compact('salaryperiods'));
     }
 
     /**
@@ -32,7 +30,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('backend.category.create');
+        return view('backend.salaryperiod.create');
     }
 
     /**
@@ -47,28 +45,16 @@ class CategoryController extends Controller
             'name' => 'required'
         ]);
 
-        $thumbnailname = null;
-        if ($request->file('thumbnail')) {
-            $extention = $request->file('thumbnail')->getClientOriginalExtension();
-            $uniquename = uniqid().'.'.$extention;
-
-            $request->file('thumbnail')->storeAs(
-                'public/category',
-                $uniquename
-            );
-            $thumbnailname = $uniquename;
-        }
-
         $data = [
             'name' => $request->name,
             'slug' => $request->name,
-            'user_id' => Auth::user()->id,
-            'thumbnail' => $thumbnailname
+            'user_id' => Auth::user()->id
+
         ];
 
-        Category::create($data);
+        SalaryPeriod::create($data);
         Session::flash('create');
-        return redirect()->route('category.index');
+        return redirect()->route('salaryperiod.index');
     }
 
     /**
@@ -79,8 +65,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = Category::firstWhere('id',$id);
-        return view('backend.category.show', compact('category'));
+        $salaryperiod = SalaryPeriod::firstWhere('id',$id);
+        return view('backend.salaryperiod.show', compact('salaryperiod'));
     }
 
     /**
@@ -91,8 +77,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::firstWhere('id',$id);
-        return view('backend.category.edit', compact('category'));
+        $salaryperiod = SalaryPeriod::firstWhere('id',$id);
+        return view('backend.salaryperiod.edit', compact('salaryperiod'));
     }
 
     /**
@@ -108,28 +94,16 @@ class CategoryController extends Controller
             'name' => 'required'
         ]);
 
-        $thumbnailname = null;
-        if ($request->file('thumbnail')) {
-            $extention = $request->file('thumbnail')->getClientOriginalExtension();
-            $uniquename = uniqid().'.'.$extention;
-
-            $request->file('thumbnail')->storeAs(
-                'public/category',
-                $uniquename
-            );
-            $thumbnailname = $uniquename;
-        }
-
         $data = [
             'name' => $request->name,
             'slug' => $request->name,
-            'user_id' => Auth::user()->id,
-            'thumbnail' => $thumbnailname
+            'user_id' => Auth::user()->id
+
         ];
 
-        Category::firstwhere('id', $id)->update($data);
+        SalaryPeriod::firstwhere('id', $id)->update($data);
         Session::flash('update');
-        return redirect()->route('category.index');
+        return redirect()->route('salaryperiod.index');
     }
 
     /**
@@ -140,12 +114,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $file = Category::firstwhere('id', $id)->thumbnail;
-        if($file){
-            Storage::disk('local')->delete('public/category/' . $file);
-        }
-        Category::firstwhere('id', $id)->delete();
+        SalaryPeriod::firstwhere('id', $id)->delete();
         Session::flash('delete');
-        return redirect()->route('category.index');
+        return redirect()->route('salaryperiod.index');
     }
 }

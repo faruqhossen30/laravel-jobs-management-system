@@ -2,7 +2,7 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Category</a></li>
+        <li class="breadcrumb-item"><a href="#">Job Type</a></li>
         <li class="breadcrumb-item active" aria-current="page">Show</li>
     </ol>
 </nav>
@@ -11,9 +11,9 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <a href="{{route('category.index')}}" type="button" class="btn btn-inverse-primary btn-icon-text">
+                <a href="{{route('jobtype.index')}}" type="button" class="btn btn-inverse-primary btn-icon-text">
                     <i class="btn-icon-prepend" data-feather="list"></i>
-                   Category List
+                   JOb Type List
                   </a>
                 <div class="table-responsive pt-3">
                     <table class="table table-bordered">
@@ -33,36 +33,27 @@
                                     Name
                                 </td>
                                 <td>
-                                    {{$category->name}}
+                                    {{$jobtype->name}}
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    Photo
-                                </td>
-                                {{-- <td>
-                                    {{$jobindustry->photo}}
-                                </td> --}}
-                                <td><img src="{{ asset('storage/category/' . $category->thumbnail) }}" alt=""></td>
 
-                            </tr>
                             <tr>
                                 <td>
                                     Author
                                 </td>
                                 <td>
-                                    {{$category->user_id}}
+                                    {{$jobtype->user_id}}
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="my-4">
-                    <a href="{{route('category.edit', $category->id)}}" type="button" class="btn btn-inverse-success btn-icon-text">
+                    <a href="{{route('jobtype.edit', $jobtype->id)}}" type="button" class="btn btn-inverse-success btn-icon-text">
                         <i class="btn-icon-prepend" data-feather="check-square"></i>
                        Edit
                       </a>
-                    <a href="{{route('category.index')}}" type="button" class="btn btn-inverse-danger btn-icon-text">
+                    <a href="{{route('jobtype.index')}}" type="button" class="btn btn-inverse-danger btn-icon-text">
                         <i class="btn-icon-prepend" data-feather="trash"></i>
                        Delete
                       </a>
@@ -100,7 +91,7 @@
     })
     Toast.fire({
         icon: 'success'
-        , title: 'Category has been created Successfully!'
+        , title: 'Job Type has been created Successfully!'
     })
 
 </script>

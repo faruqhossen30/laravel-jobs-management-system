@@ -3,16 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use Faker\Core\Uuid;
+use App\Models\CareerLevel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
-use function PHPUnit\Framework\fileExists;
-
-class CategoryController extends Controller
+class careerlavelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +18,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::get();
-        return view('backend.category.index', compact('categories'));
+        $careerlavels = CareerLevel::get();
+        return view('backend.careerlavel.index',compact('careerlavels'));
     }
 
     /**
@@ -32,7 +29,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('backend.category.create');
+        return view('backend.careerlavel.create');
     }
 
     /**
@@ -47,28 +44,16 @@ class CategoryController extends Controller
             'name' => 'required'
         ]);
 
-        $thumbnailname = null;
-        if ($request->file('thumbnail')) {
-            $extention = $request->file('thumbnail')->getClientOriginalExtension();
-            $uniquename = uniqid().'.'.$extention;
-
-            $request->file('thumbnail')->storeAs(
-                'public/category',
-                $uniquename
-            );
-            $thumbnailname = $uniquename;
-        }
-
         $data = [
             'name' => $request->name,
             'slug' => $request->name,
-            'user_id' => Auth::user()->id,
-            'thumbnail' => $thumbnailname
+            'user_id' => Auth::user()->id
+
         ];
 
-        Category::create($data);
+        CareerLevel::create($data);
         Session::flash('create');
-        return redirect()->route('category.index');
+        return redirect()->route('careerlavel.index');
     }
 
     /**
@@ -79,8 +64,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = Category::firstWhere('id',$id);
-        return view('backend.category.show', compact('category'));
+        $careerlavel = CareerLevel::firstWhere('id',$id);
+        return view('backend.careerlavel.show', compact('careerlavel'));
     }
 
     /**
@@ -91,8 +76,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::firstWhere('id',$id);
-        return view('backend.category.edit', compact('category'));
+        $careerlavel = CareerLevel::firstWhere('id',$id);
+        return view('backend.careerlavel.edit', compact('careerlavel'));
     }
 
     /**
@@ -108,28 +93,16 @@ class CategoryController extends Controller
             'name' => 'required'
         ]);
 
-        $thumbnailname = null;
-        if ($request->file('thumbnail')) {
-            $extention = $request->file('thumbnail')->getClientOriginalExtension();
-            $uniquename = uniqid().'.'.$extention;
-
-            $request->file('thumbnail')->storeAs(
-                'public/category',
-                $uniquename
-            );
-            $thumbnailname = $uniquename;
-        }
-
         $data = [
             'name' => $request->name,
             'slug' => $request->name,
-            'user_id' => Auth::user()->id,
-            'thumbnail' => $thumbnailname
+            'user_id' => Auth::user()->id
+
         ];
 
-        Category::firstwhere('id', $id)->update($data);
+        CareerLevel::firstwhere('id', $id)->update($data);
         Session::flash('update');
-        return redirect()->route('category.index');
+        return redirect()->route('careerlavel.index');
     }
 
     /**
@@ -140,12 +113,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $file = Category::firstwhere('id', $id)->thumbnail;
-        if($file){
-            Storage::disk('local')->delete('public/category/' . $file);
-        }
-        Category::firstwhere('id', $id)->delete();
+
+        CareerLevel::firstwhere('id', $id)->delete();
         Session::flash('delete');
-        return redirect()->route('category.index');
+        return redirect()->route('careerlavel.index');
     }
 }

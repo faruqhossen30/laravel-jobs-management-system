@@ -1,7 +1,15 @@
 <?php
+
+use App\Http\Controllers\Backend\careerlavelController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\EducationController;
+use App\Http\Controllers\Backend\JobindustryController;
+use App\Http\Controllers\Backend\JobtypeController;
+use App\Http\Controllers\Backend\salaryperiodController;
+use App\Http\Controllers\Backend\SkillController;
+
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -10,6 +18,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     // Project route start
     Route::resource('category', CategoryController::class);
+    Route::resource('jobindustry', JobindustryController::class);
+    Route::resource('education', EducationController::class);
+    Route::resource('careerlavel', careerlavelController::class);
+    Route::resource('skill', SkillController::class);
+    Route::resource('salaryperiod', salaryperiodController::class);
+    Route::resource('jobtype', JobtypeController::class);
+
     // Project route end
 
     Route::get('/', function () {
