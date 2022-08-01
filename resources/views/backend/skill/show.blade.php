@@ -36,15 +36,7 @@
                                     {{$skill->name}}
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    Photo
-                                </td>
-                                {{-- <td>
-                                    {{$jobindustry->photo}}
-                                </td> --}}
-                                <td><img src="{{ asset('storage/skill/' . $skill->thumbnail) }}" alt="" ></td>
-                            </tr>
+                    
                             <tr>
                                 <td>
                                     Author

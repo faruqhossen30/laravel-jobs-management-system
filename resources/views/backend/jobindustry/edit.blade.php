@@ -21,6 +21,7 @@
           <div class="mb-3">
             <label for="exampleInputPhoto" class="form-label">Photo</label>
             <input type="file" name="thumbnail" class="form-control" id="exampleInputPhoto" >
+            <td><img src="{{ asset('storage/jobindustry/' . $jobindustry->thumbnail) }}" alt="" width="100px" height="100px" ></td>
           </div>
 
           <button type="submit" class="btn btn-primary me-2">Update</button>

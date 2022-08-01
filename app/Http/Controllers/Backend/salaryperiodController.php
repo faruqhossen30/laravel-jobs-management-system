@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\CareerLevel;
 use Illuminate\Http\Request;
 use App\Models\SalaryPeriod;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
-class salaryperiodController extends Controller
+class SalaryperiodController extends Controller
 {
     /**
      * Display a listing of the resource.

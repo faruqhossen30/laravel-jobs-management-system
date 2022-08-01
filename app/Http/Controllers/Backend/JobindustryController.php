@@ -119,17 +119,36 @@ class JobindustryController extends Controller
             $thumbnailname = $uniquename;
         }
 
-        $data = [
-            'name' => $request->name,
-            'slug' => $request->name,
-            'user_id' => Auth::user()->id,
-            'thumbnail' => $thumbnailname
-        ];
+
+        if($thumbnailname){
+            $data = [
+                'name' => $request->name,
+                'slug' => $request->name,
+                'user_id' => Auth::user()->id,
+                'thumbnail' => $thumbnailname
+            ];
+
+            $file = jobindustry::firstwhere('id', $id)->thumbnail;
+            if($file){
+                Storage::disk('public')->delete('jobindustry/' . $file);
+            }
+
+
+            Jobindustry::firstwhere('id', $id)->update($data);
+            Session::flash('update');
+            return redirect()->route('jobindustry.index');
+        }else{
+            $data = [
+                'name' => $request->name,
+                'slug' => $request->name,
+                'user_id' => Auth::user()->id
+            ];
 
         Jobindustry::firstwhere('id', $id)->update($data);
         Session::flash('update');
         return redirect()->route('jobindustry.index');
     }
+}
 
     /**
      * Remove the specified resource from storage.

@@ -17,11 +17,6 @@
             <label for="forName" class="form-label">Name</label>
             <input type="text" name="name" class="form-control" id="forName" autocomplete="off" placeholder="Name">
           </div>
-          <div class="mb-3">
-            <label for="exampleInputPhoto" class="form-label">Photo</label>
-            <input type="file" name="thumbnail" class="form-control" id="exampleInputPhoto" >
-          </div>
-
           <button type="submit" class="btn btn-primary me-2">Submit</button>
           <button class="btn btn-secondary">Cancel</button>
         </form>

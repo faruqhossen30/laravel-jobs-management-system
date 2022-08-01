@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\CareerLevel;
 use Illuminate\Http\Request;
+use App\Models\CareerLevel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
-class careerlavelController extends Controller
+
+
+class CareerlavelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -113,7 +115,6 @@ class careerlavelController extends Controller
      */
     public function destroy($id)
     {
-
         CareerLevel::firstwhere('id', $id)->delete();
         Session::flash('delete');
         return redirect()->route('careerlavel.index');

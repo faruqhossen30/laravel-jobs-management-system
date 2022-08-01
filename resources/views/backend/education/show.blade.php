@@ -36,16 +36,7 @@
                                     {{$education->name}}
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    Photo
-                                </td>
-                                {{-- <td>
-                                    {{$jobindustry->photo}}
-                                </td> --}}
-                                <td><img src="{{ asset('storage/education/' . $education->thumbnail) }}" alt=""></td>
-
-                            </tr>
+                        
                             <tr>
                                 <td>
                                     Author

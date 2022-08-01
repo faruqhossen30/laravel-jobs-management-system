@@ -120,16 +120,35 @@ class CategoryController extends Controller
             $thumbnailname = $uniquename;
         }
 
-        $data = [
-            'name' => $request->name,
-            'slug' => $request->name,
-            'user_id' => Auth::user()->id,
-            'thumbnail' => $thumbnailname
-        ];
 
-        Category::firstwhere('id', $id)->update($data);
-        Session::flash('update');
-        return redirect()->route('category.index');
+        if($thumbnailname){
+            $data = [
+                'name' => $request->name,
+                'slug' => $request->name,
+                'user_id' => Auth::user()->id,
+                'thumbnail' => $thumbnailname
+            ];
+
+            $file = Category::firstwhere('id', $id)->thumbnail;
+            if($file){
+                Storage::disk('public')->delete('category/' . $file);
+            }
+
+
+            Category::firstwhere('id', $id)->update($data);
+            Session::flash('update');
+            return redirect()->route('category.index');
+        }else{
+            $data = [
+                'name' => $request->name,
+                'slug' => $request->name,
+                'user_id' => Auth::user()->id
+            ];
+            Category::firstwhere('id', $id)->update($data);
+            Session::flash('update');
+            return redirect()->route('category.index');
+
+        }
     }
 
     /**
@@ -142,7 +161,7 @@ class CategoryController extends Controller
     {
         $file = Category::firstwhere('id', $id)->thumbnail;
         if($file){
-            Storage::disk('local')->delete('public/category/' . $file);
+            Storage::disk('public')->delete('category/' . $file);
         }
         Category::firstwhere('id', $id)->delete();
         Session::flash('delete');

@@ -44,23 +44,11 @@ class SkillController extends Controller
             'name' => 'required'
         ]);
 
-        $thumbnailname = null;
-        if ($request->file('thumbnail')) {
-            $extention = $request->file('thumbnail')->getClientOriginalExtension();
-            $uniquename = uniqid().'.'.$extention;
-
-            $request->file('thumbnail')->storeAs(
-                'public/skill',
-                $uniquename
-            );
-            $thumbnailname = $uniquename;
-        }
-
         $data = [
             'name' => $request->name,
             'slug' => $request->name,
-            'user_id' => Auth::user()->id,
-            'thumbnail' => $thumbnailname
+            'user_id' => Auth::user()->id
+
         ];
 
         Skill::create($data);
@@ -105,23 +93,10 @@ class SkillController extends Controller
             'name' => 'required'
         ]);
 
-        $thumbnailname = null;
-        if ($request->file('thumbnail')) {
-            $extention = $request->file('thumbnail')->getClientOriginalExtension();
-            $uniquename = uniqid().'.'.$extention;
-
-            $request->file('thumbnail')->storeAs(
-                'public/skill',
-                $uniquename
-            );
-            $thumbnailname = $uniquename;
-        }
-
         $data = [
             'name' => $request->name,
             'slug' => $request->name,
-            'user_id' => Auth::user()->id,
-            'thumbnail' => $thumbnailname
+            'user_id' => Auth::user()->id
         ];
 
         Skill::firstwhere('id', $id)->update($data);
