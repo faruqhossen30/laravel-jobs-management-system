@@ -62,10 +62,13 @@
                         <i class="btn-icon-prepend" data-feather="check-square"></i>
                        Edit
                       </a>
-                    <a href="{{route('category.index')}}" type="button" class="btn btn-inverse-danger btn-icon-text">
-                        <i class="btn-icon-prepend" data-feather="trash"></i>
-                       Delete
-                      </a>
+                      <form action="{{route('category.destroy', $category->id)}}" method="post" style="display: inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" onclick="return confirm('Sure ! Delete category ?')"class="btn btn-inverse-danger btn-icon-text">
+                            <i class="btn-icon-prepend" data-feather="trash"></i> Delete
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -44,7 +44,7 @@
                                     {{$jobindustry->photo}}
                                 </td> --}}
                                 <td><img src="{{ asset('storage/education/' . $education->thumbnail) }}" alt=""></td>
-                          
+
                             </tr>
                             <tr>
                                 <td>
@@ -62,10 +62,13 @@
                         <i class="btn-icon-prepend" data-feather="check-square"></i>
                        Edit
                       </a>
-                    <a href="{{route('education.index')}}" type="button" class="btn btn-inverse-danger btn-icon-text">
-                        <i class="btn-icon-prepend" data-feather="trash"></i>
-                       Delete
-                      </a>
+                      <form action="{{route('education.destroy', $education->id)}}" method="post" style="display: inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" onclick="return confirm('Sure ! Delete education ?')"class="btn btn-inverse-danger btn-icon-text">
+                            <i class="btn-icon-prepend" data-feather="trash"></i> Delete
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
