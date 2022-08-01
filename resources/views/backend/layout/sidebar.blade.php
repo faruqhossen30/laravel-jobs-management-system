@@ -18,7 +18,7 @@
           <span class="link-title">Dashboard</span>
         </a>
       </li>
-
+{{-- job atrribute --}}
       <li class="nav-item {{ active_class(['email/*']) }}">
         <a class="nav-link" data-bs-toggle="collapse" href="#jobAttributes" role="button" aria-expanded="{{ is_active_route(['email/*']) }}" aria-controls="email">
           <i class="link-icon" data-feather="mail"></i>
@@ -51,6 +51,31 @@
           </ul>
         </div>
       </li>
+{{-- job atrribute --}}
+
+{{-- circular atrribute start --}}
+<li class="nav-item {{ active_class(['email/*']) }}">
+    <a class="nav-link" data-bs-toggle="collapse" href="#circularAttributes" role="button" aria-expanded="{{ is_active_route(['email/*']) }}" aria-controls="email">
+      <i class="link-icon" data-feather="mail"></i>
+      <span class="link-title">Circular </span>
+      <i class="link-arrow" data-feather="chevron-down"></i>
+    </a>
+    <div class="collapse {{ show_class(['email/*']) }}" id="circularAttributes">
+      <ul class="nav sub-menu">
+        <li class="nav-item">
+          <a href="{{ route('circular.index') }}" class="nav-link {{ active_class(['email/inbox']) }}">Circular</a>
+        </li>
+      </ul>
+    </div>
+  </li>
+{{-- circular atrribute end --}}
+
+
+
+
+
+
+
       <li class="nav-item nav-category">web apps</li>
       <li class="nav-item {{ active_class(['email/*']) }}">
         <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="{{ is_active_route(['email/*']) }}" aria-controls="email">
