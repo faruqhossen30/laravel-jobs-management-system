@@ -63,12 +63,34 @@
     <div class="collapse {{ show_class(['email/*']) }}" id="circularAttributes">
       <ul class="nav sub-menu">
         <li class="nav-item">
-          <a href="{{ route('circular.index') }}" class="nav-link {{ active_class(['email/inbox']) }}">Circular</a>
+          <a href="{{ route('circular.index') }}" class="nav-link {{ active_class(['email/inbox']) }}">All Circular</a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('circular.create') }}" class="nav-link {{ active_class(['email/inbox']) }}">Create Circular</a>
         </li>
       </ul>
     </div>
   </li>
 {{-- circular atrribute end --}}
+{{-- Company atrribute start --}}
+<li class="nav-item {{ active_class(['email/*']) }}">
+    <a class="nav-link" data-bs-toggle="collapse" href="#companyAttributes" role="button" aria-expanded="{{ is_active_route(['email/*']) }}" aria-controls="email">
+      <i class="link-icon" data-feather="mail"></i>
+      <span class="link-title">Company </span>
+      <i class="link-arrow" data-feather="chevron-down"></i>
+    </a>
+    <div class="collapse {{ show_class(['email/*']) }}" id="companyAttributes">
+      <ul class="nav sub-menu">
+        <li class="nav-item">
+          <a href="{{ route('company.index') }}" class="nav-link {{ active_class(['email/inbox']) }}">All Company</a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('company.create') }}" class="nav-link {{ active_class(['email/inbox']) }}">Create Company</a>
+        </li>
+      </ul>
+    </div>
+  </li>
+{{-- Company atrribute end --}}
 
 
 

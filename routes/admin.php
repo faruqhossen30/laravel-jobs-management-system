@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CircularController;
+use App\Http\Controllers\Backend\CompanyController;
 use App\Http\Controllers\Backend\EducationController;
 use App\Http\Controllers\Backend\JobindustryController;
 use App\Http\Controllers\Backend\JobtypeController;
@@ -26,6 +27,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('salaryperiod', salaryperiodController::class);
     Route::resource('jobtype', JobtypeController::class);
     Route::resource('circular', CircularController::class);
+    Route::resource('company', CompanyController::class);
 
     // Project route end
 

@@ -3,8 +3,15 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\CareerLevel;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Circular;
+use App\Models\Education;
+use App\Models\Jobindustry;
+use App\Models\JobTypes;
+use App\Models\SalaryPeriod;
+use App\Models\Skill;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -29,7 +36,15 @@ class CircularController extends Controller
      */
     public function create()
     {
-        return view('backend.circular.create');
+        $categories = Category::get();
+        $educatios = Education::get();
+        $skills = Skill::get();
+        $jobindustries = Jobindustry::get();
+        $careerlabels = CareerLevel::get();
+        $salarypreiods = SalaryPeriod::get();
+        $jobtypes = JobTypes::get();
+
+        return view('backend.circular.create', compact('categories', 'educatios','skills','jobindustries','careerlabels','salarypreiods','jobtypes'));
     }
 
     /**
@@ -40,6 +55,8 @@ class CircularController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->all();
+
         $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -62,8 +79,32 @@ class CircularController extends Controller
             'slug' => $request->title,
             'description' => $request->description,
             'user_id' => Auth::user()->id,
-            'thumbnail' => $thumbnailname
+            'thumbnail' => $thumbnailname,
+            'category_id' => $request->category_id,
+
+            // 'skill' => $request->skill,
+            // 'job_industry' => $request->job_industry,
+            // 'career_label' => $request->career_label,
+            // 'salary_period' => $request->salary_period,
+            // 'job_type' => $request->job_type,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'organization_name' => $request->organization_name,
+            'organization_website' => $request->organization_website,
+            'apply_link' => $request->apply_link,
+            'vacancy' => $request->vacancy,
+            'meta_title' => $request->meta_title,
+            'meta_description' => $request->meta_description,
+            'meta_tag' => $request->meta_tag,
+            'education' => json_encode($request->education),
+            'skill' => json_encode($request->skill),
+            'job_industry' => json_encode($request->job_industry),
+            'career_label' => json_encode($request->career_label),
+            'salary_period' => json_encode($request->salary_period),
+            'job_type' => json_encode($request->job_type)
         ];
+
+
 
         Circular::create($data);
         Session::flash('create');
