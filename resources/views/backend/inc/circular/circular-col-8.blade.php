@@ -2,7 +2,7 @@
 <div class="card">
     <div class="card-body">
         <h6 class="card-title">Circular Form</h6>
-        <x-input-text label="Title" placeholder="title" name="title"  />
+        <x-input-text label="Title" placeholder="title" name="title" value="{{old('title')}}"  />
         {{-- Attributes start --}}
         <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
@@ -10,7 +10,7 @@
                 <div class="card-body p-0">
                     <h6 class="card-title">Description</h6>
 
-                    <textarea class="form-control" name="description" id="tinymceExample" rows="10"></textarea>
+                    <textarea class="form-control" name="description"  id="tinymceExample" rows="10">{{old('description')}}</textarea>
                 </div>
                 {{-- </div> --}}
             </div>

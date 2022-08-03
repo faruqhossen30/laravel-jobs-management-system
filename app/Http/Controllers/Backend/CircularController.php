@@ -81,12 +81,6 @@ class CircularController extends Controller
             'user_id' => Auth::user()->id,
             'thumbnail' => $thumbnailname,
             'category_id' => $request->category_id,
-
-            // 'skill' => $request->skill,
-            // 'job_industry' => $request->job_industry,
-            // 'career_label' => $request->career_label,
-            // 'salary_period' => $request->salary_period,
-            // 'job_type' => $request->job_type,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'organization_name' => $request->organization_name,
@@ -132,7 +126,27 @@ class CircularController extends Controller
     public function edit($id)
     {
         $circular = Circular::firstWhere('id',$id);
-        return view('backend.circular.edit', compact('circular'));
+        //another
+        $categories = Category::get();
+        $educatios = Education::get();
+        $skills = Skill::get();
+        $jobindustries = Jobindustry::get();
+        $careerlabels = CareerLevel::get();
+        $salarypreiods = SalaryPeriod::get();
+        $jobtypes = JobTypes::get();
+
+        // return $circular->category_id;
+
+
+
+        // return gettype($circular->skill);
+        // return $circular->skill;
+        //   return $circular->job_industry;
+
+        return view('backend.circular.edit', compact('circular','categories','categories','educatios','skills','jobindustries','careerlabels','salarypreiods','jobtypes'));
+
+
+
     }
 
     /**
@@ -145,7 +159,8 @@ class CircularController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required'
+            'title' => 'required',
+            'description' => 'required'
         ]);
 
         $thumbnailname = null;
@@ -163,10 +178,27 @@ class CircularController extends Controller
 
         if($thumbnailname){
             $data = [
-                'name' => $request->name,
-                'slug' => $request->name,
+                'title' => $request->title,
+                'slug' => $request->title,
+                'description' => $request->description,
                 'user_id' => Auth::user()->id,
-                'thumbnail' => $thumbnailname
+                'thumbnail' => $thumbnailname,
+                'category_id' => $request->category_id,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
+                'organization_name' => $request->organization_name,
+                'organization_website' => $request->organization_website,
+                'apply_link' => $request->apply_link,
+                'vacancy' => $request->vacancy,
+                'meta_title' => $request->meta_title,
+                'meta_description' => $request->meta_description,
+                'meta_tag' => $request->meta_tag,
+                'education' => json_encode($request->education),
+                'skill' => json_encode($request->skill),
+                'job_industry' => json_encode($request->job_industry),
+                'career_label' => json_encode($request->career_label),
+                'salary_period' => json_encode($request->salary_period),
+                'job_type' => json_encode($request->job_type)
             ];
 
             $file = Circular::firstwhere('id', $id)->thumbnail;
@@ -180,9 +212,26 @@ class CircularController extends Controller
             return redirect()->route('circular.index');
         }else{
             $data = [
-                'name' => $request->name,
-                'slug' => $request->name,
-                'user_id' => Auth::user()->id
+                'title' => $request->title,
+                'slug' => $request->title,
+                'description' => $request->description,
+                'user_id' => Auth::user()->id,
+                'category_id' => $request->category_id,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
+                'organization_name' => $request->organization_name,
+                'organization_website' => $request->organization_website,
+                'apply_link' => $request->apply_link,
+                'vacancy' => $request->vacancy,
+                'meta_title' => $request->meta_title,
+                'meta_description' => $request->meta_description,
+                'meta_tag' => $request->meta_tag,
+                'education' => json_encode($request->education),
+                'skill' => json_encode($request->skill),
+                'job_industry' => json_encode($request->job_industry),
+                'career_label' => json_encode($request->career_label),
+                'salary_period' => json_encode($request->salary_period),
+                'job_type' => json_encode($request->job_type)
             ];
             Circular::firstwhere('id', $id)->update($data);
             Session::flash('update');

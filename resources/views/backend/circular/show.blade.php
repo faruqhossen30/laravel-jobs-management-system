@@ -2,7 +2,7 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Category</a></li>
+        <li class="breadcrumb-item"><a href="#">Circular</a></li>
         <li class="breadcrumb-item active" aria-current="page">Show</li>
     </ol>
 </nav>
@@ -11,9 +11,9 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <a href="{{route('category.index')}}" type="button" class="btn btn-inverse-primary btn-icon-text">
+                <a href="{{route('circular.index')}}" type="button" class="btn btn-inverse-primary btn-icon-text">
                     <i class="btn-icon-prepend" data-feather="list"></i>
-                   Category List
+                    Circular List
                   </a>
                 <div class="table-responsive pt-3">
                     <table class="table table-bordered">
@@ -33,7 +33,7 @@
                                     Name
                                 </td>
                                 <td>
-                                    {{$category->name}}
+                                    {{$circular->title}}
                                 </td>
                             </tr>
                             <tr>
@@ -43,7 +43,7 @@
                                 {{-- <td>
                                     {{$jobindustry->photo}}
                                 </td> --}}
-                                <td><img src="{{ asset('storage/category/' . $category->thumbnail) }}" alt=""></td>
+                                <td><img src="{{ asset('storage/circular/' . $circular->thumbnail) }}" alt=""></td>
 
                             </tr>
                             <tr>
@@ -51,21 +51,21 @@
                                     Author
                                 </td>
                                 <td>
-                                    {{$category->user_id}}
+                                    {{$circular->user_id}}
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="my-4">
-                    <a href="{{route('category.edit', $category->id)}}" type="button" class="btn btn-inverse-success btn-icon-text">
+                    <a href="{{route('circular.edit', $circular->id)}}" type="button" class="btn btn-inverse-success btn-icon-text">
                         <i class="btn-icon-prepend" data-feather="check-square"></i>
                        Edit
                       </a>
-                      <form action="{{route('category.destroy', $category->id)}}" method="post" style="display: inline">
+                      <form action="{{route('circular.destroy', $circular->id)}}" method="post" style="display: inline">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" onclick="return confirm('Sure ! Delete category ?')"class="btn btn-inverse-danger btn-icon-text">
+                        <button type="submit" onclick="return confirm('Sure ! Delete circular ?')"class="btn btn-inverse-danger btn-icon-text">
                             <i class="btn-icon-prepend" data-feather="trash"></i> Delete
                         </button>
                     </form>
@@ -103,7 +103,7 @@
     })
     Toast.fire({
         icon: 'success'
-        , title: 'Category has been created Successfully!'
+        , title: 'circular has been created Successfully!'
     })
 
 </script>

@@ -15,14 +15,34 @@ return new class extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
+            // Basic Info
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('edit_user_id')->nullable();
             $table->string('name');
             $table->string('slug');
             $table->longText('description');
             $table->string('email');
             $table->string('address');
             $table->string('logo')->nullable();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('edit_user_id')->nullable();
+            // Additional Info
+            $table->string('ceo_name')->nullable();
+            $table->string('mobile')->nullable();
+            $table->unsignedBigInteger('ownership_type')->nullable();
+            $table->unsignedBigInteger('division_id')->nullable();
+            $table->unsignedBigInteger('district_id')->nullable();
+            $table->json('industry')->nullable();
+            $table->integer('total_office')->nullable();
+            $table->integer('employ_range')->nullable();
+            $table->dateTime('establish')->nullable();
+            // Company Link
+            $table->string('google_map')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('youtube')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('')->nullable();
+
             $table->timestamps();
         });
     }

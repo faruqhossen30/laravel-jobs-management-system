@@ -36,33 +36,33 @@
                                 </th>
                             </tr>
                         </thead>
-                        {{-- <tbody>
-                            @foreach ($categories as $category)
+                        <tbody>
+                            @foreach ($circulars as $circular)
                             <tr>
                                 <td>
                                     1
                                 </td>
                                 <td>
-                                    {{$category->name}}
+                                    {{$circular->title}}
                                 </td>
                                 <td>
-                                    {{$category->user_id}}
+                                    {{$circular->user_id}}
                                 </td>
                                 <td>
-                                    {{$category->created_at->format('d M Y')}}
+                                    {{$circular->created_at->format('d M Y')}}
                                 </td>
                                 <td>
-                                    <form action="{{route('category.destroy', $category->id)}}" method="post" style="display: inline">
+                                    <form action="{{route('circular.destroy', $circular->id)}}" method="post" style="display: inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Sure ! Delete category ?')" class="btn btn-danger btn-xs btn-icon">
+                                        <button type="submit" onclick="return confirm('Sure ! Delete circular ?')" class="btn btn-danger btn-xs btn-icon">
                                             <i data-feather="trash"></i>
                                         </button>
                                     </form>
-                                    <a href="{{route('category.edit', $category->id)}}" type="button" class="btn btn-warning btn-xs btn-icon">
+                                    <a href="{{route('circular.edit', $circular->id)}}" type="button" class="btn btn-warning btn-xs btn-icon">
                                         <i data-feather="check-square"></i>
                                     </a>
-                                    <a href="{{route('category.show', $category->id)}}" type="button" class="btn btn-success btn-xs btn-icon">
+                                    <a href="{{route('circular.show', $circular->id)}}" type="button" class="btn btn-success btn-xs btn-icon">
                                         <i data-feather="eye"></i>
                                     </a>
 
@@ -71,7 +71,7 @@
                             @endforeach
 
 
-                        </tbody> --}}
+                        </tbody>
                     </table>
                 </div>
             </div>
