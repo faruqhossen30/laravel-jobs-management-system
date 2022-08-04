@@ -3,27 +3,147 @@
 <nav class="page-breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="#">Company</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Create</li>
+    <li class="breadcrumb-item active" aria-current="page">Edit</li>
   </ol>
 </nav>
 
 <div class="row">
-  <div class="col-md-12 grid-margin stretch-card">
+  <div class="col-md-8 offset-2 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
         <form action="{{route('company.update', $company->id)}}" method="POST" enctype="multipart/form-data" class="forms-sample">
             @csrf
             @method('put')
-            <div class="card">
-                <div class="card-body">
-                    <h6 class="card-title">Image</h6>
-                    <p class="text-muted mb-3">Drag and Drop your logo. </p>
-                    <input type="file" id="myDropify" name="logo">
+         <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Image2</h6>
+                        <p class="text-muted mb-3">Drag and Drop your logo. </p>
+                        <input type="file" id="myDropify" name="logo">
+                    </div>
                 </div>
             </div>
-          <div class="mb-3">
-            <label for="forName" class="form-label">Company Name</label>
-            <input type="text" name="name" value="{{$company->name}}" class="form-control" id="forName" autocomplete="off" placeholder=" Name">
+         </div>
+
+        <h3 class="my-4">Acount Information</h3>
+          <div class="row">
+            <div class="col-md-4">
+                 <div class="mb-3">
+                <label for="forName" class="form-label">Company Name</label>
+                <input type="text" name="name" value="{{$company->name}}" class="form-control" id="forName" autocomplete="off" placeholder=" Name">
+              </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="forName" class="form-label">Email</label>
+                    <input type="email" name="email"  class="form-control" id="email" autocomplete="off" value="{{$company->email}}">
+                  </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="forName" class="form-label">Address</label>
+                    <input type="text" name="address" class="form-control" id="address" autocomplete="off" value="{{$company->address}}">
+                  </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="forName" class="form-label">Facebook</label>
+                    <input type="text" name="address" class="form-control" id="address" autocomplete="off" value="{{$company->address}}">
+                  </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="forName" class="form-label">Twitter</label>
+                    <input type="text" name="address" class="form-control" id="address" autocomplete="off" value="{{$company->address}}">
+                  </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="forName" class="form-label">Youtube</label>
+                    <input type="text" name="address" class="form-control" id="address" autocomplete="off" value="{{$company->address}}">
+                  </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="forName" class="form-label">instagram</label>
+                    <input type="text" name="address" class="form-control" id="address" autocomplete="off" value="{{$company->address}}">
+                  </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="forName" class="form-label">linkedin</label>
+                    <input type="text" name="address" class="form-control" id="address" autocomplete="off" value="{{$company->address}}">
+                  </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="forName" class="form-label">Address</label>
+                    <input type="text" name="address" class="form-control" id="address" autocomplete="off" value="{{$company->address}}">
+                  </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="forName" class="form-label">ceo_name</label>
+                    <input type="text" name="address" class="form-control" id="address" autocomplete="off" value="{{$company->address}}">
+                  </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="forName" class="form-label">mobile</label>
+                    <input type="text" name="address" class="form-control" id="address" autocomplete="off" value="{{$company->address}}">
+                  </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="forName" class="form-label">ownership_type</label>
+                    <input type="text" name="address" class="form-control" id="address" autocomplete="off" value="{{$company->address}}">
+                  </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="forName" class="form-label">division_id</label>
+                    <input type="text" name="address" class="form-control" id="address" autocomplete="off" value="{{$company->address}}">
+                  </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="forName" class="form-label">district_id</label>
+                    <input type="text" name="address" class="form-control" id="address" autocomplete="off" value="{{$company->address}}">
+                  </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="forName" class="form-label">industry</label>
+                    <input type="text" name="address" class="form-control" id="address" autocomplete="off" value="{{$company->address}}">
+                  </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="forName" class="form-label">total_office</label>
+                    <input type="text" name="address" class="form-control" id="address" autocomplete="off" value="{{$company->address}}">
+                  </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="forName" class="form-label">employ_range</label>
+                    <input type="text" name="address" class="form-control" id="address" autocomplete="off" value="{{$company->address}}">
+                  </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="forName" class="form-label">establish</label>
+                    <input type="text" name="address" class="form-control" id="address" autocomplete="off" value="{{$company->address}}">
+                  </div>
+            </div>
+            <div class="col-md-12">
+                <div class="mb-3">
+                    <label for="exampleInputUsername1" class="form-label"> google Map</label>
+                    <textarea name="meta_description" id="meta_description" cols="30" rows="10" class="form-control">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d8310.686427880151!2d-74.00585671025667!3d40.7098868133123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1536851502771"  frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </textarea>
+                </div>
+            </div>
           </div>
 
         <div class="row">
@@ -39,14 +159,8 @@
             </div>
         </div>
 
-        <div class="mb-3">
-            <label for="forName" class="form-label">Email</label>
-            <input type="email" name="email"  class="form-control" id="email" autocomplete="off" value="{{$company->email}}">
-          </div>
-          <div class="mb-3">
-            <label for="forName" class="form-label">Address</label>
-            <input type="text" name="address" class="form-control" id="address" autocomplete="off" value="{{$company->address}}">
-          </div>
+
+
 
           <button type="submit" class="btn btn-primary me-2">Update</button>
           <button class="btn btn-secondary">Cancel</button>

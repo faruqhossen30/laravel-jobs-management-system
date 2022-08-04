@@ -108,7 +108,7 @@ class CompanyController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
+            'name'    => 'required',
             'address' => 'required'
         ]);
 
@@ -127,14 +127,14 @@ class CompanyController extends Controller
 
         if($logoName){
             $data = [
-                'name' => $request->name,
-                'slug' => $request->name,
+                'name'        => $request->name,
+                'slug'        => $request->name,
                 'description' => $request->description,
-                'email' => $request->email,
-                'address' => $request->address,
-                'address' => $request->address,
-                'user_id' => Auth::user()->id,
-                'logo' => $logoName
+                'email'       => $request->email,
+                'address'     => $request->address,
+                'address'     => $request->address,
+                'user_id'     => Auth::user()->id,
+                'logo'        => $logoName
             ];
 
             $file = Company::firstwhere('id', $id)->logo;
@@ -148,13 +148,13 @@ class CompanyController extends Controller
             return redirect()->route('company.index');
         }else{
             $data = [
-                'name' => $request->name,
-                'slug' => $request->name,
+                'name'        => $request->name,
+                'slug'        => $request->name,
                 'description' => $request->description,
-                'email' => $request->email,
-                'address' => $request->address,
-                'address' => $request->address,
-                'user_id' => Auth::user()->id
+                'email'       => $request->email,
+                'address'     => $request->address,
+                'address'     => $request->address,
+                'user_id'     => Auth::user()->id
 
             ];
             Company::firstwhere('id', $id)->update($data);

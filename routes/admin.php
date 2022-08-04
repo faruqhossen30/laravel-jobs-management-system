@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\careerlavelController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('jobtype', JobtypeController::class);
     Route::resource('circular', CircularController::class);
     Route::resource('company', CompanyController::class);
+    Route::resource('blog', BlogController::class);
 
     // Project route end
 

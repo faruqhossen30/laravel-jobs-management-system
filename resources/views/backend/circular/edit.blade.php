@@ -57,14 +57,14 @@
                                                 <div class="mb-3">
                                                     <label for="time" class="form-label">Start From</label>
                                                     <input type="date" class="form-control" id="start_date"
-                                                        name="start_date"
-                                                        value="@if ($circular->start_date) {{ $circular->start_date->format('Y-m-d') }} @endif
-                                                   ">
+                                                        name="start_date" @if($circular->start_date != null) value="{{$circular->start_date->format('Y-m-d')}}" @endif
+                                                    >
                                                 </div>
                                                 <div class="mb-3">
+
                                                     <label for="time" class="form-label">End From</label>
                                                     <input type="date" class="form-control" id="end_date"
-                                                        name="end_date">
+                                                        name="end_date"    @if($circular->end_date != null) value="{{$circular->end_date->format('Y-m-d')}}" @endif >
                                                 </div>
                                                 <x-input-text label="Organization Name" placeholder="name"
                                                     name="organization_name" value="{{ $circular->organization_name }}" />
@@ -115,7 +115,8 @@
                                             <div class="card-body">
                                                 <h6 class="card-title">Image</h6>
                                                 <p class="text-muted mb-3">Drag and Drop your image. </p>
-                                                <input type="file" id="myDropify" name="thumbnail">
+                                                <input type="file" id="myDropify" name="thumbnail" @if($circular->thumbnail) data-default-file="{{asset('storage/circular/'.$circular->thumbnail)}}" @endif >
+                                                {{-- data-default-file="imagePath" --}}
                                             </div>
                                         </div>
                                         <div class="card">

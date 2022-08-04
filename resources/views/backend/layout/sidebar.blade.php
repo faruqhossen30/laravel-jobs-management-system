@@ -87,10 +87,32 @@
         <li class="nav-item">
           <a href="{{ route('company.create') }}" class="nav-link {{ active_class(['email/inbox']) }}">Create Company</a>
         </li>
+        <li class="nav-item">
+          <a href="{{ route('company.create') }}" class="nav-link {{ active_class(['email/inbox']) }}">Update Company</a>
+        </li>
       </ul>
     </div>
   </li>
 {{-- Company atrribute end --}}
+{{-- Blog atrribute start --}}
+<li class="nav-item {{ active_class(['email/*']) }}">
+    <a class="nav-link" data-bs-toggle="collapse" href="#blogAttributes" role="button" aria-expanded="{{ is_active_route(['email/*']) }}" aria-controls="email">
+      <i class="link-icon" data-feather="mail"></i>
+      <span class="link-title">Blog </span>
+      <i class="link-arrow" data-feather="chevron-down"></i>
+    </a>
+    <div class="collapse {{ show_class(['email/*']) }}" id="blogAttributes">
+      <ul class="nav sub-menu">
+        <li class="nav-item">
+          <a href="{{ route('blog.index') }}" class="nav-link {{ active_class(['email/inbox']) }}">All Blog</a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('blog.create') }}" class="nav-link {{ active_class(['email/inbox']) }}">Create Blog</a>
+        </li>
+      </ul>
+    </div>
+  </li>
+{{-- Blog atrribute end --}}
 
 
 

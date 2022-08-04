@@ -2,7 +2,7 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Company</a></li>
+        <li class="breadcrumb-item"><a href="#">Blog</a></li>
         <li class="breadcrumb-item active" aria-current="page">List</li>
     </ol>
 </nav>
@@ -11,7 +11,7 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <a href="{{route('company.create')}}" type="button" class="btn btn-inverse-primary btn-icon-text">
+                <a href="{{route('blog.create')}}" type="button" class="btn btn-inverse-primary btn-icon-text">
                     <i class="btn-icon-prepend" data-feather="plus-circle"></i>
                     Create
                 </a>
@@ -37,36 +37,33 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($companies as $company)
+                            @foreach ($blogs as $blog)
                             <tr>
                                 <td>
                                     1
                                 </td>
                                 <td>
-                                    {{$company->name}}
+                                    {{$blog->title}}
                                 </td>
                                 <td>
-                                    {{$company->user_id}}
+                                    {{$blog->user_id}}
                                 </td>
                                 <td>
-                                    {{$company->created_at->format('d M Y')}}
+                                    {{$blog->created_at->format('d M Y')}}
                                 </td>
                                 <td>
-                                    <form action="{{route('company.destroy', $company->id)}}" method="post" style="display: inline">
+                                    <form action="{{route('blog.destroy', $blog->id)}}" method="post" style="display: inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Sure ! Delete company ?')" class="btn btn-danger btn-xs btn-icon">
+                                        <button type="submit" onclick="return confirm('Sure ! Delete blog ?')" class="btn btn-danger btn-xs btn-icon">
                                             <i data-feather="trash"></i>
                                         </button>
                                     </form>
-                                    <a href="{{route('company.edit', $company->id)}}" type="button" class="btn btn-warning btn-xs btn-icon">
+                                    <a href="{{route('blog.edit', $blog->id)}}" type="button" class="btn btn-warning btn-xs btn-icon">
                                         <i data-feather="check-square"></i>
                                     </a>
-                                    <a href="{{route('company.show', $company->id)}}" type="button" class="btn btn-success btn-xs btn-icon">
+                                    <a href="{{route('blog.show', $blog->id)}}" type="button" class="btn btn-success btn-xs btn-icon">
                                         <i data-feather="eye"></i>
-                                    </a>
-                                    <a href="{{route('company.edit', $company->id)}}" type="button" class="btn btn-warning btn-xs btn-icon px-5">
-                                       update
                                     </a>
 
                                 </td>
@@ -112,7 +109,7 @@
     })
     Toast.fire({
         icon: 'success'
-        , title: 'Company has been created!'
+        , title: 'Blog has been created!'
     })
 
 </script>
@@ -132,7 +129,7 @@
     })
     Toast.fire({
         icon: 'success'
-        , title: 'Company has been updated !'
+        , title: 'Blog has been updated !'
     })
 
 </script>
@@ -152,7 +149,7 @@
     })
     Toast.fire({
         icon: 'warning'
-        , title: 'Company has been deleted !'
+        , title: 'Blog has been deleted !'
     })
 
 </script>

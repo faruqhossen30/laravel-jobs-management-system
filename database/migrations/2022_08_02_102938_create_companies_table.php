@@ -37,11 +37,10 @@ return new class extends Migration
             // Company Link
             $table->string('google_map')->nullable();
             $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
             $table->string('youtube')->nullable();
             $table->string('linkedin')->nullable();
-            $table->string('twitter')->nullable();
             $table->string('instagram')->nullable();
-            $table->string('')->nullable();
 
             $table->timestamps();
         });

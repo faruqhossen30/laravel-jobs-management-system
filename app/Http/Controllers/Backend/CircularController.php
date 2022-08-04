@@ -135,12 +135,11 @@ class CircularController extends Controller
         $salarypreiods = SalaryPeriod::get();
         $jobtypes = JobTypes::get();
 
-        // return $circular->category_id;
+
 
 
 
         // return gettype($circular->skill);
-        // return $circular->skill;
         //   return $circular->job_industry;
 
         return view('backend.circular.edit', compact('circular','categories','categories','educatios','skills','jobindustries','careerlabels','salarypreiods','jobtypes'));
@@ -158,6 +157,7 @@ class CircularController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $request->validate([
             'title' => 'required',
             'description' => 'required'
@@ -199,6 +199,7 @@ class CircularController extends Controller
                 'career_label' => json_encode($request->career_label),
                 'salary_period' => json_encode($request->salary_period),
                 'job_type' => json_encode($request->job_type)
+
             ];
 
             $file = Circular::firstwhere('id', $id)->thumbnail;
@@ -233,9 +234,11 @@ class CircularController extends Controller
                 'salary_period' => json_encode($request->salary_period),
                 'job_type' => json_encode($request->job_type)
             ];
+
             Circular::firstwhere('id', $id)->update($data);
             Session::flash('update');
             return redirect()->route('circular.index');
+
 
         }
     }

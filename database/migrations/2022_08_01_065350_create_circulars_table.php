@@ -28,9 +28,10 @@ return new class extends Migration
             $table->json('salary_period')->nullable();
             $table->json('job_type')->nullable();
             // Organization Info
+            $table->unsignedBigInteger('company_id')->nullable();
+            $table->string('organization_name')->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
-            $table->string('organization_name')->nullable();
             $table->string('organization_website')->nullable();
             $table->string('apply_link')->nullable();
             $table->string('vacancy')->nullable();
