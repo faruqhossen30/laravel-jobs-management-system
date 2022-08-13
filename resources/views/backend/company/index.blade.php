@@ -65,9 +65,9 @@
                                     <a href="{{route('company.show', $company->id)}}" type="button" class="btn btn-success btn-xs btn-icon">
                                         <i data-feather="eye"></i>
                                     </a>
-                                    <a href="{{route('company.edit', $company->id)}}" type="button" class="btn btn-warning btn-xs btn-icon px-5">
+                                    {{-- <a href="{{route('company.edit', $company->id)}}" type="button" class="btn btn-warning btn-xs btn-icon px-5">
                                        update
-                                    </a>
+                                    </a> --}}
 
                                 </td>
                             </tr>

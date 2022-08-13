@@ -87,9 +87,9 @@
         <li class="nav-item">
           <a href="{{ route('company.create') }}" class="nav-link {{ active_class(['email/inbox']) }}">Create Company</a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a href="{{ route('company.create') }}" class="nav-link {{ active_class(['email/inbox']) }}">Update Company</a>
-        </li>
+        </li> --}}
       </ul>
     </div>
   </li>

@@ -158,6 +158,7 @@ class CircularController extends Controller
     public function update(Request $request, $id)
     {
 
+        // return $request->all();
         $request->validate([
             'title' => 'required',
             'description' => 'required'

@@ -66,8 +66,8 @@
                                 <p class="text-muted mb-3">Drag and Drop your image. </p>
                                 <input type="file" id="myDropify" name="thumbnail">
                             </div>
-                            {{-- Category --}}
                         </div>
+                        {{-- Category --}}
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title">Category</div>

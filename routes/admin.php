@@ -12,7 +12,9 @@ use App\Http\Controllers\Backend\JobindustryController;
 use App\Http\Controllers\Backend\JobtypeController;
 use App\Http\Controllers\Backend\salaryperiodController;
 use App\Http\Controllers\Backend\SkillController;
-
+use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\UserProfileController;
+use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -30,8 +32,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('circular', CircularController::class);
     Route::resource('company', CompanyController::class);
     Route::resource('blog', BlogController::class);
+    Route::resource('user', UserProfileController::class);
 
     // Project route end
+    // user update
+
+    // Route::get('user/Profile',[UserController::class,'UserProfile'])->name('user.index');
+    // Route::get('user/update/profile/{id}',[UserController::class,'userUpdate'])->name('user.update');
 
     Route::get('/', function () {
         return view('backend.dashboard');

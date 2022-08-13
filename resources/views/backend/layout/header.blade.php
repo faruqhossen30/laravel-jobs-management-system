@@ -217,13 +217,15 @@
                     </div>
                     <ul class="list-unstyled p-1">
                         <li class="dropdown-item py-2">
-                            <a href="{{ url('/general/profile') }}" class="text-body ms-0">
+                            {{-- <a href="{{ url('/general/profile') }}" class="text-body ms-0"> --}}
+                            <a href="{{route('user.index') }}" class="text-body ms-0">
                                 <i class="me-2 icon-md" data-feather="user"></i>
                                 <span>Profile</span>
                             </a>
                         </li>
                         <li class="dropdown-item py-2">
-                            <a href="javascript:;" class="text-body ms-0">
+                            {{-- <a href="{{route('user.edit', $user->id)}}" class="text-body ms-0"> --}}
+                            <a href="{{route('user.edit',Auth::user()->id)}}" class="text-body ms-0">
                                 <i class="me-2 icon-md" data-feather="edit"></i>
                                 <span>Edit Profile</span>
                             </a>
