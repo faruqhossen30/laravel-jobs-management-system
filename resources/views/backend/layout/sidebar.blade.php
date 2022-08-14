@@ -416,6 +416,7 @@
           <i class="link-icon" data-feather="hash"></i>
           <span class="link-title">Documentation</span>
         </a>
+        <a href="{{url('/')}}">Visit side</a>
       </li>
     </ul>
   </div>

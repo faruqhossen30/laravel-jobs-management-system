@@ -3,7 +3,8 @@
 
     <head>
         <meta charset="utf-8" />
-        <title>Home | Jobcy - Job Listing Template | Themesdesign</title>
+        {{-- <title>Home | Jobcy - Job Listing Template | Themesdesign</title> --}}
+        <title>@yield('title')</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content=" " />
         <meta name="keywords" content="" />
@@ -106,6 +107,7 @@
                                         <li><a href="blog.html"><i class="mdi mdi-chevron-right"></i> Blog</a></li>
                                         <li><a href="team.html"><i class="mdi mdi-chevron-right"></i> Team</a></li>
                                         <li><a href="pricing.html"><i class="mdi mdi-chevron-right"></i> Pricing</a></li>
+                                        <li><a href="{{url('admin')}}"><i class="mdi mdi-chevron-right"></i>Admin</a></li>
                                     </ul>
                                 </div>
                             </div><!--end col-->

@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CircularpageController extends Controller
+class ContactpageController extends Controller
 {
-    public function circularPage()
+    public function contactPage()
     {
-        return view('frontend.circularpage');
+        return view('frontend.contactpage');
     }
 }

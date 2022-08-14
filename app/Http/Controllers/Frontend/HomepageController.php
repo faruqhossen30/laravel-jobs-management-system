@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class HomepageController extends Controller
 {
-    public function homepage()
+    public function homePage()
     {
         return view('frontend.homepage');
     }

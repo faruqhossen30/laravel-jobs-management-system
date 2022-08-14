@@ -1,5 +1,6 @@
 @extends('frontend.layouts.app')
 
+@section('title', 'Home')
 @section('main-contant')
 @include('frontend.homepage-content.banner')
 @include('frontend.homepage-content.category')

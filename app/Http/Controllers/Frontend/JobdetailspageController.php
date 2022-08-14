@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class JobdetailspageController extends Controller
 {
-    public function jobdetailspage()
+    public function jobdetailsPage()
     {
         return view('frontend.jobdetailspage');
     }
