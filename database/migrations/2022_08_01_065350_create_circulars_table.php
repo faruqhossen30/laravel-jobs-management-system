@@ -27,20 +27,15 @@ return new class extends Migration
             $table->json('career_label')->nullable();
             $table->json('salary_period')->nullable();
             $table->json('job_type')->nullable();
-            // Organization Info
-            $table->unsignedBigInteger('company_id')->nullable();
-            $table->string('organization_name')->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
+            // Organization Info
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('company_id')->nullable();
+            $table->string('organization_name')->nullable();
             $table->string('organization_website')->nullable();
             $table->string('apply_link')->nullable();
             $table->string('vacancy')->nullable();
-            $table->unsignedBigInteger('user_id')->nullable();
-            // SEO
-            $table->string('meta_title')->nullable();
-            $table->string('meta_description')->nullable();
-            $table->string('meta_tag')->nullable();
-
             $table->timestamps();
         });
     }
