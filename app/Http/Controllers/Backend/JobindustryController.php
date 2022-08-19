@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\JobIndustry;
 use Illuminate\Http\Request;
-use App\Models\Jobindustry;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -19,7 +20,7 @@ class JobindustryController extends Controller
      */
     public function index()
     {
-        $jobindustries = Jobindustry::get();
+        $jobindustries = JobIndustry::get();
         return view('backend.jobindustry.index',compact('jobindustries'));
 
     }
@@ -65,7 +66,7 @@ class JobindustryController extends Controller
             'thumbnail' => $thumbnailname
         ];
 
-        Jobindustry::create($data);
+        JobIndustry::create($data);
         Session::flash('create');
         return redirect()->route('jobindustry.index');
     }
@@ -78,7 +79,7 @@ class JobindustryController extends Controller
      */
     public function show($id)
     {
-        $jobindustry = Jobindustry::firstWhere('id',$id);
+        $jobindustry = JobIndustry::firstWhere('id',$id);
         return view('backend.jobindustry.show', compact('jobindustry'));
     }
 
@@ -90,7 +91,7 @@ class JobindustryController extends Controller
      */
     public function edit($id)
     {
-        $jobindustry = Jobindustry::firstWhere('id',$id);
+        $jobindustry = JobIndustry::firstWhere('id',$id);
         return view('backend.jobindustry.edit', compact('jobindustry'));
     }
 
@@ -128,13 +129,13 @@ class JobindustryController extends Controller
                 'thumbnail' => $thumbnailname
             ];
 
-            $file = jobindustry::firstwhere('id', $id)->thumbnail;
+            $file = JobIndustry::firstwhere('id', $id)->thumbnail;
             if($file){
                 Storage::disk('public')->delete('jobindustry/' . $file);
             }
 
 
-            Jobindustry::firstwhere('id', $id)->update($data);
+            JobIndustry::firstwhere('id', $id)->update($data);
             Session::flash('update');
             return redirect()->route('jobindustry.index');
         }else{
@@ -144,7 +145,7 @@ class JobindustryController extends Controller
                 'user_id' => Auth::user()->id
             ];
 
-        Jobindustry::firstwhere('id', $id)->update($data);
+        JobIndustry::firstwhere('id', $id)->update($data);
         Session::flash('update');
         return redirect()->route('jobindustry.index');
     }
@@ -158,7 +159,7 @@ class JobindustryController extends Controller
      */
     public function destroy($id)
     {
-        $file = Jobindustry::firstwhere('id', $id)->thumbnail;
+        $file = JobIndustry::firstwhere('id', $id)->thumbnail;
         if($file){
             Storage::disk('local')->delete('public/jobindustry/' . $file);
         }

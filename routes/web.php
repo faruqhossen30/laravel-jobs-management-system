@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 // important backend route and frontend !same check
 
-Route::get('/',[HomepageController::class, 'homePage'])->name('home');
+Route::get('/',[HomepageController::class, 'homePage'])->name('homepage');
 Route::get('/circular',[CircularpageController::class, 'circularPage'])->name('circular');
 Route::get('/jobdetails',[JobdetailspageController::class, 'jobdetailsPage'])->name('jobdetails');
 Route::get('/jobindustry',[JobindustrypageController::class, 'jobindustryPage'])->name('jobindustry');

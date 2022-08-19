@@ -33,7 +33,7 @@
     <body>
 
                 {{-- nav bar start --}}
-                @include('frontend.inc.topbar')
+                {{-- @include('frontend.inc.topbar') --}}
                 @include('frontend.inc.navbar')
                 {{-- nav bar end --}}
 
