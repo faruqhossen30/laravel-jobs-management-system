@@ -104,6 +104,9 @@
     <div class="collapse {{ show_class(['email/*']) }}" id="blogAttributes">
       <ul class="nav sub-menu">
         <li class="nav-item">
+          <a href="{{ route('blogcategory.index') }}" class="nav-link {{ active_class(['email/inbox']) }}">Blog Category</a>
+        </li>
+        <li class="nav-item">
           <a href="{{ route('blog.index') }}" class="nav-link {{ active_class(['email/inbox']) }}">All Blog</a>
         </li>
         <li class="nav-item">

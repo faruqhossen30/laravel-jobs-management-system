@@ -5,7 +5,8 @@ namespace Database\Seeders;
 use App\Models\Category;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Str;
+use App\Models\BlogCategory;
 class CategorySeeder extends Seeder
 {
     /**
@@ -32,11 +33,19 @@ class CategorySeeder extends Seeder
                 'user_id' => 1,
             ]
         ];
-        $length = count($data);
 
 
         foreach ($data as $item) {
             Category::create($item);
+        }
+        $categories = ['Govt Job', 'IT Job', 'Comapny Job', 'Bank Job'];
+
+        foreach($categories as $item){
+            BlogCategory::create([
+                'name'    => $item,
+                'slug'    => Str::slug($item, '-'),
+                'user_id' => 1,
+            ]);
         }
     }
 }

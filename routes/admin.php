@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\salaryperiodController;
 use App\Http\Controllers\Backend\SkillController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\Backend\BlogcategoryController;
 use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
@@ -33,6 +34,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('company', CompanyController::class);
     Route::resource('blog', BlogController::class);
     Route::resource('user', UserProfileController::class);
+    Route::resource('blogcategory', BlogcategoryController::class);
 
     // Project route end
     // user update
