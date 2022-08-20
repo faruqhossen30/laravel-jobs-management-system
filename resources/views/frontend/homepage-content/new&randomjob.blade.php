@@ -335,7 +335,7 @@
                             <!--end job-box-->
 
                             <div class="text-center mt-4 pt-2">
-                                <a href="job-list.html" class="btn btn-primary">View More <i class="uil uil-arrow-right"></i></a>
+                                <a href="{{route('circular')}}" class="btn btn-primary">View More <i class="uil uil-arrow-right"></i></a>
                             </div>
 
                         </div>
@@ -627,7 +627,7 @@
                             <!--end job-box-->
 
                             <div class="text-center mt-4 pt-2">
-                                <a href="job-list.html" class="btn btn-primary">View More <i class="uil uil-arrow-right"></i></a>
+                                <a href="{{route('circular')}}" class="btn btn-primary">View More <i class="uil uil-arrow-right"></i></a>
                             </div>
                         </div>
                         <!--end featured-jobs-tab-->
@@ -916,7 +916,7 @@
                             <!--end job-box-->
 
                             <div class="text-center mt-4 pt-2">
-                                <a href="job-list.html" class="btn btn-primary">View More <i class="uil uil-arrow-right"></i></a>
+                                <a href="{{route('circular')}}" class="btn btn-primary">View More <i class="uil uil-arrow-right"></i></a>
                             </div>
                         </div>
                         <!--end freelancer-tab-->
@@ -1205,7 +1205,7 @@
                             <!--end job-box-->
 
                             <div class="text-center mt-4 pt-2">
-                                <a href="job-list.html" class="btn btn-primary">View More <i class="uil uil-arrow-right"></i></a>
+                                <a href="{{route('circular')}}" class="btn btn-primary">View More <i class="uil uil-arrow-right"></i></a>
                             </div>
                         </div>
                         <!--end part-time-tab-->
@@ -1494,7 +1494,7 @@
                             <!--end job-box-->
 
                             <div class="text-center mt-4 pt-2">
-                                <a href="job-list.html" class="btn btn-primary">View More <i class="uil uil-arrow-right"></i></a>
+                                <a href="{{route('circular')}}" class="btn btn-primary">View More <i class="uil uil-arrow-right"></i></a>
                             </div>
                         </div>
                         <!--end full-time-tab-->

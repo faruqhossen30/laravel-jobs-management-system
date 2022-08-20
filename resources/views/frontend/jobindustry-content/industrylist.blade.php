@@ -11,39 +11,23 @@
                             </div><!--end col-->
                         </div><!--end row-->
                         <div class="row">
+                            @foreach ($jobindustries as $industry)
+
                             <div class="col-lg-4">
                                 <div class="card job-Categories-box bg-light border-0">
-                                    <div class="card-body p-4">
+                                    <div class="card-body py-2">
                                         <ul class="list-unstyled job-Categories-list mb-0">
                                             <li>
-                                                <a href="job-list.html" class="primary-link">Accounting & Finance <span class="badge bg-soft-info float-end">25</span></a>
+                                                <a href="job-list.html" class="primary-link">{{$industry->name}} <span class="badge bg-soft-info float-end">25</span></a>
                                             </li>
-                                            <li>
-                                                <a href="job-list.html" class="primary-link">Bank Jobs <span class="badge bg-soft-info float-end">10</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="job-list.html" class="primary-link">Data Entry Job <span class="badge bg-soft-info float-end">71</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="job-list.html" class="primary-link">Purchasing Manager <span class="badge bg-soft-info float-end">40</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="job-list.html" class="primary-link">Project Manager <span class="badge bg-soft-info float-end">86</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="job-list.html" class="primary-link">Education & training <span class="badge bg-soft-info float-end">47</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="job-list.html" class="primary-link">Marketing & Advertising <span class="badge bg-soft-info float-end">47</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="job-list.html" class="primary-link">Catering & Tourism <span class="badge bg-soft-info float-end">47</span></a>
-                                            </li>
+
+
                                         </ul>
                                     </div>
                                 </div>
                             </div><!--end col-->
-                            <div class="col-lg-4">
+                            @endforeach
+                            {{-- <div class="col-lg-4">
                                 <div class="card job-Categories-box bg-light border-0">
                                     <div class="card-body p-4">
                                         <ul class="list-unstyled job-Categories-list mb-0">
@@ -106,7 +90,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </div><!--end col-->
+                            </div><!--end col--> --}}
                         </div><!--end row-->
                     </div><!--end container-->
                 </section>

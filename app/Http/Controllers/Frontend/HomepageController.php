@@ -11,7 +11,7 @@ class HomepageController extends Controller
 {
     public function homePage()
     {
-        $jobindustries = JobIndustry::get();
+        $jobindustries = JobIndustry::take(8)->get();
         $categories = Category::get();
         return view('frontend.homepage',compact('jobindustries','categories'));
     }

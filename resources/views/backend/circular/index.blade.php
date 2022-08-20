@@ -15,6 +15,17 @@
                     <i class="btn-icon-prepend" data-feather="plus-circle"></i>
                     Create
                 </a>
+               {{-- filter --}}
+
+               <span><h6 class="py-4">Filter</h6></span>
+
+               <select class="form-select w-25" aria-label="Default select example">
+                <option selected>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+               {{-- filter end --}}
                 <div class="table-responsive pt-3">
                     <table class="table table-bordered">
                         <thead>
@@ -40,7 +51,7 @@
                             @foreach ($circulars as $circular)
                             <tr>
                                 <td>
-                                    1
+                                    {{$circulars->firstItem() + $loop->index}}
                                 </td>
                                 <td>
                                     {{$circular->title}}
@@ -73,6 +84,9 @@
 
                         </tbody>
                     </table>
+                   <div class="py-3">
+                    {{$circulars->links()}}
+                   </div>
                 </div>
             </div>
         </div>

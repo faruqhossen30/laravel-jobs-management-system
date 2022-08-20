@@ -25,7 +25,7 @@ class CircularController extends Controller
      */
     public function index()
     {
-        $circulars = Circular::get();
+        $circulars = Circular::latest()->paginate(25);
         return view('backend.circular.index', compact('circulars'));
     }
 
