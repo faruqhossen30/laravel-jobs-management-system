@@ -17,11 +17,12 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\Backend\BlogcategoryController;
 use Illuminate\Support\Facades\Auth;
 
+// Auth::routes(['verify'=>true]);
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Dashboard Start
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     // Project route start
     Route::resource('category', CategoryController::class);
     Route::resource('jobindustry', JobindustryController::class);
