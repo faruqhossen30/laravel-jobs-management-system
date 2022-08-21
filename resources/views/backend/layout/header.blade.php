@@ -202,13 +202,26 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="wd-30 ht-30 rounded-circle" src="{{asset('storage/profile-picture/'.Auth::user()->image)}}" alt="profile">
+                    @if (auth()->user()->image)
+                    <img src="{{asset('storage/profile-picture/'.Auth::user()->image)}}" alt="mdo" width="35"
+                    height="35" class="rounded-circle me-1">
+                    @else
+                    <img src="{{asset('frontend/assets/images/defultuser.jpg')}}" alt="mdo" width="35"
+                    height="35" class="rounded-circle me-1">
+                    @endif
                 </a>
                 @auth
                 <div class="dropdown-menu p-0" aria-labelledby="profileDropdown">
                     <div class="d-flex flex-column align-items-center border-bottom px-5 py-3">
                         <div class="mb-3">
-                            <img class="wd-80 ht-80 rounded-circle" src="{{asset('storage/profile-picture/'.Auth::user()->image)}}" alt="">
+                                @if (auth()->user()->image)
+                            <img src="{{asset('storage/profile-picture/'.Auth::user()->image)}}" alt="mdo" width="35"
+                            height="35" class="rounded-circle me-1">
+                            @else
+                            <img src="{{asset('frontend/assets/images/defultuser.jpg')}}" alt="mdo" width="35"
+                            height="35" class="rounded-circle me-1">
+                            @endif
+
                         </div>
                         <div class="text-center">
                             <p class="tx-16 fw-bolder">{{auth()->user()->name}}</p>

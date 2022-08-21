@@ -8,27 +8,14 @@
                         <div class="job-list-header">
                             <form action="#">
                                 <div class="row g-2">
-                                    <div class="col-lg-6 col-md-6">
+                                    <div class="col-lg-9 col-md-6">
                                         <div class="filler-job-form">
                                             <i class="uil uil-briefcase-alt"></i>
                                             <input type="search" class="form-control filter-job-input-box" id="exampleFormControlInput1" placeholder="Job, company... ">
                                         </div>
                                     </div><!--end col-->
 
-                                    <div class="col-lg-3 col-md-6">
-                                        <div class="filler-job-form">
-                                            
-                                            {{-- <i class="uil uil-clipboard-notes"></i> --}}
-                                            <select class="form-select " data-trigger name="choices-single-categories" id="choices-single-categories" aria-label="Default select example">
 
-                                                <option value="4">Accounting</option>
-                                                <option value="1">IT & Software</option>
-                                                <option value="3">Marketing</option>
-                                                <option value="5">Banking</option>
-                                            </select>
-
-                                        </div>
-                                    </div><!--end col-->
                                     <div class="col-lg-3 col-md-6">
                                         <a href="javascript:void(0)" class="btn btn-primary w-100"><i class="uil uil-filter"></i> Fliter</a>
                                     </div><!--end col-->
