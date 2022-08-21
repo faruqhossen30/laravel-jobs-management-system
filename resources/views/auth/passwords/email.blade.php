@@ -5,7 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+                <div class="card-header">
+                    <h1>{{ __('Reset Password') }}</h1>
+                </div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -16,7 +18,6 @@
 
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
-
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
