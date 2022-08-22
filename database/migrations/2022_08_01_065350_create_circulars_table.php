@@ -19,14 +19,16 @@ return new class extends Migration
             $table->string('slug');
             $table->longText('description');
             $table->string('thumbnail')->nullable();
+            $table->integer('min_salary')->nullable();
+            $table->integer('max_salary')->nullable();
             // Attribute
             $table->unsignedBigInteger('category_id')->nullable();
-            $table->json('education')->nullable();
-            $table->json('skill')->nullable();
-            $table->json('job_industry')->nullable();
-            $table->json('career_label')->nullable();
-            $table->json('salary_period')->nullable();
-            $table->json('job_type')->nullable();
+            // $table->json('education')->nullable();
+            // $table->json('skill')->nullable();
+            // $table->json('job_industry')->nullable();
+            // $table->json('career_label')->nullable();
+            // $table->json('salary_period')->nullable();
+            // $table->json('job_type')->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             // Organization Info

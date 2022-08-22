@@ -3,6 +3,12 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attributes\CircularCareerlabel;
+use App\Models\Attributes\CircularEducation;
+use App\Models\Attributes\CircularJobindustry;
+use App\Models\Attributes\CircularJobtype;
+use App\Models\Attributes\CircularSalaryperiod;
+use App\Models\Attributes\CircularSkill;
 use App\Models\CareerLevel;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -63,16 +69,7 @@ class CircularController extends Controller
         ]);
 
         $thumbnailname = null;
-        if ($request->file('thumbnail')) {
-            $extention = $request->file('thumbnail')->getClientOriginalExtension();
-            $uniquename = uniqid().'.'.$extention;
 
-            $request->file('thumbnail')->storeAs(
-                'public/circular',
-                $uniquename
-            );
-            $thumbnailname = $uniquename;
-        }
 
         $data = [
             'title' => $request->title,
@@ -87,20 +84,80 @@ class CircularController extends Controller
             'organization_website' => $request->organization_website,
             'apply_link' => $request->apply_link,
             'vacancy' => $request->vacancy,
-            'meta_title' => $request->meta_title,
-            'meta_description' => $request->meta_description,
-            'meta_tag' => $request->meta_tag,
-            'education' => json_encode($request->education),
-            'skill' => json_encode($request->skill),
-            'job_industry' => json_encode($request->job_industry),
-            'career_label' => json_encode($request->career_label),
-            'salary_period' => json_encode($request->salary_period),
-            'job_type' => json_encode($request->job_type)
+
+
+            // 'education' => json_encode($request->education),
+            // 'skill' => json_encode($request->skill),
+            // 'job_industry' => json_encode($request->job_industry),
+            // 'career_label' => json_encode($request->career_label),
+            // 'salary_period' => json_encode($request->salary_period),
+            // 'job_type' => json_encode($request->job_type)
         ];
 
 
 
-        Circular::create($data);
+        $circular = Circular::create($data);
+
+        if($circular){
+            // Education
+            if(!empty($request->education)){
+                foreach($request->education as $education){
+                    CircularEducation::create([
+                        'circular_id' => $circular->id,
+                        'education_id' => $education
+                    ]);
+                }
+            }
+            // Skill
+            if(!empty($request->skill)){
+                foreach($request->skill as $skill){
+                    CircularSkill::create([
+                        'circular_id' => $circular->id,
+                        'skill_id' => $skill
+                    ]);
+                }
+            }
+            // job_industry
+            if(!empty($request->job_industry)){
+                foreach($request->job_industry as $job_industry){
+                    CircularJobindustry::create([
+                        'circular_id' => $circular->id,
+                        'job_industry_id' => $job_industry
+                    ]);
+                }
+            }
+            // career_label
+            if(!empty($request->career_label)){
+                foreach($request->career_label as $career_label){
+                    CircularCareerlabel::create([
+                        'circular_id' => $circular->id,
+                        'career_label_id' => $career_label
+                    ]);
+                }
+            }
+            // salary_period
+            if(!empty($request->salary_period)){
+                foreach($request->salary_period as $salary_period){
+                    CircularSalaryperiod::create([
+                        'circular_id' => $circular->id,
+                        'salary_period_id' => $salary_period
+                    ]);
+                }
+            }
+            // job_type
+            if(!empty($request->job_type)){
+                foreach($request->job_type as $job_type){
+                    CircularJobtype::create([
+                        'circular_id' => $circular->id,
+                        'job_type_id' => $job_type
+                    ]);
+                }
+            }
+
+
+        }
+
+
         Session::flash('create');
         return redirect()->route('circular.index');
     }
@@ -125,8 +182,13 @@ class CircularController extends Controller
      */
     public function edit($id)
     {
-        $circular = Circular::firstWhere('id',$id);
-        //another
+        $circular = Circular::with('educations', 'skills','jobindustries','careerlabels','jobtypes','salaryperiods')->firstWhere('id',$id);
+        // return $circular;
+
+        // return gettype($circular->educations->toArray());
+
+
+
         $categories = Category::get();
         $educatios = Education::get();
         $skills = Skill::get();
@@ -134,6 +196,7 @@ class CircularController extends Controller
         $careerlabels = CareerLevel::get();
         $salarypreiods = SalaryPeriod::get();
         $jobtypes = JobTypes::get();
+        $salaryperiods = SalaryPeriod::get();
 
 
 
@@ -142,7 +205,7 @@ class CircularController extends Controller
         // return gettype($circular->skill);
         //   return $circular->job_industry;
 
-        return view('backend.circular.edit', compact('circular','categories','categories','educatios','skills','jobindustries','careerlabels','salarypreiods','jobtypes'));
+        return view('backend.circular.edit', compact('circular','categories','categories','educatios','skills','jobindustries','careerlabels','salarypreiods','jobtypes', 'salaryperiods'));
 
 
 
@@ -165,83 +228,101 @@ class CircularController extends Controller
         ]);
 
         $thumbnailname = null;
-        if ($request->file('thumbnail')) {
-            $extention = $request->file('thumbnail')->getClientOriginalExtension();
-            $uniquename = uniqid().'.'.$extention;
-
-            $request->file('thumbnail')->storeAs(
-                'public/circular',
-                $uniquename
-            );
-            $thumbnailname = $uniquename;
-        }
 
 
-        if($thumbnailname){
             $data = [
-                'title' => $request->title,
-                'slug' => $request->title,
-                'description' => $request->description,
-                'user_id' => Auth::user()->id,
-                'thumbnail' => $thumbnailname,
-                'category_id' => $request->category_id,
-                'start_date' => $request->start_date,
-                'end_date' => $request->end_date,
-                'organization_name' => $request->organization_name,
-                'organization_website' => $request->organization_website,
-                'apply_link' => $request->apply_link,
-                'vacancy' => $request->vacancy,
-                'meta_title' => $request->meta_title,
-                'meta_description' => $request->meta_description,
-                'meta_tag' => $request->meta_tag,
-                'education' => json_encode($request->education),
-                'skill' => json_encode($request->skill),
-                'job_industry' => json_encode($request->job_industry),
-                'career_label' => json_encode($request->career_label),
-                'salary_period' => json_encode($request->salary_period),
-                'job_type' => json_encode($request->job_type)
+            'title' => $request->title,
+            'slug' => $request->title,
+            'description' => $request->description,
+            'user_id' => Auth::user()->id,
+            'thumbnail' => $thumbnailname,
+            'category_id' => $request->category_id,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'organization_name' => $request->organization_name,
+            'organization_website' => $request->organization_website,
+            'apply_link' => $request->apply_link,
+            'vacancy' => $request->vacancy,
 
             ];
 
-            $file = Circular::firstwhere('id', $id)->thumbnail;
-            if($file){
-                Storage::disk('public')->delete('circular/' . $file);
+
+
+
+            $circular = Circular::firstwhere('id', $id)->update($data);
+
+            if($circular){
+                // Education
+                if(!empty($request->education)){
+                    CircularEducation::where('circular_id', $id)->delete();
+                    foreach($request->education as $education){
+                        CircularEducation::create([
+                            'circular_id' =>$id,
+                            'education_id' => $education,
+                        ]);
+                    }
+                }
+
+                // Skill
+            if(!empty($request->skill)){
+                  CircularSkill::where('circular_id', $id)->delete();
+                foreach($request->skill as $skill){
+                    CircularSkill::create([
+                        'circular_id' => $id,
+                        'skill_id' => $skill
+                    ]);
+                }
+            }
+            // job_industry
+            if(!empty($request->job_industry)){
+                  CircularJobindustry::where('circular_id', $id)->delete();
+                foreach($request->job_industry as $job_industry){
+                    CircularJobindustry::create([
+                        'circular_id' => $id,
+                        'job_industry_id' => $job_industry
+                    ]);
+                }
+            }
+            // career_label
+            if(!empty($request->career_label)){
+                CircularCareerlabel::where('circular_id', $id)->delete();
+                foreach($request->career_label as $career_label){
+                    CircularCareerlabel::create([
+                        'circular_id' => $id,
+                        'career_label_id' => $career_label
+                    ]);
+                }
+            }
+            // salary_period
+            if(!empty($request->salary_period)){
+                CircularSalaryperiod::where('circular_id', $id)->delete();
+                foreach($request->salary_period as $salary_period){
+                    CircularSalaryperiod::create([
+                        'circular_id' => $id,
+                        'salary_period_id' => $salary_period
+                    ]);
+                }
+            }
+            // job_type
+            if(!empty($request->job_type)){
+                CircularJobtype::where('circular_id', $id)->delete();
+                foreach($request->job_type as $job_type){
+                    CircularJobtype::create([
+                        'circular_id' => $id,
+                        'job_type_id' => $job_type
+                    ]);
+                }
+            }
+
             }
 
 
-            Circular::firstwhere('id', $id)->update($data);
-            Session::flash('update');
-            return redirect()->route('circular.index');
-        }else{
-            $data = [
-                'title' => $request->title,
-                'slug' => $request->title,
-                'description' => $request->description,
-                'user_id' => Auth::user()->id,
-                'category_id' => $request->category_id,
-                'start_date' => $request->start_date,
-                'end_date' => $request->end_date,
-                'organization_name' => $request->organization_name,
-                'organization_website' => $request->organization_website,
-                'apply_link' => $request->apply_link,
-                'vacancy' => $request->vacancy,
-                'meta_title' => $request->meta_title,
-                'meta_description' => $request->meta_description,
-                'meta_tag' => $request->meta_tag,
-                'education' => json_encode($request->education),
-                'skill' => json_encode($request->skill),
-                'job_industry' => json_encode($request->job_industry),
-                'career_label' => json_encode($request->career_label),
-                'salary_period' => json_encode($request->salary_period),
-                'job_type' => json_encode($request->job_type)
-            ];
 
-            Circular::firstwhere('id', $id)->update($data);
             Session::flash('update');
             return redirect()->route('circular.index');
 
 
-        }
+
     }
 
     /**
@@ -252,10 +333,7 @@ class CircularController extends Controller
      */
     public function destroy($id)
     {
-        $file = Circular::firstwhere('id', $id)->thumbnail;
-        if($file){
-            Storage::disk('public')->delete('circular/' . $file);
-        }
+
         Circular::firstwhere('id', $id)->delete();
         Session::flash('delete');
         return redirect()->route('circular.index');

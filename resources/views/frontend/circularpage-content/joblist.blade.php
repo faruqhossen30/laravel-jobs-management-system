@@ -70,8 +70,6 @@
 
                         <!-- Job-list -->
                         @foreach ($circulars as $circular)
-
-
                             <div class="job-box bookmark-post card mt-5">
                                 <div class="p-4">
                                     <div class="row">
@@ -80,7 +78,7 @@
                                         </div><!--end col-->
                                         <div class="col-lg-10">
                                             <div class="mt-3 mt-lg-0">
-                                                <h5 class="fs-17 mb-1"><a href="job-details.html" class="text-dark">{{$circular->title}}</a> <small class="text-muted fw-normal">(0-2 Yrs Exp.)</small></h5>
+                                                <h5 class="fs-17 mb-1"><a href="{{ route('jobdetails',$circular->id) }}" class="text-dark">{{$circular->title}}</a> <small class="text-muted fw-normal">(0-2 Yrs Exp.)</small></h5>
                                                 <ul class="list-inline mb-0">
                                                     <li class="list-inline-item">
                                                         <p class="text-muted fs-14 mb-0">Jobcy Technology Pvt.Ltd</p>

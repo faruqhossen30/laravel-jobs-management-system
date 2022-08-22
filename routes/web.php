@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\JobdetailspageController;
 use App\Http\Controllers\Frontend\JobindustrypageController;
 use App\Http\Controllers\Frontend\PolicypageController;
 use App\Http\Controllers\Frontend\ServicepageController;
+use App\Http\Controllers\Frontend\SinglejobController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[HomepageController::class, 'homePage'])->name('homepage');
 Route::get('/circular',[CircularpageController::class, 'circularPage'])->name('circular');
-Route::get('/jobdetails',[JobdetailspageController::class, 'jobdetailsPage'])->name('jobdetails');
+Route::get('/jobdetails/{id}',[JobdetailspageController::class, 'jobdetailsPage'])->name('jobdetails');
 Route::get('/jobindustry',[JobindustrypageController::class, 'jobindustryPage'])->name('jobindustry');
 
 

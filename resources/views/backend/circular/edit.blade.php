@@ -57,14 +57,15 @@
                                                 <div class="mb-3">
                                                     <label for="time" class="form-label">Start From</label>
                                                     <input type="date" class="form-control" id="start_date"
-                                                        name="start_date" @if($circular->start_date != null) value="{{$circular->start_date->format('Y-m-d')}}" @endif
-                                                    >
+                                                        name="start_date"
+                                                        @if ($circular->start_date != null) value="{{ $circular->start_date->format('Y-m-d') }}" @endif>
                                                 </div>
                                                 <div class="mb-3">
 
                                                     <label for="time" class="form-label">End From</label>
                                                     <input type="date" class="form-control" id="end_date"
-                                                        name="end_date"    @if($circular->end_date != null) value="{{$circular->end_date->format('Y-m-d')}}" @endif >
+                                                        name="end_date"
+                                                        @if ($circular->end_date != null) value="{{ $circular->end_date->format('Y-m-d') }}" @endif>
                                                 </div>
                                                 <x-input-text label="Organization Name" placeholder="name"
                                                     name="organization_name" value="{{ $circular->organization_name }}" />
@@ -115,7 +116,8 @@
                                             <div class="card-body">
                                                 <h6 class="card-title">Image</h6>
                                                 <p class="text-muted mb-3">Drag and Drop your image. </p>
-                                                <input type="file" id="myDropify" name="thumbnail" @if($circular->thumbnail) data-default-file="{{asset('storage/circular/'.$circular->thumbnail)}}" @endif >
+                                                <input type="file" id="myDropify" name="thumbnail"
+                                                    @if ($circular->thumbnail) data-default-file="{{ asset('storage/circular/' . $circular->thumbnail) }}" @endif>
                                                 {{-- data-default-file="imagePath" --}}
                                             </div>
                                         </div>
@@ -126,7 +128,8 @@
                                                     <div class="form-check mb-2">
                                                         <input name="education[]" value="{{ $education->id }}"
                                                             type="checkbox"
-                                                            @if(empty(!json_decode($circular->education)) && in_array($education->id, json_decode($circular->education))) checked @endif
+                                                            @if (!empty($circular->educations) &&
+                                                                in_array($education->id, $circular->educations->pluck('education_id')->toArray())) checked @endif
                                                             class="form-check-input" id="education{{ $education->id }}">
                                                         <label class="form-check-label"
                                                             for="education{{ $education->id }}">
@@ -146,7 +149,7 @@
 
                                                         @foreach ($skills as $skill)
                                                             <option value="{{ $skill->id }}"
-                                                                @if (empty(!json_decode($circular->skill)) && in_array($skill->id, json_decode($circular->skill))) selected @endif>
+                                                                @if (!empty($circular->skills) && in_array($skill->id, $circular->skills->pluck('skill_id')->toArray())) selected @endif>
                                                                 {{ $skill->name }}</option>
                                                         @endforeach
                                                     </select>
@@ -163,10 +166,11 @@
                                                         class="js-example-basic-multiple form-select" multiple="multiple"
                                                         data-width="100%">
 
+
                                                         @foreach ($jobindustries as $jobindustry)
                                                             <option value="{{ $jobindustry->id }}"
-                                                                @if (empty(!json_decode($circular->job_industry)) &&
-                                                                    in_array($jobindustry->id, json_decode($circular->job_industry))) selected @endif>
+                                                                @if (!empty($circular->jobindustries) &&
+                                                                    in_array($jobindustry->id, $circular->jobindustries->pluck('job_industry_id')->toArray())) selected @endif>
                                                                 {{ $jobindustry->name }}</option>
                                                         @endforeach
 
@@ -184,8 +188,8 @@
                                                         data-width="100%">
                                                         @foreach ($careerlabels as $careerlabel)
                                                             <option value="{{ $careerlabel->id }}"
-                                                                @if (empty(!json_decode($circular->career_label)) &&
-                                                                    in_array($careerlabel->id, json_decode($circular->career_label))) selected @endif>
+                                                                @if (!empty($circular->careerlabels) &&
+                                                                    in_array($careerlabel->id, $circular->careerlabels->pluck('career_label_id')->toArray())) selected @endif>
                                                                 {{ $careerlabel->name }}</option>
                                                         @endforeach
 
@@ -201,12 +205,13 @@
                                                     <select name="salary_period[]"
                                                         class="js-example-basic-multiple form-select" multiple="multiple"
                                                         data-width="100%">
-                                                        @foreach ($salarypreiods as $salarypreiod)
-                                                            <option value="{{ $salarypreiod->id }}"
-                                                                @if (empty(!json_decode($circular->salary_period)) &&
-                                                                    in_array($salarypreiod->id, json_decode($circular->salary_period))) selected @endif>
-                                                                {{ $salarypreiod->name }}</option>
+                                                        @foreach ($salaryperiods as $salaryperiod)
+                                                            <option value="{{ $salaryperiod->id }}"
+                                                                @if (!empty($circular->salaryperiods) &&
+                                                                    in_array($salaryperiod->id, $circular->salaryperiods->pluck('salary_period_id')->toArray())) selected @endif>
+                                                                {{ $salaryperiod->name }}</option>
                                                         @endforeach
+
 
 
 
@@ -224,7 +229,7 @@
                                                         data-width="100%">
                                                         @foreach ($jobtypes as $jobtype)
                                                             <option value="{{ $jobtype->id }}"
-                                                                @if (empty(!json_decode($circular->job_type)) && in_array($jobtype->id, json_decode($circular->job_type))) selected @endif>
+                                                                @if (!empty($circular->jobtypes) && in_array($jobtype->id, $circular->jobtypes->pluck('job_type_id')->toArray())) selected @endif>
                                                                 {{ $jobtype->name }}</option>
                                                         @endforeach
 
@@ -237,7 +242,7 @@
 
                             </div>
                         </div>
-
+                        {{-- jobtypes --}}
 
 
                         <button type="submit" class="btn btn-primary me-2">Update</button>
