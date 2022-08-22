@@ -47,6 +47,30 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                        <div class="row">
+                                            <div class="mb-3 col-md-6">
+                                                <div class="mb-3">
+                                                    <label for="time" class="form-label">Start From</label>
+                                                    <input type="date" class="form-control" id="start_date"
+                                                        name="start_date"
+                                                        @if ($circular->start_date != null) value="{{ $circular->start_date->format('Y-m-d') }}" @endif>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label for="time" class="form-label">End From</label>
+                                                    <input type="date" class="form-control" id="end_date"
+                                                        name="end_date"
+                                                        @if ($circular->end_date != null) value="{{ $circular->end_date->format('Y-m-d') }}" @endif>
+                                            </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label for="time" class="form-label">Minimum salary</label>
+                                                <input type="number" class="form-control" id="min_salary" name="min_salary" value="{{ $circular->min_salary }}">
+                                            </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label for="time" class="form-label">Maximum salary</label>
+                                                <input type="number " class="form-control" id="max_salary" name="max_salary" value="{{ $circular->max_salary }}">
+                                            </div>
+                                        </div>
                                         <div class="card">
                                             <div class="card-header">
                                                 Organization Information
@@ -54,19 +78,7 @@
 
 
                                             <div class="card-body">
-                                                <div class="mb-3">
-                                                    <label for="time" class="form-label">Start From</label>
-                                                    <input type="date" class="form-control" id="start_date"
-                                                        name="start_date"
-                                                        @if ($circular->start_date != null) value="{{ $circular->start_date->format('Y-m-d') }}" @endif>
-                                                </div>
-                                                <div class="mb-3">
-
-                                                    <label for="time" class="form-label">End From</label>
-                                                    <input type="date" class="form-control" id="end_date"
-                                                        name="end_date"
-                                                        @if ($circular->end_date != null) value="{{ $circular->end_date->format('Y-m-d') }}" @endif>
-                                                </div>
+                                              
                                                 <x-input-text label="Organization Name" placeholder="name"
                                                     name="organization_name" value="{{ $circular->organization_name }}" />
                                                 <x-input-text label="Organization Website" placeholder="Website"
@@ -78,33 +90,7 @@
                                                     value="{{ $circular->vacancy }}" />
                                             </div>
                                         </div>
-                                        <div class="card mt-2">
-                                            <div class="card-header">
-                                                SEO
-                                            </div>
-                                            <div class="card-body">
 
-                                                <x-input-text label="Meta Title" placeholder="meta_title" name="meta_title"
-                                                    value="{{ $circular->meta_title }}" />
-                                                <div class="mb-3">
-                                                    <label for="exampleInputUsername1" class="form-label"> Meta
-                                                        Description</label>
-                                                    <textarea name="meta_description" id="meta_description" cols="30" rows="10" class="form-control">
-                                         {{ $circular->meta_description }}
-                                        </textarea>
-                                                </div>
-
-
-
-                                                {{-- <h6 class="card-title">Tags input</h6> --}}
-                                                <label for="exampleInputUsername1" class="form-label">Tags input</label>
-                                                <p class="mb-2">Type something to add a new tag</p>
-                                                <div>
-                                                    <input name="meta_tag" id="tags"
-                                                        value="{{ $circular->meta_tag }}" />
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

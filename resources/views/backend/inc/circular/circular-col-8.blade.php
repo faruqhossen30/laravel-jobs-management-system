@@ -32,6 +32,14 @@
                 <label for="time" class="form-label">End From</label>
                 <input type="date" class="form-control" id="end_date" name="end_date">
             </div>
+            <div class="mb-3 col-md-6">
+                <label for="time" class="form-label">Minimum salary</label>
+                <input type="number" class="form-control" id="min_salary" name="min_salary">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="time" class="form-label">Maximum salary</label>
+                <input type="number " class="form-control" id="max_salary" name="max_salary">
+            </div>
         </div>
 
         <div class="card">

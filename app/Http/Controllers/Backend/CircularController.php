@@ -80,6 +80,9 @@ class CircularController extends Controller
             'category_id' => $request->category_id,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
+            'min_salary' => $request->min_salary,
+            'max_salary' => $request->max_salary,
+
             'organization_name' => $request->organization_name,
             'organization_website' => $request->organization_website,
             'apply_link' => $request->apply_link,
@@ -239,6 +242,8 @@ class CircularController extends Controller
             'category_id' => $request->category_id,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
+            'min_salary' => $request->min_salary,
+            'max_salary' => $request->max_salary,
             'organization_name' => $request->organization_name,
             'organization_website' => $request->organization_website,
             'apply_link' => $request->apply_link,
