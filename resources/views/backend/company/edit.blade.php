@@ -16,7 +16,7 @@
                         @csrf
                         @method('put')
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 {{-- <img src="{{ asset('storage/companylogo/' . $company->logo) }}" alt=""> --}}
                                 <div class="card">
                                     <div class="card-body">
@@ -169,9 +169,7 @@
                             <div class="col-md-12">
                                 <div class="mb-3">
                                     <label for="exampleInputUsername1" class="form-label"> google Map</label>
-                                    <textarea name="meta_description" id="meta_description" cols="30" rows="10" class="form-control">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d8310.686427880151!2d-74.00585671025667!3d40.7098868133123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1536851502771"  frameborder="0" style="border:0" allowfullscreen></iframe>
-                    </textarea>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58690.19310620291!2d89.15852978260754!3d23.165196891718463!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff108d87ea6d65%3A0x627d034ef93261cf!2sJashore!5e0!3m2!1sen!2sbd!4v1661157879005!5m2!1sen!2sbd" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 </div>
                             </div>
                         </div>
