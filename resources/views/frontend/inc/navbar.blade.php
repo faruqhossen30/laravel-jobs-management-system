@@ -19,7 +19,7 @@
                         <a href="{{ route('homepage') }}" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('jobindustry')}}" class="nav-link">Companyies</a>
+                        <a href="{{route('company.list')}}" class="nav-link">Companyies</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{route('circular')}}" class="nav-link">Blog</a>

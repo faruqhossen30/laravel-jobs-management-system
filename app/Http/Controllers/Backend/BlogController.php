@@ -7,9 +7,12 @@ use Illuminate\Http\Request;
 use App\Models\Blog;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Faker\Core\Uuid;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Category;
 use App\Models\Education;
+use Image;
 
 class BlogController extends Controller
 {
@@ -43,39 +46,30 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //    return $request->all();
         $request->validate([
             'title' => 'required',
             'description' => 'required',
         ]);
 
-        $thumbnailname = null;
-        if ($request->file('thumbnail')) {
-            $extention = $request->file('thumbnail')->getClientOriginalExtension();
-            $uniquename = uniqid().'.'.$extention;
-
-            $request->file('thumbnail')->storeAs(
-                'public/blog',
-                $uniquename
-            );
-            $thumbnailname = $uniquename;
+        $blogimage = null;
+        if ($request->file('blog_image')) {
+            $imagethumbnail = $request->file('blog_image');
+            $extension = $imagethumbnail->getClientOriginalExtension();
+            $blogimage = Str::uuid() . '.' . $extension;
+            Image::make($imagethumbnail)->save('uploads/blog/' . $blogimage);
         }
-
         $data = [
             'title' => $request->title,
             'slug' => $request->title,
             'description' => $request->description,
             'user_id' => Auth::user()->id,
-            'thumbnail' => $thumbnailname,
+            'blog_image' => $blogimage,
             'category_id' => json_encode($request->category_id),
             'meta_title' => $request->meta_title,
             'meta_description' => $request->meta_description,
             'meta_tag' => $request->meta_tag,
 
         ];
-
-
-
         Blog::create($data);
         Session::flash('create');
         return redirect()->route('blog.index');
@@ -115,68 +109,33 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-//    return $request->all();
-
         $request->validate([
             'title' => 'required',
-            'description' => 'required'
+            'description' => 'required',
         ]);
 
-        $thumbnailname = null;
-        if ($request->file('thumbnail')) {
-            $extention = $request->file('thumbnail')->getClientOriginalExtension();
-            $uniquename = uniqid().'.'.$extention;
-
-            $request->file('thumbnail')->storeAs(
-                'public/blog',
-                $uniquename
-            );
-            $thumbnailname = $uniquename;
+        $blogimage = null;
+        if ($request->file('blog_image')) {
+            $imagethumbnail = $request->file('blog_image');
+            $extension = $imagethumbnail->getClientOriginalExtension();
+            $blogimage = Str::uuid() . '.' . $extension;
+            Image::make($imagethumbnail)->save('uploads/blog/' . $blogimage);
         }
+        $data = [
+            'title' => $request->title,
+            'slug' => $request->title,
+            'description' => $request->description,
+            'user_id' => Auth::user()->id,
+            'blog_image' => $blogimage,
+            'category_id' => json_encode($request->category_id),
+            'meta_title' => $request->meta_title,
+            'meta_description' => $request->meta_description,
+            'meta_tag' => $request->meta_tag,
 
-
-        if($thumbnailname){
-            $data = [
-                'title' => $request->title,
-                'slug' => $request->title,
-                'description' => $request->description,
-                'user_id' => Auth::user()->id,
-                'thumbnail' => $thumbnailname,
-                'category_id' => json_encode($request->category_id),
-                'meta_title' => $request->meta_title,
-                'meta_description' => $request->meta_description,
-                'meta_tag' => $request->meta_tag,
-
-            ];
-
-            $file = Blog::firstwhere('id', $id)->thumbnail;
-            if($file){
-                Storage::disk('public')->delete('blog/' . $file);
-            }
-
-
-            Blog::firstwhere('id', $id)->update($data);
-            Session::flash('update');
-            return redirect()->route('blog.index');
-        }else{
-            $data = [
-                'title' => $request->title,
-                'slug' => $request->title,
-                'description' => $request->description,
-                'user_id' => Auth::user()->id,
-                'category_id' => json_encode($request->category_id),
-                'meta_title' => $request->meta_title,
-                'meta_description' => $request->meta_description,
-                'meta_tag' => $request->meta_tag,
-            ];
-
-            Blog::firstwhere('id', $id)->update($data);
-            Session::flash('update');
-            return redirect()->route('blog.index');
-
-
-        }
+        ];
+        Blog::firstWhere('id',$id)->update($data);
+        Session::flash('update');
+        return redirect()->route('blog.index');
     }
 
     /**

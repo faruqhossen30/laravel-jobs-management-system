@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
-use App\Models\Category;
 use Faker\Core\Uuid;
+use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
+use Image;
 
+use Illuminate\Support\Facades\Storage;
 use function PHPUnit\Framework\fileExists;
 
 class CategoryController extends Controller
@@ -49,16 +51,11 @@ class CategoryController extends Controller
 
         $thumbnailname = null;
         if ($request->file('thumbnail')) {
-            $extention = $request->file('thumbnail')->getClientOriginalExtension();
-            $uniquename = uniqid().'.'.$extention;
-
-            $request->file('thumbnail')->storeAs(
-                'public/category',
-                $uniquename
-            );
-            $thumbnailname = $uniquename;
+            $imagethumbnail = $request->file('thumbnail');
+            $extension = $imagethumbnail->getClientOriginalExtension();
+            $thumbnailname = Str::uuid() . '.' . $extension;
+            Image::make($imagethumbnail)->save('uploads/category/' . $thumbnailname);
         }
-
         $data = [
             'name' => $request->name,
             'slug' => $request->name,
@@ -110,45 +107,21 @@ class CategoryController extends Controller
 
         $thumbnailname = null;
         if ($request->file('thumbnail')) {
-            $extention = $request->file('thumbnail')->getClientOriginalExtension();
-            $uniquename = uniqid().'.'.$extention;
-
-            $request->file('thumbnail')->storeAs(
-                'public/category',
-                $uniquename
-            );
-            $thumbnailname = $uniquename;
+            $imagethumbnail = $request->file('thumbnail');
+            $extension = $imagethumbnail->getClientOriginalExtension();
+            $thumbnailname = Str::uuid() . '.' . $extension;
+            Image::make($imagethumbnail)->save('uploads/category/' . $thumbnailname);
         }
+        $data = [
+            'name' => $request->name,
+            'slug' => $request->name,
+            'user_id' => Auth::user()->id,
+            'thumbnail' => $thumbnailname
+        ];
 
-
-        if($thumbnailname){
-            $data = [
-                'name' => $request->name,
-                'slug' => $request->name,
-                'user_id' => Auth::user()->id,
-                'thumbnail' => $thumbnailname
-            ];
-
-            $file = Category::firstwhere('id', $id)->thumbnail;
-            if($file){
-                Storage::disk('public')->delete('category/' . $file);
-            }
-
-
-            Category::firstwhere('id', $id)->update($data);
-            Session::flash('update');
-            return redirect()->route('category.index');
-        }else{
-            $data = [
-                'name' => $request->name,
-                'slug' => $request->name,
-                'user_id' => Auth::user()->id
-            ];
-            Category::firstwhere('id', $id)->update($data);
-            Session::flash('update');
-            return redirect()->route('category.index');
-
-        }
+        Category::firstWhere('id',$id)->update($data);
+        Session::flash('update');
+        return redirect()->route('category.index');
     }
 
     /**

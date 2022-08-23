@@ -45,7 +45,7 @@ class CircularController extends Controller
         $categories = Category::get();
         $educatios = Education::get();
         $skills = Skill::get();
-        $jobindustries = Jobindustry::get();
+        $jobindustries = Jobindustry::orderBy('name','asc')->get();
         $careerlabels = CareerLevel::get();
         $salarypreiods = SalaryPeriod::get();
         $jobtypes = JobTypes::get();
@@ -72,29 +72,28 @@ class CircularController extends Controller
 
 
         $data = [
-            'title' => $request->title,
-            'slug' => $request->title,
-            'description' => $request->description,
-            'user_id' => Auth::user()->id,
-            'thumbnail' => $thumbnailname,
-            'category_id' => $request->category_id,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
-            'min_salary' => $request->min_salary,
-            'max_salary' => $request->max_salary,
-
-            'organization_name' => $request->organization_name,
+            'title'                => $request->title,
+            'slug'                 => $request->title,
+            'description'          => $request->description,
+            'user_id'              => Auth::user()->id,
+            'thumbnail'            => $thumbnailname,
+            'category_id'          => $request->category_id,
+            'start_date'           => $request->start_date,
+            'end_date'             => $request->end_date,
+            'min_salary'           => $request->min_salary,
+            'max_salary'           => $request->max_salary,
+            'organization_name'    => $request->organization_name,
             'organization_website' => $request->organization_website,
-            'apply_link' => $request->apply_link,
-            'vacancy' => $request->vacancy,
+            'apply_link'           => $request->apply_link,
+            'vacancy'              => $request->vacancy,
 
 
-            // 'education' => json_encode($request->education),
-            // 'skill' => json_encode($request->skill),
-            // 'job_industry' => json_encode($request->job_industry),
-            // 'career_label' => json_encode($request->career_label),
+            // 'education'     => json_encode($request->education),
+            // 'skill'         => json_encode($request->skill),
+            // 'job_industry'  => json_encode($request->job_industry),
+            // 'career_label'  => json_encode($request->career_label),
             // 'salary_period' => json_encode($request->salary_period),
-            // 'job_type' => json_encode($request->job_type)
+            // 'job_type'      => json_encode($request->job_type)
         ];
 
 

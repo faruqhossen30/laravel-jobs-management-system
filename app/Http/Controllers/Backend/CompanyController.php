@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Company;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use File;
+use Image;
 
 
 class CompanyController extends Controller
@@ -45,19 +48,13 @@ class CompanyController extends Controller
             'name' => 'required',
             'address' => 'required'
         ]);
-
-        $logoName = null;
+        $logo_name = null;
         if ($request->file('logo')) {
-            $extention = $request->file('logo')->getClientOriginalExtension();
-            $uniquename = uniqid().'.'.$extention;
-
-            $request->file('logo')->storeAs(
-                'public/companylogo',
-                $uniquename
-            );
-            $logoName = $uniquename;
+            $company_logo = $request->file('logo');
+            $extension = $company_logo->getClientOriginalExtension();
+            $logo_name = Str::uuid() . '.' . $extension;
+            Image::make($company_logo)->save('uploads/company/' . $logo_name);
         }
-
         $data = [
             'name' => $request->name,
             'slug' => $request->name,
@@ -66,9 +63,8 @@ class CompanyController extends Controller
             'address' => $request->address,
             'address' => $request->address,
             'user_id' => Auth::user()->id,
-            'logo' => $logoName
+            'logo' => $logo_name
         ];
-
         Company::create($data);
         Session::flash('create');
         return redirect()->route('company.index');
@@ -108,60 +104,35 @@ class CompanyController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'    => 'required',
+            'name' => 'required',
             'address' => 'required'
         ]);
-
-        $logoName = null;
+        $company=Company::firstWhere('id',$id);
+        $logo_name = null;
         if ($request->file('logo')) {
-            $extention = $request->file('logo')->getClientOriginalExtension();
-            $uniquename = uniqid().'.'.$extention;
+            $company_logo = $request->file('logo');
+            $extension = $company_logo->getClientOriginalExtension();
+            $logo_name = Str::uuid() . '.' . $extension;
+            Image::make($company_logo)->save('uploads/company/' . $logo_name);
 
-            $request->file('logo')->storeAs(
-                'public/companylogo',
-                $uniquename
-            );
-            $logoName = $uniquename;
-        }
-
-
-        if($logoName){
-            $data = [
-                'name'        => $request->name,
-                'slug'        => $request->name,
-                'description' => $request->description,
-                'email'       => $request->email,
-                'address'     => $request->address,
-                'address'     => $request->address,
-                'user_id'     => Auth::user()->id,
-                'logo'        => $logoName
-            ];
-
-            $file = Company::firstwhere('id', $id)->logo;
-            if($file){
-                Storage::disk('public')->delete('companylogo/' . $file);
+            if(File::exists($company->logo)){
+                unlink($company->logo);
             }
 
-
-            Company::firstwhere('id', $id)->update($data);
-            Session::flash('update');
-            return redirect()->route('company.index');
-        }else{
-            $data = [
-                'name'        => $request->name,
-                'slug'        => $request->name,
-                'description' => $request->description,
-                'email'       => $request->email,
-                'address'     => $request->address,
-                'address'     => $request->address,
-                'user_id'     => Auth::user()->id
-
-            ];
-            Company::firstwhere('id', $id)->update($data);
-            Session::flash('update');
-            return redirect()->route('company.index');
-
         }
+        $data = [
+            'name' => $request->name,
+            'slug' => $request->name,
+            'description' => $request->description,
+            'email' => $request->email,
+            'address' => $request->address,
+            'address' => $request->address,
+            'user_id' => Auth::user()->id,
+            'logo' => $logo_name
+        ];
+        Company::firstwhere('id',$id)->update($data);
+        Session::flash('update');
+        return redirect()->route('company.index');
     }
 
     /**
@@ -174,7 +145,7 @@ class CompanyController extends Controller
     {
         $file = Company::firstwhere('id', $id)->thumbnail;
         if($file){
-            Storage::disk('public')->delete('companylogo/' . $file);
+            Storage::disk('public')->delete('uploads/company' . $file);
         }
         Company::firstwhere('id', $id)->delete();
         Session::flash('delete');
