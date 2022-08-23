@@ -35,7 +35,7 @@ Route::get('/faqs',[FaqspageController::class, 'faqsPage'])->name('faqs');
 
 
 
-Route::group(['prefix' => 'user', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'user', 'middleware' => ['auth', 'user']], function () {
     Route::get('/dashboard',[UserdashboardController::class, 'dashboard'])->name('userdashboard');
 });
 
