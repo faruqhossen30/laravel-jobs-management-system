@@ -1,4 +1,4 @@
-@extends('backend.userend.layout.master')
+@extends('userend.layout.master')
 
 @push('plugin-styles')
   <link href="{{ asset('assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet" />

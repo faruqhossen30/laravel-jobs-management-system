@@ -18,60 +18,25 @@
                     <span class="link-title">Dashboard</span>
                 </a>
             </li>
-            {{-- job atrribute --}}
-            <li class="nav-item {{ active_class(['email/*']) }}">
+            {{-- job atrribute start --}}
+            <li class="nav-item {{ active_class(['user/job/*']) }}">
                 <a class="nav-link" data-bs-toggle="collapse" href="#jobAttributes" role="button" aria-expanded="{{ is_active_route(['email/*']) }}" aria-controls="email">
                     <i class="link-icon" data-feather="mail"></i>
-                    <span class="link-title">Jobs Atrributes</span>
+                    <span class="link-title">job </span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
-                <div class="collapse {{ show_class(['email/*']) }}" id="jobAttributes">
+                <div class="collapse {{ show_class(['job/*']) }}" id="jobAttributes">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                            <a href="{{ route('category.index') }}" class="nav-link {{ active_class(['email/inbox']) }}">Category</a>
+                            <a href="{{ route('job.index') }}" class="nav-link {{ active_class(['user/job']) }}">Jobs</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('jobindustry.index') }}" class="nav-link {{ active_class(['email/inbox']) }}">Job Industry</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('education.index') }}" class="nav-link {{ active_class(['email/inbox']) }}">Education</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('skill.index') }}" class="nav-link {{ active_class(['email/inbox']) }}">Skill</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('careerlavel.index') }}" class="nav-link {{ active_class(['email/inbox']) }}">Career level</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('salaryperiod.index') }}" class="nav-link {{ active_class(['email/inbox']) }}">Salary Period</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('jobtype.index') }}" class="nav-link {{ active_class(['email/inbox']) }}">Job Type</a>
+                            <a href="{{ route('job.create') }}" class="nav-link {{ active_class(['user/job/create']) }}">Create Job</a>
                         </li>
                     </ul>
                 </div>
             </li>
-            {{-- job atrribute --}}
-
-            {{-- circular atrribute start --}}
-            <li class="nav-item {{ active_class(['email/*']) }}">
-                <a class="nav-link" data-bs-toggle="collapse" href="#circularAttributes" role="button" aria-expanded="{{ is_active_route(['email/*']) }}" aria-controls="email">
-                    <i class="link-icon" data-feather="mail"></i>
-                    <span class="link-title">Circular </span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse {{ show_class(['email/*']) }}" id="circularAttributes">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a href="{{ route('circular.index') }}" class="nav-link {{ active_class(['email/inbox']) }}">All Circular</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('circular.create') }}" class="nav-link {{ active_class(['email/inbox']) }}">Create Circular</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            {{-- circular atrribute end --}}
+            {{-- job atrribute end --}}
             {{-- Company atrribute start --}}
             <li class="nav-item {{ active_class(['email/*']) }}">
                 <a class="nav-link" data-bs-toggle="collapse" href="#companyAttributes" role="button" aria-expanded="{{ is_active_route(['email/*']) }}" aria-controls="email">

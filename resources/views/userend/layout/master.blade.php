@@ -49,13 +49,13 @@ License: For each use you must have a valid license purchased only from above li
   <script src="{{ asset('assets/js/spinner.js') }}"></script>
 
   <div class="main-wrapper" id="app">
-    @include('backend.userend.layout.sidebar')
+    @include('userend.layout.sidebar')
     <div class="page-wrapper">
-      @include('backend.userend.layout.header')
+      @include('userend.layout.header')
       <div class="page-content">
         @yield('content')
       </div>
-      @include('backend.userend.layout.footer')
+      @include('userend.layout.footer')
     </div>
   </div>
 
