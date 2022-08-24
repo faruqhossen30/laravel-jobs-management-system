@@ -10,7 +10,7 @@ class CircularpageController extends Controller
 {
     public function circularPage()
     {
-        $circulars = Circular::latest()->paginate(20);
+        $circulars = Circular::latest()->paginate(5);
         return view('frontend.circularpage', compact('circulars'));
 
 

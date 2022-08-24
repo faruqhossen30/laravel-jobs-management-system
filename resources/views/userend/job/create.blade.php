@@ -11,10 +11,10 @@
         @csrf
         <div class="row">
             <div class="col-md-8 grid-margin stretch-card">
-                @include('backend.inc.circular.circular-col-8')
+                @include('userend.inc.circular.circular-col-8')
             </div>
             <div class="col-md-4 grid-margin stretch-card">
-                @include('backend.inc.circular.circular-col-4')
+                @include('userend.inc.circular.circular-col-4')
             </div>
         </div>
         <button type="submit" class="btn btn-primary me-2">Submit</button>

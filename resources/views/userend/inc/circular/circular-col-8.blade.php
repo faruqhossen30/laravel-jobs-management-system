@@ -59,8 +59,7 @@
                     </select>
                 </div>
 
-                <x-input-text label="Organization Name" placeholder="name" name="organization_name"  />
-                <x-input-text label="Organization Website" placeholder="Website" name="organization_website"  />
+                {{-- <x-input-text label="Organization Website" placeholder="Website" name="organization_website"  /> --}}
                 <x-input-text label="Apply Link" placeholder="link" name="apply_link"  />
                 <x-input-text label="Vacancy" placeholder="vacancy" name="vacancy"  />
             </div>

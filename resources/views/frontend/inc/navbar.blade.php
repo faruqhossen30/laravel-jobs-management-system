@@ -30,13 +30,14 @@
                      <li class="nav-item dropdown dropdown-hover">
                          <a class="nav-link" href="javascript:void(0)" id="productdropdown" role="button"
                              data-bs-toggle="dropdown" aria-expanded="false">
-                             Circular
+                             All Jobs
                              <div class="arrow-down"></div>
                          </a>
                          <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="productdropdown">
-                             <li><a class="dropdown-item" href="blog.html">Govt Job</a></li>
-                             <li><a class="dropdown-item" href="blog-grid.html">Company Job</a></li>
-                             <li><a class="dropdown-item" href="blog-modern.html">NGO Job</a></li>
+                             <li><a class="dropdown-item" href="{{route('circular')}}">All Jobs</a></li>
+                             <li><a class="dropdown-item" href="#">Govt Job</a></li>
+                             <li><a class="dropdown-item" href="#">Company Job</a></li>
+                             <li><a class="dropdown-item" href="#">NGO Job</a></li>
 
                          </ul>
                      </li>

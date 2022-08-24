@@ -419,7 +419,7 @@
                                                   @foreach ($educations as $education)
                                                       <p class="text-muted mb-0">
                                                           {{$education->name}}
-                                                        
+
                                                   @endforeach
                                                   </p>
                                               </div>

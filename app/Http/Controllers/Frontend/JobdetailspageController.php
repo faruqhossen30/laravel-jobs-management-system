@@ -34,9 +34,9 @@ class JobdetailspageController extends Controller
 
         // return $circular->education;
 
-        $skills = Skill::whereIn('id', json_decode($circular->skill))->get();
-        $careerlavels = CareerLevel::whereIn('id', json_decode($circular->career_label))->get();
-        $jobtypes = JobTypes::whereIn('id', json_decode($circular->job_type))->get();
+        $skills = Skill::get();
+        $careerlavels = CareerLevel::get();
+        $jobtypes = JobTypes::get();
 
 
 

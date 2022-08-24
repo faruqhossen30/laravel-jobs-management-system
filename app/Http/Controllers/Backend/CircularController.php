@@ -13,6 +13,7 @@ use App\Models\CareerLevel;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Circular;
+use App\Models\Company;
 use App\Models\Education;
 use App\Models\Jobindustry;
 use App\Models\JobTypes;
@@ -49,8 +50,9 @@ class CircularController extends Controller
         $careerlabels = CareerLevel::get();
         $salarypreiods = SalaryPeriod::get();
         $jobtypes = JobTypes::get();
+        $companies = Company::get();
 
-        return view('backend.circular.create', compact('categories', 'educatios','skills','jobindustries','careerlabels','salarypreiods','jobtypes'));
+        return view('backend.circular.create', compact('categories', 'educatios','skills','jobindustries','careerlabels','salarypreiods','jobtypes', 'companies'));
     }
 
     /**

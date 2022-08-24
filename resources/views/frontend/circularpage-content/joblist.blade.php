@@ -137,7 +137,7 @@
 
                 </div>
                 <!-- START SIDE-BAR -->
-                <div class="col-lg-3">
+                <div class="col-lg-3 d-none d-lg-block">
                     <div class="side-bar mt-5 mt-lg-0">
                         <div class="accordion" id="accordionExample">
                             <div class="accordion-item">
