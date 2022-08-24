@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\JobindustryController;
 use App\Http\Controllers\Frontend\AboutpageController;
+use App\Http\Controllers\Frontend\BlogpageController;
 use App\Http\Controllers\Frontend\CircularpageController;
 use App\Http\Controllers\Frontend\CompanydetailspageController;
 use App\Http\Controllers\Frontend\CompanylistpageController;
@@ -35,6 +36,7 @@ Route::get('/about',[AboutpageController::class, 'aboutPage'])->name('about');
 Route::get('/service',[ServicepageController::class, 'servicePage'])->name('service');
 Route::get('/policy',[PolicypageController::class, 'policyPage'])->name('policy');
 Route::get('/faqs',[FaqspageController::class, 'faqsPage'])->name('faqs');
+Route::get('/blogs',[BlogpageController::class, 'blogpage'])->name('blogs');
 
 
 

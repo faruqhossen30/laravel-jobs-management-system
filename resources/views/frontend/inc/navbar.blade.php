@@ -22,7 +22,7 @@
                         <a href="{{route('company.list')}}" class="nav-link">Companyies</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('circular')}}" class="nav-link">Blog</a>
+                        <a href="{{route('blogs')}}" class="nav-link">Blog</a>
                     </li>
 
 
