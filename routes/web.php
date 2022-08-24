@@ -14,6 +14,7 @@ use App\Http\Controllers\Frontend\PolicypageController;
 use App\Http\Controllers\Frontend\ServicepageController;
 use App\Http\Controllers\Frontend\SinglejobController;
 use App\Http\Controllers\UsercircularController;
+use App\Http\Controllers\UsercompanyController;
 use App\Http\Controllers\Userend\UserdashboardController;
 use App\Http\Controllers\Userjobcontroller;
 use Illuminate\Support\Facades\Route;
@@ -40,5 +41,6 @@ Route::get('/faqs',[FaqspageController::class, 'faqsPage'])->name('faqs');
 Route::group(['prefix' => 'user', 'middleware' => ['auth', 'user']], function () {
     Route::get('/dashboard',[UserdashboardController::class, 'dashboard'])->name('userdashboard');
     Route::resource('job', Userjobcontroller::class);
+    Route::resource('company', UsercompanyController::class);
 });
 

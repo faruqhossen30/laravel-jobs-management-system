@@ -42,4 +42,5 @@ class Circular extends Model
     {
         return $this->hasMany(CircularJobtype::class);
     }
+  
 }

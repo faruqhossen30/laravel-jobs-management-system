@@ -2,7 +2,7 @@
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Job</a></li>
+        <li class="breadcrumb-item"><a href="#">Company</a></li>
         <li class="breadcrumb-item active" aria-current="page">List</li>
     </ol>
 </nav>
@@ -11,21 +11,10 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <a href="{{route('job.create')}}" type="button" class="btn btn-inverse-primary btn-icon-text">
+                <a href="{{route('company.create')}}" type="button" class="btn btn-inverse-primary btn-icon-text">
                     <i class="btn-icon-prepend" data-feather="plus-circle"></i>
                     Create
                 </a>
-               {{-- filter --}}
-
-               <span><h6 class="py-4">Filter</h6></span>
-
-               <select class="form-select w-25" aria-label="Default select example">
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-               {{-- filter end --}}
                 <div class="table-responsive pt-3">
                     <table class="table table-bordered">
                         <thead>
@@ -48,34 +37,37 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($circulars as $circular)
+                            @foreach ($companies as $company)
                             <tr>
                                 <td>
-                                    {{$circulars->firstItem() + $loop->index}}
+                                    1
                                 </td>
                                 <td>
-                                    {{$circular->title}}
+                                    {{$company->name}}
                                 </td>
                                 <td>
-                                    {{$circular->user_id}}
+                                    {{$company->user_id}}
                                 </td>
                                 <td>
-                                    {{$circular->created_at->format('d M Y')}}
+                                    {{$company->created_at->format('d M Y')}}
                                 </td>
                                 <td>
-                                    <form action="{{route('job.destroy', $circular->id)}}" method="post" style="display: inline">
+                                    <form action="{{route('company.destroy', $company->id)}}" method="post" style="display: inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Sure ! Delete Job ?')" class="btn btn-danger btn-xs btn-icon">
+                                        <button type="submit" onclick="return confirm('Sure ! Delete company ?')" class="btn btn-danger btn-xs btn-icon">
                                             <i data-feather="trash"></i>
                                         </button>
                                     </form>
-                                    <a href="{{route('job.edit', $circular->id)}}" type="button" class="btn btn-warning btn-xs btn-icon">
+                                    <a href="{{route('company.edit', $company->id)}}" type="button" class="btn btn-warning btn-xs btn-icon">
                                         <i data-feather="check-square"></i>
                                     </a>
-                                    <a href="{{route('job.show', $circular->id)}}" type="button" class="btn btn-success btn-xs btn-icon">
+                                    <a href="{{route('company.show', $company->id)}}" type="button" class="btn btn-success btn-xs btn-icon">
                                         <i data-feather="eye"></i>
                                     </a>
+                                    {{-- <a href="{{route('company.edit', $company->id)}}" type="button" class="btn btn-warning btn-xs btn-icon px-5">
+                                       update
+                                    </a> --}}
 
                                 </td>
                             </tr>
@@ -84,9 +76,6 @@
 
                         </tbody>
                     </table>
-                   <div class="py-3">
-                    {{$circulars->links()}}
-                   </div>
                 </div>
             </div>
         </div>
@@ -123,7 +112,7 @@
     })
     Toast.fire({
         icon: 'success'
-        , title: 'Job has been created!'
+        , title: 'Company has been created!'
     })
 
 </script>
@@ -143,7 +132,7 @@
     })
     Toast.fire({
         icon: 'success'
-        , title: 'Job has been updated !'
+        , title: 'Company has been updated !'
     })
 
 </script>
@@ -163,7 +152,7 @@
     })
     Toast.fire({
         icon: 'warning'
-        , title: 'Job has been deleted !'
+        , title: 'Company has been deleted !'
     })
 
 </script>

@@ -1,26 +1,64 @@
 @extends('userend.layout.master')
 @section('content')
-    <nav class="page-breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">JOb</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Create</li>
-        </ol>
-    </nav>
+<nav class="page-breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Company</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Edit</li>
+  </ol>
+</nav>
 
-    <form action="{{ route('job.store') }}" method="post" enctype="multipart/form-data">
-        @csrf
-        <div class="row">
-            <div class="col-md-8 grid-margin stretch-card">
-                @include('backend.inc.circular.circular-col-8')
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <form action="{{route('company.update', $company->id)}}" method="POST" enctype="multipart/form-data" class="forms-sample">
+            @csrf
+            @method('put')
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-title">Image</h6>
+                    <p class="text-muted mb-3">Drag and Drop your logo. </p>
+                    <input type="file" id="myDropify" name="logo">
+                </div>
             </div>
-            <div class="col-md-4 grid-margin stretch-card">
-                @include('backend.inc.circular.circular-col-4')
+          <div class="mb-3">
+            <label for="forName" class="form-label">Company Name</label>
+            <input type="text" name="name" value="{{$company->name}}" class="form-control" id="forName" autocomplete="off" placeholder=" Name">
+          </div>
+
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                {{-- <div class="card"> --}}
+                <div class="card-body p-0">
+                    <h6 class="card-title">Description</h6>
+
+                    <textarea class="form-control" name="description" id="tinymceExample" rows="10">{{$company->description}}</textarea>
+
+                </div>
+                {{-- </div> --}}
             </div>
         </div>
-        <button type="submit" class="btn btn-primary me-2">Submit</button>
-        <button class="btn btn-secondary">Cancel</button>
-    </form>
+
+        <div class="mb-3">
+            <label for="forName" class="form-label">Email</label>
+            <input type="email" name="email"  class="form-control" id="email" autocomplete="off" value="{{$company->email}}">
+          </div>
+          <div class="mb-3">
+            <label for="forName" class="form-label">Address</label>
+            <input type="text" name="address" class="form-control" id="address" autocomplete="off" value="{{$company->address}}">
+          </div>
+
+          <button type="submit" class="btn btn-primary me-2">Update</button>
+          <button class="btn btn-secondary">Cancel</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection
+
 @push('plugin-styles')
     <link href="{{ asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/plugins/jquery-tags-input/jquery.tagsinput.min.css') }}" rel="stylesheet" />
@@ -68,3 +106,4 @@
     <script src="{{ asset('assets/js/datepicker.js') }}"></script>
     <script src="{{ asset('assets/js/timepicker.js') }}"></script>
 @endpush
+

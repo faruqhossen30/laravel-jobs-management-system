@@ -2,7 +2,7 @@
 @section('content')
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Circular</a></li>
+            <li class="breadcrumb-item"><a href="#">JOb</a></li>
             <li class="breadcrumb-item active" aria-current="page">Create</li>
         </ol>
     </nav>
@@ -11,7 +11,7 @@
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('circular.update', $circular->id) }}" method="POST"
+                    <form action="{{ route('job.update', $circular->id) }}" method="POST"
                         enctype="multipart/form-data" class="forms-sample">
                         @csrf
                         @method('put')
@@ -19,7 +19,7 @@
                             <div class="col-md-8 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h6 class="card-title">Circular Form</h6>
+                                        <h6 class="card-title">Job Form</h6>
                                         <x-input-text label="Title" placeholder="title" name="title"
                                             value="{{ $circular->title }}" />
                                         {{-- Attributes start --}}
@@ -79,12 +79,20 @@
 
                                             <div class="card-body">
 
-                                                <x-input-text label="Organization Name" placeholder="name"
-                                                    name="organization_name" value="{{ $circular->organization_name }}" />
-                                                <x-input-text label="Organization Website" placeholder="Website"
-                                                    name="organization_website"
-                                                    value="{{ $circular->organization_website }}" />
-                                                <x-input-text label="Organization Link" placeholder="Apply Link"
+                                                <div class="mb-3">
+                                                    <label class="form-label">Company</label>
+                                                    <select name="company_id" class="js-example-basic-single form-select"
+                                                        data-width="100%">
+                                                        @foreach ($companies as $company)
+                                                            <option value="{{ $company->id }}"
+                                                                @if ($company->id == $circular->company_id) selected @endif>
+                                                                {{ $company->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+
+                                                <x-input-text label="Apply link" placeholder="link"
                                                     name="apply_link" value="{{ $circular->apply_link }}" />
                                                 <x-input-text label="Vacancy" placeholder="vacancy" name="vacancy"
                                                     value="{{ $circular->vacancy }}" />
@@ -100,6 +108,7 @@
                                         {{-- Thumbnail --}}
                                         <div class="card">
                                             <div class="card-body">
+                                                
                                                 <h6 class="card-title">Image</h6>
                                                 <p class="text-muted mb-3">Drag and Drop your image. </p>
                                                 <input type="file" id="myDropify" name="thumbnail"

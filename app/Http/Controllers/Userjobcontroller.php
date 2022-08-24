@@ -12,6 +12,7 @@ use App\Models\Attributes\CircularSkill;
 use App\Models\CareerLevel;
 use App\Models\Category;
 use App\Models\Circular;
+use App\Models\Company;
 use App\Models\Education;
 use App\Models\JobIndustry;
 use App\Models\JobTypes;
@@ -19,7 +20,10 @@ use App\Models\SalaryPeriod;
 use App\Models\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Session;
+use File;
+use Image;
 
 class Userjobcontroller extends Controller
 {
@@ -42,6 +46,7 @@ class Userjobcontroller extends Controller
     public function create()
     {
         $categories = Category::get();
+        $companies=Company::get();
         $educatios = Education::get();
         $skills = Skill::get();
         $jobindustries = JobIndustry::orderBy('name','asc')->get();
@@ -49,7 +54,7 @@ class Userjobcontroller extends Controller
         $salarypreiods = SalaryPeriod::get();
         $jobtypes = JobTypes::get();
 
-        return view('userend.job.create', compact('categories', 'educatios','skills','jobindustries','careerlabels','salarypreiods','jobtypes'));
+        return view('userend.job.create', compact('categories','companies', 'educatios','skills','jobindustries','careerlabels','salarypreiods','jobtypes'));
     }
 
     /**
@@ -67,7 +72,13 @@ class Userjobcontroller extends Controller
             'description' => 'required',
         ]);
 
-        $thumbnailname = null;
+        $logo_name = null;
+        if ($request->file('thumbnail')) {
+            $job_thumbnail = $request->file('thumbnail');
+            $extension = $job_thumbnail->getClientOriginalExtension();
+            $logo_name = Str::uuid() . '.' . $extension;
+            Image::make($job_thumbnail)->save('uploads/circular/' . $logo_name);
+        }
 
 
         $data = [
@@ -75,24 +86,17 @@ class Userjobcontroller extends Controller
             'slug'                 => $request->title,
             'description'          => $request->description,
             'user_id'              => Auth::user()->id,
-            'thumbnail'            => $thumbnailname,
+            'thumbnail'            => $logo_name,
             'category_id'          => $request->category_id,
             'start_date'           => $request->start_date,
             'end_date'             => $request->end_date,
             'min_salary'           => $request->min_salary,
             'max_salary'           => $request->max_salary,
+            'company_id'    => $request->company_id,
             'organization_name'    => $request->organization_name,
             'organization_website' => $request->organization_website,
             'apply_link'           => $request->apply_link,
             'vacancy'              => $request->vacancy,
-
-
-            // 'education'     => json_encode($request->education),
-            // 'skill'         => json_encode($request->skill),
-            // 'job_industry'  => json_encode($request->job_industry),
-            // 'career_label'  => json_encode($request->career_label),
-            // 'salary_period' => json_encode($request->salary_period),
-            // 'job_type'      => json_encode($request->job_type)
         ];
 
 
@@ -191,6 +195,7 @@ class Userjobcontroller extends Controller
 
 
         $categories = Category::get();
+        $companies=Company::get();
         $educatios = Education::get();
         $skills = Skill::get();
         $jobindustries = JobIndustry::get();
@@ -206,7 +211,7 @@ class Userjobcontroller extends Controller
         // return gettype($circular->skill);
         //   return $circular->job_industry;
 
-        return view('userend.job.edit', compact('circular','categories','categories','educatios','skills','jobindustries','careerlabels','salarypreiods','jobtypes', 'salaryperiods'));
+        return view('userend.job.edit', compact('circular','categories','companies','categories','educatios','skills','jobindustries','careerlabels','salarypreiods','jobtypes', 'salaryperiods'));
 
 
 
@@ -227,8 +232,19 @@ class Userjobcontroller extends Controller
             'title' => 'required',
             'description' => 'required'
         ]);
+        $circular = Circular::firstWhere('id',$id);
+        // return $circular->thumbnail;
 
-        $thumbnailname = null;
+
+        $logo_name = null;
+        if ($request->file('thumbnail')) {
+            $job_thumbnail = $request->file('thumbnail');
+            $extension = $job_thumbnail->getClientOriginalExtension();
+            $logo_name = Str::uuid() . '.' . $extension;
+            Image::make($job_thumbnail)->save('uploads/circular/' . $logo_name);
+
+
+        }
 
 
             $data = [
@@ -236,12 +252,13 @@ class Userjobcontroller extends Controller
             'slug' => $request->title,
             'description' => $request->description,
             'user_id' => Auth::user()->id,
-            'thumbnail' => $thumbnailname,
+            'thumbnail'            => $logo_name,
             'category_id' => $request->category_id,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'min_salary' => $request->min_salary,
             'max_salary' => $request->max_salary,
+            'company_id'    => $request->company_id,
             'organization_name' => $request->organization_name,
             'organization_website' => $request->organization_website,
             'apply_link' => $request->apply_link,

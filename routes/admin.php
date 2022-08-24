@@ -22,7 +22,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Dashboard Start
-Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
     // Project route start
     Route::resource('category', CategoryController::class);
     Route::resource('jobindustry', JobindustryController::class);
@@ -32,7 +32,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('salaryperiod', salaryperiodController::class);
     Route::resource('jobtype', JobtypeController::class);
     Route::resource('circular', CircularController::class);
-    Route::resource('company', CompanyController::class);
+    // Route::resource('company', CompanyController::class);
     Route::resource('blog', BlogController::class);
     Route::resource('user', UserProfileController::class);
     Route::resource('blogcategory', BlogcategoryController::class);
