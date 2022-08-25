@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\JobIndustry;
 use File;
 use Image;
+use App\Models\Circular;
 
 
 class UsercompanyController extends Controller
@@ -110,8 +111,14 @@ class UsercompanyController extends Controller
      */
     public function edit($id)
     {
+
         $company = Company::firstWhere('id',$id);
-        return view('userend.company.edit', compact('company'));
+
+        // return $company->industry;
+
+
+        $jobindustries = JobIndustry::get();
+        return view('userend.company.edit', compact('company','jobindustries'));
     }
 
     /**
@@ -123,6 +130,7 @@ class UsercompanyController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // return $request->all();
         $request->validate([
             'name' => 'required',
             'address' => 'required'
@@ -136,9 +144,9 @@ class UsercompanyController extends Controller
             $logo_name = Str::uuid() . '.' . $extension;
             Image::make($company_logo)->save('uploads/company/' . $logo_name);
 
-            if(File::exists($logo_name->logo)){
-                unlink($logo_name->logo);
-            }
+            // if(File::exists($logo_name->logo)){
+            //     unlink($logo_name->logo);
+            // }
 
         }
         $data = [

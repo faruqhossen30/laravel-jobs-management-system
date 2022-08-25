@@ -108,11 +108,11 @@
                                         {{-- Thumbnail --}}
                                         <div class="card">
                                             <div class="card-body">
-                                                
+
                                                 <h6 class="card-title">Image</h6>
                                                 <p class="text-muted mb-3">Drag and Drop your image. </p>
                                                 <input type="file" id="myDropify" name="thumbnail"
-                                                    @if ($circular->thumbnail) data-default-file="{{ asset('storage/circular/' . $circular->thumbnail) }}" @endif>
+                                                    @if ($circular->thumbnail) data-default-file="{{ asset('uploads/circular/' . $circular->thumbnail) }}" @endif>
                                                 {{-- data-default-file="imagePath" --}}
                                             </div>
                                         </div>

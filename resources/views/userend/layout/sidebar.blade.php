@@ -22,7 +22,7 @@
             <li class="nav-item {{ active_class(['user/job/*']) }}">
                 <a class="nav-link" data-bs-toggle="collapse" href="#jobAttributes" role="button" aria-expanded="{{ is_active_route(['email/*']) }}" aria-controls="email">
                     <i class="link-icon" data-feather="mail"></i>
-                    <span class="link-title">job </span>
+                    <span class="link-title">Job </span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
                 <div class="collapse {{ show_class(['job/*']) }}" id="jobAttributes">

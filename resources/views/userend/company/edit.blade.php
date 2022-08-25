@@ -43,9 +43,9 @@
                                             <div class="card-body">
                                                 <h6 class="card-title">Company Logo</h6>
                                                 <p class="text-muted mb-3">Drag and Drop your logo.</p>
-                                                <input type="file" id="myDropify" name="logo"
+                                                <input type="file" id="myDropify" name="logo"   data-default-file="{{ asset('uploads/company/'. $company->logo) }}"
                                                  >
-                                                 {{-- data-default-file="{{ asset('storage/companylogo/') }}" --}}
+
                                             </div>
                                         </div>
                                     </div>
@@ -116,11 +116,7 @@
                         <div class="card-body">
                             <h3 class="my-4">Acount Information</h3>
                             <div class="row">
-                                 {{-- <div class="mb-3">
-                                        <label for="forName" class="form-label">Facebook</label>
-                                        <input type="text" name="facebook" class="form-control" id="facebook"
-                                            autocomplete="off">
-                                    </div> --}}
+
                                 <div class="col-md-6">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="basic-addon1">Facebook</span>
@@ -177,10 +173,12 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="basic-addon1">Industry</span>
-                                        <input type="text" class="form-control" name="industry" id="industry" placeholder="industry" aria-label="industry" aria-describedby="basic-addon1"value="{{$company->industry}}">
+                                        <span class="input-group-text" id="basic-addon1">Establish</span>
+                                        <input type="date" class="form-control" name="establish" id="establish" placeholder="establish" aria-label="establish" aria-describedby="basic-addon1"value="{{$company->establish}}">
                                       </div>
                                 </div>
+
+
                                 <div class="col-md-6">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="basic-addon1">Total Office</span>
@@ -193,12 +191,24 @@
                                         <input type="number" class="form-control" name="employ_range" id="employ_range" placeholder="employ_range" aria-label="employ_range" aria-describedby="basic-addon1"value="{{$company->employ_range}}">
                                       </div>
                                 </div>
+                                {{-- {{$company->industry}} --}}
+
                                 <div class="col-md-6">
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="basic-addon1">Establish</span>
-                                        <input type="date" class="form-control" name="establish" id="establish" placeholder="establish" aria-label="establish" aria-describedby="basic-addon1"value="{{$company->establish}}">
-                                      </div>
+                                    <label for="google_map">Job industry</label>
+                                    <select name="job_industry[]"
+                                    class="js-example-basic-multiple form-select" multiple="multiple"
+                                    data-width="100%">
+
+                                    @foreach ($jobindustries as $jobindustry)
+                                        <option value="{{ $jobindustry->id }}"
+                                            @if (!empty($company->industry) && in_array($jobindustry->id, json_decode($company->industry)) ) selected @endif>
+                                            {{ $jobindustry->name }}</option>
+                                    @endforeach
+
+                                </select>
                                 </div>
+
+
 
                                 <div class="col-md-12">
                                     <label for="google_map">Google Map</label>

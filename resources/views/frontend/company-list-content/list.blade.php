@@ -41,10 +41,10 @@
                         <div class="featured-label">
                             <span class="featured">4.9 <i class="mdi mdi-star-outline"></i></span>
                         </div>
-                        <img src="assets/images/featured-job/img-01.png" alt="" class="img-fluid rounded-3">
+                        <img src="https://futurestartup.com/wp-content/uploads/2016/05/Walton-logo.jpg" width="100px" height="100px" alt="" class="img-fluid rounded-3">
                         <div class="mt-4">
-                            <a href="company-details.html" class="primary-link"><h6 class="fs-18 mb-2">Jobcy Consulting</h6></a>
-                            <p class="text-muted mb-4">New York</p>
+                            <a href="company-details.html" class="primary-link"><h6 class="fs-18 mb-2">Waltol Group</h6></a>
+                            <p class="text-muted mb-4">Uttora,Dhaka</p>
 
                             <a href="company-details.html" class="btn btn-primary">52 Opening Jobs</a>
                         </div>
@@ -54,9 +54,9 @@
             <div class="col-lg-4 col-md-6">
                 <div class="card text-center mb-4">
                     <div class="card-body px-4 py-5">
-                        <img src="assets/images/featured-job/img-02.png" alt="" class="img-fluid rounded-3">
+                        <img src="https://1000logos.net/wp-content/uploads/2016/10/apple-emblem.jpg" width="100px" height="100px" alt="" class="img-fluid rounded-3">
                         <div class="mt-4">
-                            <a href="company-details.html" class="primary-link"><h6 class="fs-18 mb-2">Creative Agency</h6></a>
+                            <a href="company-details.html" class="primary-link"><h6 class="fs-18 mb-2">Apple</h6></a>
                             <p class="text-muted mb-4">UK</p>
 
                             <a href="company-details.html" class="btn btn-primary">11 Opening Jobs</a>
@@ -67,10 +67,10 @@
             <div class="col-lg-4 col-md-6">
                 <div class="card text-center mb-4">
                     <div class="card-body px-4 py-5">
-                        <img src="assets/images/featured-job/img-03.png" alt="" class="img-fluid rounded-3">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNeDzeLKVrfCG-kdabM4jujTfFyhppIcb4u2ndDbCrEw&s" width="100px" height="100px" alt="" class="img-fluid rounded-3">
                         <div class="mt-4">
-                            <a href="company-details.html" class="primary-link"><h6 class="fs-18 mb-2">DootTech Solution</h6></a>
-                            <p class="text-muted mb-4">London</p>
+                            <a href="company-details.html" class="primary-link"><h6 class="fs-18 mb-2">Catalyst Wings </h6></a>
+                            <p class="text-muted mb-4">Carbala Road, Jessore</p>
 
                             <a href="company-details.html" class="btn btn-primary">09 Opening Jobs</a>
                         </div>

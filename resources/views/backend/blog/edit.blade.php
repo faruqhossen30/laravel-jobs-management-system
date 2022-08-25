@@ -79,23 +79,23 @@
                                             {{-- Category --}}
                                         </div>
                                         <div class="card">
-                                            <div class="card-body">
+                                            {{-- <div class="card-body">
                                                 <div class="card-title">Category</div>
                                                 @foreach ($categories as $category)
                                                     <div class="form-check mb-2">
                                                         <input name="category_id[]" value="{{ $category->id }}" type="checkbox"
 
-                                                        @if(empty(!json_decode($blog->category_id)) && in_array($category->id, json_decode($blog->category_id))) checked @endif
+                                                        @if(empty(!json_decode($blog->category_id)) && in_array($category->id, json_decode($blog->category_id))) checked @endif --}}
 
                                                         {{-- @if(empty(!json_decode($blog->category_id))) $$ in_arrar($blog->category_id, json_decode($blog->category_id)) checked @endif --}}
                                                       {{-- checked --}}
 
-                                                            class="form-check-input" id="category{{ $category->id }}">
+                                                            {{-- class="form-check-input" id="category{{ $category->id }}">
                                                         <label class="form-check-label" for="category{{ $category->id }}">
                                                             {{ $category->name }}
                                                         </label>
                                                     </div>
-                                                @endforeach
+                                                @endforeach --}}
                                             </div>
                                         </div>
 
