@@ -164,7 +164,7 @@
                 <!-- END FOOTER -->
 
                 <!-- Style switcher -->
-                <div id="style-switcher" onclick="toggleSwitcher()" style="left: -165px;">
+                {{-- <div id="style-switcher" onclick="toggleSwitcher()" style="left: -165px;">
                     <div>
                         <h6>Select your color</h6>
                         <ul class="pattern list-unstyled mb-0">
@@ -193,7 +193,7 @@
                     <div class="bottom d-none d-md-block" >
                         <a href="javascript: void(0);" class="settings rounded-end"><i class="mdi mdi-cog mdi-spin"></i></a>
                     </div>
-                </div>
+                </div> --}}
                 <!-- end switcher-->
 
                 <!--start back-to-top-->

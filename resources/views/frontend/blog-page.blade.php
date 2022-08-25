@@ -31,16 +31,16 @@
                                         <div class="card-body">
                                             <ul class="list-inline d-flex justify-content-between mb-3">
                                                 <li class="list-inline-item">
-                                                    <p class="text-muted mb-0"><a href="blog-author.html" class="text-muted fw-medium">Alice Mellor</a> - Aug 08, 2021</p>
+                                                    <p class="text-muted mb-0"><a href="{{ route('singleblog',$blog->id) }}" class="text-muted fw-medium">Alice Mellor</a> - Aug 08, 2021</p>
                                                 </li>
                                                 <li class="list-inline-item">
                                                     <p class="text-muted mb-0"><i class="mdi mdi-eye"></i> 432</p>
                                                 </li>
                                             </ul>
-                                            <a href="blog-details.html" class="primary-link"><h6 class="fs-17">{{$blog->title}}</h6></a>
+                                            <a href="{{ route('singleblog',$blog->id) }}" class="primary-link"><h6 class="fs-17">{{$blog->title}}</h6></a>
                                             <p class="text-muted">{{ Str::limit($blog->description, 160) }}</p>
                                             <div>
-                                                <a href="blog-details.html" class="form-text text-primary">Read More <i class="uil uil-angle-right-b"></i></a>
+                                                <a href="{{ route('singleblog',$blog->id) }}" class="form-text text-primary">Read More <i class="uil uil-angle-right-b"></i></a>
                                             </div>
                                         </div>
                                     </div><!--end blog-grid-box-->

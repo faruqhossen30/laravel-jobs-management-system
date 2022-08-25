@@ -37,6 +37,7 @@ Route::get('/service',[ServicepageController::class, 'servicePage'])->name('serv
 Route::get('/policy',[PolicypageController::class, 'policyPage'])->name('policy');
 Route::get('/faqs',[FaqspageController::class, 'faqsPage'])->name('faqs');
 Route::get('/blogs',[BlogpageController::class, 'blogpage'])->name('blogs');
+Route::get('/blog/{id}',[BlogpageController::class, 'singleblog'])->name('singleblog');
 
 
 

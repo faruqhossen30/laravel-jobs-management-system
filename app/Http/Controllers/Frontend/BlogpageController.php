@@ -13,4 +13,12 @@ class BlogpageController extends Controller
         $blogs = Blog::paginate(10);
         return view('frontend.blog-page', compact('blogs'));
     }
+    public function singleblog($id)
+    {
+        $blog = Blog::with('user')->where('id',$id)->first();
+        // return $blog;
+        return view('frontend.singel-blog', compact('blog'));
+
+    }
+
 }

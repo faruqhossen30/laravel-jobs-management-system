@@ -46,7 +46,7 @@
                                     {{$blog->title}}
                                 </td>
                                 <td>
-                                    {{$blog->user_id}}
+                                    {{$blog->user->name}}
                                 </td>
                                 <td>
                                     {{$blog->created_at->format('d M Y')}}
