@@ -1,12 +1,12 @@
         <!-- START HOME -->
-        <section class="bg-home2" id="home" style="padding-top: 100px">
+        <section class="bg-home2" id="home" style="padding-top: 50px">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-8">
                         <div class="mb-4 pb-3 me-lg-5">
                             <h6 class="sub-title">We have 150,000+ live jobs</h6>
                             <h1 class="display-5 fw-semibold mb-3">Find your dream jobs with <span class="text-primary fw-bold">Jobcy</span></h1>
-                            <p class="lead text-muted mb-0">Find jobs, create trackable resumes and enrich your applications.Carefully crafted after analyzing the needs of different industries.</p>
+                            <p class="lead text-muted mb-0 d-none d-lg-block">Find jobs, create trackable resumes and enrich your applications.Carefully crafted after analyzing the needs of different industries.</p>
                         </div>
                         <form action="#">
                             <div class="registration-form">
@@ -39,7 +39,7 @@
                         </form>
                     </div>
                     <!--end col-->
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 d-none d-lg-block">
                         <div class="mt-5 mt-md-0">
                             <img src="{{asset('frontend/assets/images/process-02.png')}}" alt="" class="home-img" />
                         </div>

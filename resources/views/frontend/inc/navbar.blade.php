@@ -55,7 +55,8 @@
              </div>
              <!--end navabar-collapse-->
              <ul class="header-menu list-inline d-flex align-items-center mb-0">
-                 <li class="list-inline-item dropdown me-4">
+                @auth
+                <li class="list-inline-item dropdown me-4">
                      <a href="javascript:void(0)" class="header-item noti-icon position-relative" id="notification"
                          data-bs-toggle="dropdown" aria-expanded="false">
                          <i class="mdi mdi-bell fs-22"></i>
@@ -152,6 +153,7 @@
                          </div>
                      </div>
                  </li>
+                @endauth
                  @guest
                      <li>
                          <a href="{{url('login')}}">Sign In</a>
@@ -169,13 +171,6 @@
                             <img src="{{asset('frontend/assets/images/defultuser.jpg')}}" alt="mdo" width="35"
                             height="35" class="rounded-circle me-1">
                             @endif
-
-
-
-
-
-
-
 
                              <span class="d-none d-md-inline-block fw-medium">
                                  {{ auth()->user()->name }}

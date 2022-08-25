@@ -18,6 +18,14 @@ class Circular extends Model
 
     protected $dates = ['start_date', 'end_date'];
 
+    public function category()
+    {
+        return $this->hasOne(Category::class, 'id', 'category_id');
+    }
+    public function company()
+    {
+        return $this->hasOne(company::class, 'id', 'company_id');
+    }
     public function educations()
     {
         return $this->hasMany(CircularEducation::class);
@@ -42,5 +50,5 @@ class Circular extends Model
     {
         return $this->hasMany(CircularJobtype::class);
     }
-  
+
 }

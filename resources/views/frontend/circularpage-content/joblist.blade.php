@@ -1,88 +1,11 @@
-
+@php
+    $keyword = null;
+        if (isset($_GET['keyword'])) {
+            $keyword = trim($_GET['keyword']);
+        }
+@endphp
        {{-- <button class="btn btn-primary  position-fixed mt-5  " style="z-index: 5;"> Filter</button> --}}
-       {{-- filter item start --}}
-    <div class="position-fixed mt-5 	 d-md-block d-lg-none" style="z-index: 5;">
-       <a class="btn btn-primary" style="border-radius: 0" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-        <i class="mdi mdi-cog"></i>
-      </a>
-      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
-          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="accordion-item mt-4">
-                <h2 class="accordion-header" id="experienceOneTop">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#experience" aria-expanded="true" aria-controls="experience">
-                        Work experience
-                    </button>
-                </h2>
-          <div>
-            <div id="experience" class="accordion-collapse collapse show" aria-labelledby="experienceOneTop">
-                <div class="accordion-body">
-                    <div class="side-title">
-                        <div class="form-check mt-2">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1" />
-                            <label class="form-check-label ms-2 text-muted" for="flexCheckChecked1">No experience</label>
-                        </div>
-                        <div class="form-check mt-2">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked />
-                            <label class="form-check-label ms-2 text-muted" for="flexCheckChecked2">0-3 years</label>
-                        </div>
-                        <div class="form-check mt-2">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" />
-                            <label class="form-check-label ms-2 text-muted" for="flexCheckChecked3">3-6 years</label>
-                        </div>
-                        <div class="form-check mt-2">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" />
-                            <label class="form-check-label ms-2 text-muted" for="flexCheckChecked4">More than 6 years</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div><!-- end accordion-item -->
-            <div class="accordion-item mt-3">
-                <h2 class="accordion-header" id="jobType">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#jobtype" aria-expanded="false" aria-controls="jobtype">
-                        Type of employment
-                    </button>
-                </h2>
-                <div id="jobtype" class="accordion-collapse collapse show" aria-labelledby="jobType">
-                    <div class="accordion-body">
-                        <div class="side-title">
-                            <div class="form-check mt-2">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault6" checked>
-                                <label class="form-check-label ms-2 text-muted" for="flexRadioDefault6">
-                                    Freelance
-                                </label>
-                            </div>
-                            <div class="form-check mt-2">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                                <label class="form-check-label ms-2 text-muted" for="flexRadioDefault2">
-                                    Full Time
-                                </label>
-                            </div>
-                            <div class="form-check mt-2">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                                <label class="form-check-label ms-2 text-muted" for="flexRadioDefault3">
-                                    Internship
-                                </label>
-                            </div>
-                            <div class="form-check mt-2">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
-                                <label class="form-check-label ms-2 text-muted" for="flexRadioDefault4">
-                                    Part Time
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- end accordion-item -->
-          </div>
-        </div>
-      </div>
-    </div>
-       {{-- filter item end --}}
+    @include('frontend.inc.filter-offcanvas')
        <!-- START JOB-LIST -->
        <section class="section mt-5">
         <div class="container">
@@ -97,13 +20,13 @@
                                     <div class="col-lg-9 col-md-6">
                                         <div class="filler-job-form">
                                             <i class="uil uil-briefcase-alt"></i>
-                                            <input type="search" class="form-control filter-job-input-box" id="exampleFormControlInput1" placeholder="Job, company... ">
+                                            <input type="search" @if($keyword) value="{{$keyword}}" @endif name="keyword"  class="form-control filter-job-input-box" id="exampleFormControlInput1" placeholder="Job title ... ">
                                         </div>
                                     </div><!--end col-->
 
 
                                     <div class="col-lg-3 col-md-6">
-                                        <a href="javascript:void(0)" class="btn btn-primary w-100"><i class="uil uil-filter"></i> Fliter</a>
+                                        <button type="submit" class="btn btn-primary w-100"><i class="uil uil-search"></i> Search</button>
                                     </div><!--end col-->
                                 </div><!--end row-->
                             </form>
@@ -160,26 +83,30 @@
                                 <div class="p-4">
                                     <div class="row">
                                         <div class="col-lg-1">
-                                            <a href="company-details.html"><img src="{{asset('frontend')}}/assets/images/featured-job/img-01.png" alt="" class="img-fluid rounded-3"></a>
+                                            <a href="company-details.html"><img src="{{asset('uploads/category/'.$circular->category->thumbnail)}}" alt="" class="img-fluid rounded-3"></a>
                                         </div><!--end col-->
                                         <div class="col-lg-10">
                                             <div class="mt-3 mt-lg-0">
-                                                <h5 class="fs-17 mb-1"><a href="{{ route('jobdetails',$circular->id) }}" class="text-dark">{{$circular->title}}</a> <small class="text-muted fw-normal">(0-2 Yrs Exp.)</small></h5>
+                                                <h5 class="fs-17 mb-1"><a href="{{ route('jobdetails',$circular->id) }}" class="text-dark">{{$circular->title}}</a></h5>
                                                 <ul class="list-inline mb-0">
                                                     <li class="list-inline-item">
-                                                        <p class="text-muted fs-14 mb-0">Jobcy Technology Pvt.Ltd</p>
+                                                        @if($circular->organization_name)
+                                                            <p class="text-muted fs-14 mb-0">{{$circular->organization_name}}</p>
+                                                        @elseif($circular->company_id)
+                                                        <p class="text-muted fs-14 mb-0">{{$circular->company->name}}</p>
+                                                        @endif
                                                     </li>
-                                                    <li class="list-inline-item">
+                                                    {{-- <li class="list-inline-item">
                                                         <p class="text-muted fs-14 mb-0"><i class="mdi mdi-map-marker"></i> California</p>
-                                                    </li>
+                                                    </li> --}}
                                                     <li class="list-inline-item">
-                                                        <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i> $250 - $800 / month</p>
+                                                        <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i> ৳{{$circular->min_salary}} - ৳{{$circular->max_salary}} / month</p>
                                                     </li>
                                                 </ul>
                                                 <div class="mt-2">
-                                                    <span class="badge bg-soft-success mt-1">{{$circular->job_type}}</span>
-                                                    <span class="badge bg-soft-warning mt-1">Urgent</span>
-                                                    <span class="badge bg-soft-info mt-1">Private</span>
+                                                    @foreach ($circular->skills as $skill)
+                                                    <span class="badge bg-soft-success mt-1">{{$skill->skill->name}}</span>
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div><!--end col-->
@@ -193,9 +120,10 @@
                                         <div class="col-md-8">
                                             <div>
                                                 <ul class="list-inline mb-0">
-                                                    <li class="list-inline-item"><i class="uil uil-tag"></i> Keywords :</li>
-                                                    <li class="list-inline-item"><a href="javascript:void(0)" class="primary-link text-muted">Ui designer</a>,</li>
-                                                    <li class="list-inline-item"><a href="javascript:void(0)" class="primary-link text-muted">developer</a></li>
+                                                    <li class="list-inline-item"><i class="uil uil-tag"></i> Job Industry :</li>
+                                                    @foreach ($circular->jobindustries as $jobindustry)
+                                                        <li class="list-inline-item"><a href="javascript:void(0)" class="primary-link text-muted">Ui designer</a>,</li>
+                                                    @endforeach
                                                 </ul>
                                             </div>
                                         </div>
@@ -226,7 +154,7 @@
                 <div class="col-lg-3 d-none d-lg-block">
                     <div class="side-bar mt-5 mt-lg-0">
                         <div class="accordion" id="accordionExample">
-                            <div class="accordion-item">
+                            {{-- <div class="accordion-item">
                                 <h2 class="accordion-header" id="locationOne">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#location" aria-expanded="true" aria-controls="location">
                                     Location
@@ -248,9 +176,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div><!-- end accordion-item -->
+                            </div><!-- end accordion-item --> --}}
 
-                            <div class="accordion-item mt-4">
+                            {{-- <div class="accordion-item mt-4"> --}}
                             <h2 class="accordion-header" id="experienceOne">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#experience" aria-expanded="true" aria-controls="experience">
                                     Work experience
@@ -259,22 +187,12 @@
                             <div id="experience" class="accordion-collapse collapse show" aria-labelledby="experienceOne">
                                 <div class="accordion-body">
                                     <div class="side-title">
+                                        @foreach ($careerlabels as $careerlabel)
                                         <div class="form-check mt-2">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1" />
-                                            <label class="form-check-label ms-2 text-muted" for="flexCheckChecked1">No experience</label>
+                                            <input class="form-check-input" name="careerlabel[]" type="checkbox" value="{{$careerlabel->id}}" id="flexCheckChecked1{{$careerlabel->id}}" />
+                                            <label class="form-check-label ms-2 text-muted" for="flexCheckChecked1{{$careerlabel->id}}">{{$careerlabel->name}}</label>
                                         </div>
-                                        <div class="form-check mt-2">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked />
-                                            <label class="form-check-label ms-2 text-muted" for="flexCheckChecked2">0-3 years</label>
-                                        </div>
-                                        <div class="form-check mt-2">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" />
-                                            <label class="form-check-label ms-2 text-muted" for="flexCheckChecked3">3-6 years</label>
-                                        </div>
-                                        <div class="form-check mt-2">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" />
-                                            <label class="form-check-label ms-2 text-muted" for="flexCheckChecked4">More than 6 years</label>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>

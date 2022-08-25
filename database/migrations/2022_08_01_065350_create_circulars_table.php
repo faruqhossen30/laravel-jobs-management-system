@@ -37,7 +37,7 @@ return new class extends Migration
             $table->string('organization_name')->nullable();
             $table->string('organization_website')->nullable();
             $table->string('apply_link')->nullable();
-            $table->string('vacancy')->nullable();
+            $table->integer('vacancy')->nullable();
             $table->timestamps();
         });
     }
