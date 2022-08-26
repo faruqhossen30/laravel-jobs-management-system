@@ -3,6 +3,11 @@
         if (isset($_GET['keyword'])) {
             $keyword = trim($_GET['keyword']);
         }
+
+        $querycarierlabes = null;
+        if (isset($_GET['careerlabel'])) {
+            $querycarierlabes = $_GET['careerlabel'];
+        }
 @endphp
        {{-- <button class="btn btn-primary  position-fixed mt-5  " style="z-index: 5;"> Filter</button> --}}
     @include('frontend.inc.filter-offcanvas')
@@ -31,7 +36,7 @@
                                 </div><!--end row-->
                             </form>
                         </div><!--end job-list-header-->
-                        <div class="wedget-popular-title mt-4">
+                        {{-- <div class="wedget-popular-title mt-4">
                             <h6>Popular</h6>
                             <ul class="list-inline">
                                 <li class="list-inline-item">
@@ -75,7 +80,7 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div><!--end wedget-popular-title-->
+                        </div><!--end wedget-popular-title--> --}}
 
                         <!-- Job-list -->
                         @foreach ($circulars as $circular)
@@ -189,7 +194,9 @@
                                     <div class="side-title">
                                         @foreach ($careerlabels as $careerlabel)
                                         <div class="form-check mt-2">
-                                            <input class="form-check-input" name="careerlabel[]" type="checkbox" value="{{$careerlabel->id}}" id="flexCheckChecked1{{$careerlabel->id}}" />
+                                            <input class="form-check-input" name="careerlabel[]" type="checkbox" value="{{$careerlabel->id}}" id="flexCheckChecked1{{$careerlabel->id}}"
+                                            @if($querycarierlabes && in_array($careerlabel->id, $querycarierlabes)) checked @endif
+                                             onchange="this.form.submit()"/>
                                             <label class="form-check-label ms-2 text-muted" for="flexCheckChecked1{{$careerlabel->id}}">{{$careerlabel->name}}</label>
                                         </div>
                                         @endforeach

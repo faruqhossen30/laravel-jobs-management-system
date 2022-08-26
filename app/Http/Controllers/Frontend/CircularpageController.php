@@ -16,6 +16,12 @@ class CircularpageController extends Controller
             $keyword = trim($_GET['keyword']);
         }
 
+        $careerlabel = null;
+        if (isset($_GET['careerlabel'])) {
+            $careerlabel = $_GET['careerlabel'];
+        }
+
+        // return $careerlabel;
 
 
         $careerlabels = CareerLevel::get();
@@ -23,9 +29,14 @@ class CircularpageController extends Controller
         $circulars = Circular::when($keyword, function($query, $keyword){
             return $query->where('title', 'like', '%' . $keyword . '%');
         })
+        ->when($careerlabel, function($query, $careerlabel) {
+            $query->whereHas('careerlabels', function($query) use($careerlabel) {
+                $query->whereIn('career_label_id',$careerlabel);
+            });
+        })
         ->latest()
         ->with('category', 'company', 'jobindustries', 'skills.skill')
-        ->paginate(20);
+        ->paginate(5);
 
         // return $circulars;
 
