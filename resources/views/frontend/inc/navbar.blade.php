@@ -60,7 +60,9 @@
                      <a href="javascript:void(0)" class="header-item noti-icon position-relative" id="notification"
                          data-bs-toggle="dropdown" aria-expanded="false">
                          <i class="mdi mdi-bell fs-22"></i>
-                         <div class="count position-absolute">3</div>
+                         @if(auth()->user()->unreadnotifications->count()>0)
+                         <div class="count position-absolute">{{auth()->user()->unreadnotifications->count()}}</div>
+                         @endif
                      </a>
                      <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end p-0" aria-labelledby="notification">
                          <div class="notification-header border-bottom bg-light">
@@ -68,23 +70,24 @@
                              <p class="text-muted fs-13 mb-0">You have 4 unread Notification</p>
                          </div>
                          <div class="notification-wrapper dropdown-scroll">
-                             <a href="javascript:void(0)" class="text-dark notification-item d-block active">
-                                 <div class="d-flex align-items-center">
-                                     <div class="flex-shrink-0 me-3">
-                                         <div class="avatar-xs bg-primary text-white rounded-circle text-center">
-                                             <i class="uil uil-user-check"></i>
-                                         </div>
-                                     </div>
-                                     <div class="flex-grow-1">
-                                         <h6 class="mt-0 mb-1 fs-14">22 verified registrations</h6>
-                                         <p class="mb-0 fs-12 text-muted"><i class="mdi mdi-clock-outline"></i>
-                                             <span>3 min
-                                                 ago</span></p>
-                                     </div>
-                                 </div>
-                             </a>
+                            @foreach (auth()->user()->unreadnotifications as $notification)
+                            <a href="{{route('readnotification', $notification->id)}}" class="text-dark notification-item d-block active">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0 me-3">
+                                        <div class="avatar-xs bg-primary text-white rounded-circle text-center">
+                                            <i class="uil uil-user-check"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mt-0 mb-1 fs-14">{{$notification->data['name']}}</h6>
+                                        <p class="mb-0 fs-12 text-muted"><i class="mdi mdi-clock-outline"></i>
+                                            <span>{{$notification->created_at->diffForHumans()}}</span></p>
+                                    </div>
+                                </div>
+                            </a>
+                            @endforeach
                              <!--end notification-item-->
-                             <a href="javascript:void(0)" class="text-dark notification-item d-block">
+                             {{-- <a href="javascript:void(0)" class="text-dark notification-item d-block">
                                  <div class="d-flex align-items-center">
                                      <div class="flex-shrink-0 me-3">
                                          <img src="{{ asset('frontend/assets/images/user/img-02.jpg') }}"
@@ -142,7 +145,7 @@
                                                  ago</span></p>
                                      </div>
                                  </div>
-                             </a>
+                             </a> --}}
                              <!--end notification-item-->
                          </div>
                          <!--end notification-wrapper-->

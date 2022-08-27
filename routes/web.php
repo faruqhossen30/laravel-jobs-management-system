@@ -19,6 +19,7 @@ use App\Http\Controllers\SearchpageController;
 use App\Http\Controllers\UsercircularController;
 use App\Http\Controllers\UsercompanyController;
 use App\Http\Controllers\Userend\UserdashboardController;
+use App\Http\Controllers\Userend\UsernotificationController;
 use App\Http\Controllers\Userjobcontroller;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,7 @@ Route::get('/policy',[PolicypageController::class, 'policyPage'])->name('policy'
 Route::get('/faqs',[FaqspageController::class, 'faqsPage'])->name('faqs');
 Route::get('/blogs',[BlogpageController::class, 'blogpage'])->name('blogs');
 Route::get('/blog/{id}',[BlogpageController::class, 'singleblog'])->name('singleblog');
+Route::get('/read-notification/{id}',[UsernotificationController::class, 'readnotification'])->name('readnotification');
 
 
 

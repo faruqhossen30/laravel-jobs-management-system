@@ -19,6 +19,8 @@ use App\Models\Jobindustry;
 use App\Models\JobTypes;
 use App\Models\SalaryPeriod;
 use App\Models\Skill;
+use App\Models\User;
+use App\Notifications\UserjobNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -159,6 +161,12 @@ class CircularController extends Controller
             }
 
 
+        }
+
+        $user = Auth::user();
+        $users = User::all();
+        foreach($users as $user){
+            $user->notify(new UserjobNotification($user));
         }
 
 
