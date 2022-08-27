@@ -27,7 +27,7 @@
         <!-- App Css-->
         <link href="{{asset('frontend/assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
         <!--Custom Css-->
-
+        @yield('OG')
 
     </head>
 

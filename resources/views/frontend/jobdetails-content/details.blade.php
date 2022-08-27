@@ -1,4 +1,21 @@
-      <!-- START JOB-DEATILS -->
+
+    @section('OG')
+    <!-- Facebook & Linkedit Open Graph -->
+    <meta property="og:url" content="{{ route('jobdetails', $circular->id) }}" />
+    <meta property="og:type" content="news" />
+    <meta property="og:title" content="{{ $circular->title }}" />
+    <meta property="og:description" content="{{ strip_tags($circular->content) }}" />
+    {{-- <meta property="og:image" content="{{ asset('storage/images/' . $circular->thumbnail) }}" /> --}}
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@dailyrunnernews" />
+    <meta property="og:title" content="{{ $circular->title }}" />
+    <meta property="og:description" content="{{ strip_tags($circular->content) }} " />
+    {{-- <meta property="og:image" content="{{ asset('storage/images/' . $circular->thumbnail) }}" /> --}}
+@endsection
+
+     <!-- START JOB-DEATILS -->
       <section class="section">
           <div class="container">
               <div class="row">
@@ -132,17 +149,41 @@
                                           Share this job:
                                       </li>
                                       <li class="list-inline-item mt-1">
-                                          <a href="javascript:void(0)" class="btn btn-primary btn-hover"><i
+                                          <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('jobdetails', $circular->id) }}" target="_blank" class="btn btn-primary btn-sm btn-hover"><i
                                                   class="uil uil-facebook-f"></i> Facebook</a>
                                       </li>
                                       <li class="list-inline-item mt-1">
-                                          <a href="javascript:void(0)" class="btn btn-danger btn-hover"><i
-                                                  class="uil uil-google"></i> Google+</a>
+                                          <a href="//pinterest.com/pin/create/link/?url={{ route('jobdetails', $circular->id) }}" target="_blank" class="btn btn-danger btn-sm btn-hover"><i
+                                                  class="uil uil-google"></i>Pinterest</a>
                                       </li>
                                       <li class="list-inline-item mt-1">
-                                          <a href="javascript:void(0)" class="btn btn-success btn-hover"><i
+                                          <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ route('jobdetails', $circular->id) }}" target="_blank" class="btn btn-success btn-sm btn-hover"><i
                                                   class="uil uil-linkedin-alt"></i> linkedin</a>
                                       </li>
+                                      <li class="list-inline-item mt-1">
+                                          <a href="https://twitter.com/intent/tweet?url={{ route('jobdetails', $circular->id) }}" target="_blank" class="btn btn-danger btn-sm btn-hover"><i
+                                                  class="uil uil-linkedin-alt"></i> Twitter</a>
+                                      </li>
+                                      <li class="list-inline-item mt-1">
+                                          <a href="whatsapp://send?text={{ route('jobdetails', $circular->id) }}" target="_blank" class="btn btn-primary btn-sm btn-hover"><i
+                                                  class="uil uil-linkedin-alt"></i> What,s app</a>
+                                      </li>
+
+                                      {{-- <div class="share-button">
+                                        <samp style="font-size: 25px"><i class="fa-solid fa-share-nodes"></i> Share!</samp>
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('jobdetails', $circular->id) }}"
+                                            target="_blank"><i
+                                            class="uil uil-facebook-f"></i></a>
+                                        <a href="https://twitter.com/intent/tweet?url={{ route('jobdetails', $circular->id) }}"
+                                            target="_blank"><i class="fab fa-twitter">twitter</i></a>
+                                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ route('jobdetails', $circular->id) }}"
+                                            target="_blank"><i class="fab fa-linkedin-in">linkedin</i></a>
+                                            <a href="whatsapp://send?text={{ route('jobdetails', $circular->id) }}" target="_blank"><i
+                                                class="fa-brands fa-whatsapp">whatsapp</i></a>
+                                        <a href="//pinterest.com/pin/create/link/?url={{ route('jobdetails', $circular->id) }}"
+                                            target="_blank"><i class="fa-brands fa-pinterest">pinterest</i></a>
+                                    </div> --}}
+
                                   </ul>
                               </div>
                           </div>
