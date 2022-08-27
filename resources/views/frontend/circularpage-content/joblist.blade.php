@@ -58,7 +58,7 @@ $queryjobtypes = null;
                                 <!--end col-->
                                 <div class="col-lg-10">
                                     <div class="mt-3 mt-lg-0">
-                                        <h5 class="fs-17 mb-1"><a href="{{ route('jobdetails',$circular->id) }}" class="text-dark">{{$circular->title}}</a></h5>
+                                        <h5 class="fs-17 mb-1"><a href="{{ route('singlejob',$circular->id) }}" class="text-dark">{{$circular->title}}</a></h5>
                                         <ul class="list-inline mb-0">
                                             <li class="list-inline-item">
                                                 @if($circular->organization_name)
@@ -117,7 +117,7 @@ $queryjobtypes = null;
 
                     <!-- End Job-list -->
                     <div class="py-2">
-                        {{$circulars->links()}}
+                        {{$circulars->onEachSide(0)->appends($_GET)->links()}}
                     </div>
 
                 </div>

@@ -15,6 +15,7 @@ use App\Http\Controllers\Frontend\JobindustrypageController;
 use App\Http\Controllers\Frontend\PolicypageController;
 use App\Http\Controllers\Frontend\ServicepageController;
 use App\Http\Controllers\Frontend\SinglejobController;
+use App\Http\Controllers\SearchpageController;
 use App\Http\Controllers\UsercircularController;
 use App\Http\Controllers\UsercompanyController;
 use App\Http\Controllers\Userend\UserdashboardController;
@@ -27,8 +28,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[HomepageController::class, 'homePage'])->name('homepage');
 Route::get('/circular',[CircularpageController::class, 'circularPage'])->name('circular');
-Route::get('/jobdetails/{id}',[JobdetailspageController::class, 'jobdetailsPage'])->name('jobdetails');
+Route::get('/job/{id}',[JobdetailspageController::class, 'jobdetailsPage'])->name('singlejob');
 Route::get('/jobindustry',[JobindustrypageController::class, 'jobindustryPage'])->name('jobindustry');
+Route::get('/search',[SearchpageController::class, 'index'])->name('search');
 
 
 Route::get('/contact',[ContactpageController::class, 'contactPage'])->name('contact');

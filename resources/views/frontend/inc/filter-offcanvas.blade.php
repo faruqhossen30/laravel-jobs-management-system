@@ -9,7 +9,7 @@
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            @include('frontend.inc.circular.sidebar')
+            {{-- @include('frontend.inc.circular.sidebar') --}}
         </div>
     </div>
 </div>
