@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CareerLevel;
 use Illuminate\Http\Request;
 use App\Models\Circular;
+use App\Models\JobTypes;
 
 class CircularpageController extends Controller
 {
@@ -21,10 +22,16 @@ class CircularpageController extends Controller
             $careerlabel = $_GET['careerlabel'];
         }
 
+        $queryjobtypes = null;
+        if (isset($_GET['queryjobtypes'])) {
+            $queryjobtypes = $_GET['queryjobtypes'];
+        }
+
         // return $careerlabel;
 
 
         $careerlabels = CareerLevel::get();
+        $jobtypes = JobTypes::get();
 
         $circulars = Circular::when($keyword, function($query, $keyword){
             return $query->where('title', 'like', '%' . $keyword . '%');
@@ -35,13 +42,13 @@ class CircularpageController extends Controller
             });
         })
         ->latest()
-        ->with('category', 'company', 'jobindustries', 'skills.skill')
+        ->with('category', 'company', 'jobindustries.jobindustry', 'skills.skill')
         ->paginate(5);
 
         // return $circulars;
 
 
-        return view('frontend.circularpage', compact('circulars', 'careerlabels'));
+        return view('frontend.circularpage', compact('circulars', 'careerlabels', 'jobtypes'));
 
 
     }
