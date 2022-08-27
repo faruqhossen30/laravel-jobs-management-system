@@ -28,6 +28,7 @@
         <link href="{{asset('frontend/assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
         <!--Custom Css-->
 
+
     </head>
 
     <body>
@@ -227,6 +228,8 @@
 
         <!-- App Js -->
         <script src="{{asset('frontend/assets/js/app.js')}}"></script>
+
+
 
     </body>
 </html>

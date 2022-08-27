@@ -261,34 +261,25 @@
                                                 <h6 class="fs-16 mb-3">Categories</h6>
                                             </div>
                                             <div class="my-3">
-                                                <div class="form-check mb-2">
-                                                    <input class="form-check-input" type="checkbox" value="" id="education" />
-                                                    <label class="form-check-label ms-2" for="education">Education</label>
-                                                </div>
-                                                <div class="form-check mb-2">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1" checked />
-                                                    <label class="form-check-label ms-2" for="flexCheckChecked1">Business</label>
-                                                </div>
-                                                <div class="form-check mb-2">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked />
-                                                    <label class="form-check-label ms-2" for="flexCheckChecked2">Information</label>
-                                                </div>
-                                                <div class="form-check mb-2">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" />
-                                                    <label class="form-check-label ms-2" for="flexCheckChecked3">Interview</label>
-                                                </div>
-                                                <div class="form-check mb-2">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" />
-                                                    <label class="form-check-label ms-2" for="flexCheckChecked4">Travel</label>
-                                                </div>
-                                                <div class="form-check mb-2">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked5" />
-                                                    <label class="form-check-label ms-2" for="flexCheckChecked5">Jobs</label>
-                                                </div>
-                                                <div class="form-check mb-2">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked6" />
-                                                    <label class="form-check-label ms-2" for="flexCheckChecked6">Fashion</label>
-                                                </div>
+
+Show More
+                                                        {{-- @foreach ($categories as $category)
+                                                            <div class="form-check mb-2">
+
+
+                                                                @if(empty(!json_decode($blog->category_id)) && in_array($category->id, json_decode($blog->category_id))) tutul @endif
+
+
+
+                                                                <label class="form-check-label" for="category{{ $category->id }}">
+                                                                    {{ $category->name }}
+                                                                </label>
+                                                            </div>
+                                                        @endforeach --}}
+                                                        {{-- <p>     @if(empty(!json_decode($blog->category_id)) && in_array($category, json_decode($blog->category_id)))  @endif</p> --}}
+                                                        <p>{{$blog->category_id}}</p>
+
+
                                             </div>
                                         </div><!--end Categories-->
 

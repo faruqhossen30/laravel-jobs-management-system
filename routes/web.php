@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\BlogpageController;
 use App\Http\Controllers\Frontend\CircularpageController;
 use App\Http\Controllers\Frontend\CompanydetailspageController;
 use App\Http\Controllers\Frontend\CompanylistpageController;
+use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\ContactpageController;
 use App\Http\Controllers\Frontend\FaqspageController;
 use App\Http\Controllers\Frontend\HomepageController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\UsercompanyController;
 use App\Http\Controllers\Userend\UserdashboardController;
 use App\Http\Controllers\Userjobcontroller;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -47,3 +49,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'user']], function ()
     Route::resource('company', UsercompanyController::class);
 });
 
+
+// contact us
+Route::get('/contact-us',[ContactController::class, 'contactMail'])->name('contact-us');
+Route::post('/send-message',[ContactController::class, 'sendMail'])->name('contact.send');
