@@ -258,6 +258,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
 
     // 404 for undefined routes
     Route::any('/{page?}', function () {
-        return View::make('pages.error.404');
+        return View::make('backend.pages.error.404');
     })->where('page', '.*');
 });

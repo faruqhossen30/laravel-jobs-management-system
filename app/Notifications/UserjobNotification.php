@@ -10,16 +10,16 @@ use Illuminate\Notifications\Notification;
 class UserjobNotification extends Notification
 {
     use Queueable;
-    public $user;
+    public $title;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($title)
     {
-        $this->user = $user;
+        $this->title = $title;
     }
 
     /**
@@ -55,6 +55,8 @@ class UserjobNotification extends Notification
      */
     public function toArray($notifiable)
     {
-        return $this->user;
+        return [
+            'title'=>$this->title
+        ];
     }
 }

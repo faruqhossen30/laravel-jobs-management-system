@@ -79,7 +79,7 @@
                                         </div>
                                     </div>
                                     <div class="flex-grow-1">
-                                        <h6 class="mt-0 mb-1 fs-14">{{$notification->data['name']}}</h6>
+                                        <h6 class="mt-0 mb-1 fs-14">{{$notification->data['title']}}</h6>
                                         <p class="mb-0 fs-12 text-muted"><i class="mdi mdi-clock-outline"></i>
                                             <span>{{$notification->created_at->diffForHumans()}}</span></p>
                                     </div>

@@ -166,7 +166,7 @@ class CircularController extends Controller
         $user = Auth::user();
         $users = User::all();
         foreach($users as $user){
-            $user->notify(new UserjobNotification($user));
+            $user->notify(new UserjobNotification($circular->title));
         }
 
 

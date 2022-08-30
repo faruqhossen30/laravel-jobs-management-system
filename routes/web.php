@@ -18,6 +18,7 @@ use App\Http\Controllers\Frontend\SinglejobController;
 use App\Http\Controllers\SearchpageController;
 use App\Http\Controllers\UsercircularController;
 use App\Http\Controllers\UsercompanyController;
+use App\Http\Controllers\Userend\SettingsController;
 use App\Http\Controllers\Userend\UserdashboardController;
 use App\Http\Controllers\Userend\UsernotificationController;
 use App\Http\Controllers\Userjobcontroller;
@@ -49,6 +50,7 @@ Route::get('/read-notification/{id}',[UsernotificationController::class, 'readno
 
 Route::group(['prefix' => 'user', 'middleware' => ['auth', 'user']], function () {
     Route::get('/dashboard',[UserdashboardController::class, 'dashboard'])->name('userdashboard');
+    Route::get('/settings',[SettingsController::class, 'index'])->name('user.settings');
     Route::resource('job', Userjobcontroller::class);
     Route::resource('company', UsercompanyController::class);
 });

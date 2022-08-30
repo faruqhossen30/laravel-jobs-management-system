@@ -59,6 +59,12 @@
     </div>
     </li>
     {{-- Company atrribute end --}}
+    <li class="nav-item ">
+        <a href="{{route('user.settings')}}" class="nav-link">
+            <i class="link-icon" data-feather="settings"></i>
+            <span class="link-title">Settings</span>
+        </a>
+    </li>
     </ul>
     </div>
 </nav>
