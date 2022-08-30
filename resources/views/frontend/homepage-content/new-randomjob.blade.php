@@ -58,9 +58,9 @@
                                     <div class="row align-items-center">
                                         <div class="col-md-2">
                                             <div class="text-center mb-4 mb-md-0">
-                                                <a href="company-details.html">
+                                                {{-- <a href="company-details.html">
                                                     <img src="{{asset('uploads/category/'.$circular->category->thumbnail)}}" alt="" class="img-fluid rounded-3" style="max-width: 55px">
-                                                </a>
+                                                </a> --}}
                                             </div>
                                         </div>
                                         <!--end col-->
