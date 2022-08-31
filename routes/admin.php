@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\Backend\BlogcategoryController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Backend\AdminsettingController;
 
 // Auth::routes(['verify'=>true]);
 Auth::routes();
@@ -36,6 +37,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::resource('blog', BlogController::class);
     Route::resource('user', UserProfileController::class);
     Route::resource('blogcategory', BlogcategoryController::class);
+
+    // admin settings
+    Route::get('/settings',[AdminsettingController::class, 'adminSetting'])->name('admin.settings');
 
     // Project route end
     // user update

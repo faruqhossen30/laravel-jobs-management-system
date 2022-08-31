@@ -117,7 +117,7 @@
   </li>
 {{-- Blog atrribute end --}}
 <li class="nav-item">
-    <a href="#" class="nav-link">
+    <a href="{{route('admin.settings')}}" class="nav-link">
       <i class="link-icon" data-feather="settings"></i>
       <span class="link-title">Setting</span>
     </a>
