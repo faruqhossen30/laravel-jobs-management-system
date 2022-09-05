@@ -1,4 +1,4 @@
-@extends('layout.master2')
+@extends('backend.layout.master')
 
 @section('content')
 <div class="page-content d-flex align-items-center justify-content-center">

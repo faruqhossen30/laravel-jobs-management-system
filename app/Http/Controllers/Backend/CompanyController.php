@@ -117,7 +117,11 @@ class CompanyController extends Controller
 
             if(File::exists($company->logo)){
                 unlink($company->logo);
+<<<<<<< HEAD
             } 
+=======
+            }
+>>>>>>> bc8632bb10c65bd94e1bf793814a263ae61956fa
 
         }
         $data = [

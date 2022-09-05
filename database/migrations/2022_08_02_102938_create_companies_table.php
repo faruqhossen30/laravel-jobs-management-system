@@ -22,11 +22,12 @@ return new class extends Migration
             $table->string('slug');
             $table->longText('description');
             $table->string('email');
+            $table->boolean('status')->default('1');
             $table->string('address');
             $table->string('logo')->nullable();
             // Additional Info
             $table->string('ceo_name')->nullable();
-            $table->string('mobile')->nullable();
+            $table->integer('mobile')->nullable();
             $table->unsignedBigInteger('ownership_type')->nullable();
             $table->unsignedBigInteger('division_id')->nullable();
             $table->unsignedBigInteger('district_id')->nullable();

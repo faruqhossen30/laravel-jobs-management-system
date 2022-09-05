@@ -16,13 +16,14 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\Backend\BlogcategoryController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Backend\AdminsettingController;
 
 // Auth::routes(['verify'=>true]);
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Dashboard Start
-Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
     // Project route start
     Route::resource('category', CategoryController::class);
     Route::resource('jobindustry', JobindustryController::class);
@@ -32,10 +33,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('salaryperiod', salaryperiodController::class);
     Route::resource('jobtype', JobtypeController::class);
     Route::resource('circular', CircularController::class);
-    Route::resource('company', CompanyController::class);
+    // Route::resource('company', CompanyController::class);
     Route::resource('blog', BlogController::class);
     Route::resource('user', UserProfileController::class);
     Route::resource('blogcategory', BlogcategoryController::class);
+
+    // admin settings
+    Route::get('/settings',[AdminsettingController::class, 'adminSetting'])->name('admin.settings');
 
     // Project route end
     // user update
@@ -258,6 +262,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     // 404 for undefined routes
     Route::any('/{page?}', function () {
-        return View::make('pages.error.404');
+        return View::make('backend.pages.error.404');
     })->where('page', '.*');
 });

@@ -74,7 +74,7 @@
                                             <div class="card-body">
                                                 <h6 class="card-title">Image</h6>
                                                 <p class="text-muted mb-3">Drag and Drop your image. </p>
-                                                <input type="file" id="myDropify" name="thumbnail" @if($blog->thumbnail) data-default-file="{{asset('storage/blog/'.$blog->thumbnail)}}" @endif>
+                                                <input type="file" id="myDropify" name="thumbnail" @if($blog->thumbnail) data-default-file="{{asset('uploads/blog/'.$blog->thumbnail)}}" @endif>
                                             </div>
                                             {{-- Category --}}
                                         </div>
@@ -86,9 +86,6 @@
                                                         <input name="category_id[]" value="{{ $category->id }}" type="checkbox"
 
                                                         @if(empty(!json_decode($blog->category_id)) && in_array($category->id, json_decode($blog->category_id))) checked @endif
-
-                                                        {{-- @if(empty(!json_decode($blog->category_id))) $$ in_arrar($blog->category_id, json_decode($blog->category_id)) checked @endif --}}
-                                                      {{-- checked --}}
 
                                                             class="form-check-input" id="category{{ $category->id }}">
                                                         <label class="form-check-label" for="category{{ $category->id }}">

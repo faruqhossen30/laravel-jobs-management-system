@@ -4,11 +4,18 @@
                         <div class="container">
                             <div class="row align-items-center mt-5">
                                 <div class="col-lg-6">
+                                    @if (Session::has('massage_sent'))
+                                        <div class="alert alert-success" role="alert">
+                                           {{Session::has('massage_sent')}}
+                                        </div>
+
+                                    @endif
                                     <div class="section-title mt-4 mt-lg-0">
                                         <h3 class="title">Get in touch</h3>
                                         <p class="text-muted">Start working with Jobcy that can provide everything you need to generate
                                             awareness, drive traffic, connect.</p>
-                                        <form method="post" onsubmit="return validateForm()" class="contact-form mt-4" name="myForm" id="myForm">
+                                        <form method="POST" action="{{route('contact.send')}}" enctype="multipart/form-data">
+                                            @csrf
                                             <span id="error-msg"></span>
                                             <div class="row">
                                                 <div class="col-lg-12">
@@ -35,7 +42,7 @@
                                                 <div class="col-lg-12">
                                                     <div class="mb-3">
                                                         <label for="meassageInput" class="form-label">Your Message</label>
-                                                        <textarea class="form-control" id="meassageInput" placeholder="Enter your message" name="comments" id="comments" rows="3"></textarea>
+                                                        <textarea class="form-control" id="meassageInput" placeholder="Enter your message" name="massage" id="massage" rows="3"></textarea>
                                                     </div>
                                                 </div><!--end col-->
                                             </div><!--end row-->

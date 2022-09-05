@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('is_admin')->nullable();
+            $table->boolean('is_company')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

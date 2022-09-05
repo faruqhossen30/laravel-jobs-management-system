@@ -39,12 +39,12 @@
                       <input type="text" class="form-control" name="phone" id="phone" aria-describedby="emailHelp" placeholder="phone" value="  {{Auth::user()->phone}}">
                     </div>
 
-                    <button type="submit" class="btn btn-primary">
+                    {{-- <button type="submit" class="btn btn-primary">
                         <a href="{{route('user.edit',Auth::user()->id)}}" class="text-body ms-0">
                             <i class="me-2 icon-md" data-feather="edit"></i>
                             <span>Edit Profile</span>
                         </a>
-                    </button>
+                    </button> --}}
 
 
             </div>
