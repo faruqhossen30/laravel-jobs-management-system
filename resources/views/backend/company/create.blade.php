@@ -14,12 +14,6 @@
                     <form action="{{ route('company.store') }}" method="POST" enctype="multipart/form-data"
                         class="forms-sample">
                         @csrf
-
-                        {{-- <div class="mb-3">
-            <label for="exampleInputPhoto" class="form-label">Logo</label>
-            <input type="file" name="logo" class="form-control" id="exampleInputPhoto" >
-          </div> --}}
-
                         <div class="mb-3">
                             <label for="forName" class="form-label">Company Name</label>
                             <input type="text" name="name" class="form-control" id="name" autocomplete="off"

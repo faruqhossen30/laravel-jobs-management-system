@@ -25,9 +25,6 @@ use App\Http\Controllers\Userjobcontroller;
 use Illuminate\Support\Facades\Route;
 
 
-
-
-
 Route::get('/',[HomepageController::class, 'homePage'])->name('homepage');
 Route::get('/circular',[CircularpageController::class, 'circularPage'])->name('circular');
 Route::get('/job/{id}',[JobdetailspageController::class, 'jobdetailsPage'])->name('singlejob');

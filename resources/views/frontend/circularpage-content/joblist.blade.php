@@ -10,9 +10,21 @@ $querycarierlabes = $_GET['careerlabel'];
 }
 
 $queryjobtypes = null;
-        if (isset($_GET['queryjobtypes'])) {
-            $queryjobtypes = $_GET['queryjobtypes'];
-        }
+if (isset($_GET['queryjobtypes'])) {
+$queryjobtypes = $_GET['queryjobtypes'];
+}
+
+$educatonquery = null;
+if (isset($_GET['educatonquery'])) {
+$educatonquery = $_GET['educatonquery'];
+}
+
+
+$jobindustryquery = null;
+if (isset($_GET['jobindustryquery'])) {
+$jobindustryquery = $_GET['jobindustryquery'];
+}
+
 @endphp
 {{-- <button class="btn btn-primary  position-fixed mt-5  " style="z-index: 5;"> Filter</button> --}}
 @include('frontend.inc.filter-offcanvas')
