@@ -11,8 +11,9 @@
     <meta content="Themesdesign" name="author" />
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
-    <link rel="shortcut icon" href="{{asset('frontend/assets/images/favicon.ico')}}">
+    <link rel="shortcut icon" href="{{asset('')}}icon.png">
+    {{-- <link rel="shortcut icon" href="{{asset('frontend/assets/images/favicon.ico')}}"> --}}
+    <link rel="shortcut icon" href="{{asset('')}}icon.png">
 
     <!-- Choise Css -->
     <link rel="stylesheet" href="{{asset('frontend/assets/libs/choices.js/public/assets/styles/choices.min.css')}}">

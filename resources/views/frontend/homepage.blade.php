@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Home')
+@section('title', 'Job Circular BD')
 @section('main-contant')
 @include('frontend.homepage-content.banner')
 @include('frontend.homepage-content.category')

@@ -8,7 +8,7 @@
                             <h1 class="display-5 fw-semibold mb-3">Find your dream jobs with <span class="text-primary fw-bold">Jobcy</span></h1>
                             <p class="lead text-muted mb-0 d-none d-lg-block">Find jobs, create trackable resumes and enrich your applications.Carefully crafted after analyzing the needs of different industries.</p>
                         </div>
-                        <form action="{{route('search')}}" method="GET">
+                        <form action="{{route('circular')}}" method="GET">
                             <div class="registration-form">
                                 <div class="row g-0">
                                     <div class="col-md-9">
