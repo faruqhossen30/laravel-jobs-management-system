@@ -16,12 +16,10 @@ return new class extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->string('facebook')->nullable();
-            $table->string('facebook_group')->nullable();
             $table->string('twitter')->nullable();
             $table->string('linkedin')->nullable();
             $table->string('instagram')->nullable();
             $table->string('youtube')->nullable();
-            $table->string('Pinterest')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->string('address')->nullable();
@@ -29,6 +27,7 @@ return new class extends Migration
             $table->string('working_time')->nullable();
             $table->string('logo')->nullable();
             $table->string('mobile')->nullable();
+            $table->string('whatsapp')->nullable();
             $table->timestamps();
         });
     }

@@ -1,22 +1,24 @@
 <?php
 
-use App\Http\Controllers\Backend\BlogController;
-use App\Http\Controllers\Backend\careerlavelController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\Backend\BlogController;
+use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Backend\SkillController;
+use App\Http\Controllers\Backend\CompanyController;
+use App\Http\Controllers\Backend\JobtypeController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CircularController;
-use App\Http\Controllers\Backend\CompanyController;
 use App\Http\Controllers\Backend\EducationController;
+use App\Http\Controllers\Backend\careerlavelController;
 use App\Http\Controllers\Backend\JobindustryController;
-use App\Http\Controllers\Backend\JobtypeController;
-use App\Http\Controllers\Backend\salaryperiodController;
-use App\Http\Controllers\Backend\SkillController;
-use App\Http\Controllers\Backend\UserController;
-use App\Http\Controllers\UserProfileController;
-use App\Http\Controllers\Backend\BlogcategoryController;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Backend\AdminsettingController;
+use App\Http\Controllers\Backend\BlogcategoryController;
+use App\Http\Controllers\Backend\salaryperiodController;
 
 // Auth::routes(['verify'=>true]);
 Auth::routes();
@@ -40,6 +42,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
 
     // admin settings
     Route::get('/settings',[AdminsettingController::class, 'adminSetting'])->name('admin.settings');
+    Route::post('/settings/store',[AdminsettingController::class, 'adminSettingStore'])->name('settings.store');
 
     // Project route end
     // user update

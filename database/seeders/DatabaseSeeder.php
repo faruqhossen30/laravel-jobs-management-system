@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             CategorySeeder::class,
             JobattributeSeeder::class,
-            SkillSeeder::class
+            SkillSeeder::class,
+            SettingSeeder::class
         ]);
     }
 }
