@@ -45,25 +45,25 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name'    => 'required',
             'address' => 'required'
         ]);
         $logo_name = null;
         if ($request->file('logo')) {
             $company_logo = $request->file('logo');
-            $extension = $company_logo->getClientOriginalExtension();
-            $logo_name = Str::uuid() . '.' . $extension;
+            $extension    = $company_logo->getClientOriginalExtension();
+            $logo_name    = Str::uuid() . '.' . $extension;
             Image::make($company_logo)->save('uploads/company/' . $logo_name);
         }
         $data = [
-            'name' => $request->name,
-            'slug' => $request->name,
+            'name'        => $request->name,
+            'slug'        => $request->name,
             'description' => $request->description,
-            'email' => $request->email,
-            'address' => $request->address,
-            'address' => $request->address,
-            'user_id' => Auth::user()->id,
-            'logo' => $logo_name
+            'email'       => $request->email,
+            'address'     => $request->address,
+            'address'     => $request->address,
+            'user_id'     => Auth::user()->id,
+            'logo'        => $logo_name
         ];
         Company::create($data);
         Session::flash('create');
@@ -111,28 +111,24 @@ class CompanyController extends Controller
         $logo_name = null;
         if ($request->file('logo')) {
             $company_logo = $request->file('logo');
-            $extension = $company_logo->getClientOriginalExtension();
-            $logo_name = Str::uuid() . '.' . $extension;
+            $extension    = $company_logo->getClientOriginalExtension();
+            $logo_name    = Str::uuid() . '.' . $extension;
             Image::make($company_logo)->save('uploads/company/' . $logo_name);
 
             if(File::exists($company->logo)){
                 unlink($company->logo);
-<<<<<<< HEAD
-            } 
-=======
             }
->>>>>>> bc8632bb10c65bd94e1bf793814a263ae61956fa
 
         }
         $data = [
-            'name' => $request->name,
-            'slug' => $request->name,
+            'name'        => $request->name,
+            'slug'        => $request->name,
             'description' => $request->description,
-            'email' => $request->email,
-            'address' => $request->address,
-            'address' => $request->address,
-            'user_id' => Auth::user()->id,
-            'logo' => $logo_name
+            'email'       => $request->email,
+            'address'     => $request->address,
+            'address'     => $request->address,
+            'user_id'     => Auth::user()->id,
+            'logo'        => $logo_name
         ];
         Company::firstwhere('id',$id)->update($data);
         Session::flash('update');
