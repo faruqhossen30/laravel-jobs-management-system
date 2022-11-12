@@ -23,17 +23,11 @@ class AdminsettingController extends Controller
 
     public function adminSettingStore(Request $request)
     {
-
-        // return $request->all();
-
         if ($request->hasFile('logo')) {
-
             $name = $request->logo->getClientOriginalName();
-            $request->logo->storeAs('logo', $name, 'public');
+            $request->logo->storeAs('images', $name, 'public');
 
             Setting::first()->update([
-
-
                 'facebook'     => $request->facebook,
                 'logo'         => $name,
                 'twitter'      => $request->twitter,

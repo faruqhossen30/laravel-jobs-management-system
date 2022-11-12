@@ -3,7 +3,7 @@
     <input name="logo" type="file" class="form-control" placeholder="Site logo"
         value="{{ $settings->logo ?? '' }}">
 </div>
-@isset($site->logo)
+@isset($settings->logo)
     <img class="img-thumbnail" style="width: 150px; height:100px; padding:5px"
-        src="{{ asset('/storage/logo/' . $site->logo) }}" alt="sdfsdf">
+        src="{{ asset('/storage/logo/' . $settings->logo) }}" alt="sdfsdf">
 @endisset

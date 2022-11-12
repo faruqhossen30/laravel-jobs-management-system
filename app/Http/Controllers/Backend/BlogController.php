@@ -23,7 +23,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::get();
+        $blogs                 =  Blog::get();
         return view('backend.blog.index', compact('blogs'));
     }
 
@@ -34,8 +34,8 @@ class BlogController extends Controller
      */
     public function create()
     {
-        $categories = Category::get();
-        return view('backend.blog.create',compact('categories'));
+        $categories            =  Category::get();
+        return view('backend.blog.create', compact('categories'));
     }
 
     /**
@@ -46,32 +46,35 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
+
+        // return $request->all();
         $request->validate([
-            'title' => 'required',
-            'description' => 'required',
+            'title'            => 'required',
+            'description'      => 'required',
         ]);
 
-        $blogimage = null;
-        if ($request->file('blog_image')) {
-            $imagethumbnail = $request->file('blog_image');
-            $extension = $imagethumbnail->getClientOriginalExtension();
-            $blogimage = Str::uuid() . '.' . $extension;
-            Image::make($imagethumbnail)->save('uploads/blog/' . $blogimage);
+        $blogimage             =  null;
+        if ($request->file('thumbnail')) {
+            $imagethumbnail    =  $request->file('thumbnail');
+            $extension         =  $imagethumbnail->getClientOriginalExtension();
+            $blogimage         =  Str::uuid() . '.' . $extension;
+            Image              :: make($imagethumbnail)->save('uploads/blog/' . $blogimage);
         }
-        $data = [
-            'title' => $request->title,
-            'slug' => $request->title,
-            'description' => $request->description,
-            'user_id' => Auth::user()->id,
-            'blog_image' => $blogimage,
-            'category_id' => json_encode($request->category_id),
-            'meta_title' => $request->meta_title,
+        $data                  =  [
+            'title'            => $request->title,
+            'slug'             => $request->title,
+            'description'      => $request->description,
+            'user_id'          => Auth::user()->id,
+            'thumbnail'        => $blogimage,
+            'category_id'      => json_encode($request->category_id),
+            'meta_title'       => $request->meta_title,
             'meta_description' => $request->meta_description,
-            'meta_tag' => $request->meta_tag,
+            // 'meta_tag'      => $request->meta_tag,
+            'meta_tag'         => json_encode($request->meta_tag),
 
         ];
-        Blog::create($data);
-        Session::flash('create');
+        Blog                   :: create($data);
+        Session                :: flash('create');
         return redirect()->route('blog.index');
     }
 
@@ -83,7 +86,7 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        $blog = Blog::firstWhere('id',$id);
+        $blog                  =  Blog::firstWhere('id', $id);
         return view('backend.blog.show', compact('blog'));
     }
 
@@ -95,9 +98,9 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        $blog = Blog::firstWhere('id',$id);
-        $categories = Category::get();
-        return view('backend.blog.edit', compact('blog','categories'));
+        $blog                  =  Blog::firstWhere('id', $id);
+        $categories            =  Category::get();
+        return view('backend.blog.edit', compact('blog', 'categories'));
     }
 
     /**
@@ -110,31 +113,31 @@ class BlogController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required',
-            'description' => 'required',
+            'title'            => 'required',
+            'description'      => 'required',
         ]);
 
-        $blogimage = null;
-        if ($request->file('blog_image')) {
-            $imagethumbnail = $request->file('blog_image');
-            $extension = $imagethumbnail->getClientOriginalExtension();
-            $blogimage = Str::uuid() . '.' . $extension;
-            Image::make($imagethumbnail)->save('uploads/blog/' . $blogimage);
+        $blogimage             =  null;
+        if ($request->file('thumbnail')) {
+            $imagethumbnail    =  $request->file('thumbnail');
+            $extension         =  $imagethumbnail->getClientOriginalExtension();
+            $blogimage         =  Str::uuid() . '.' . $extension;
+            Image              :: make($imagethumbnail)->save('uploads/blog/' . $blogimage);
         }
-        $data = [
-            'title' => $request->title,
-            'slug' => $request->title,
-            'description' => $request->description,
-            'user_id' => Auth::user()->id,
-            'blog_image' => $blogimage,
-            'category_id' => json_encode($request->category_id),
-            'meta_title' => $request->meta_title,
+        $data                  =  [
+            'title'            => $request->title,
+            'slug'             => $request->title,
+            'description'      => $request->description,
+            'user_id'          => Auth::user()->id,
+            'thumbnail'        => $blogimage,
+            'category_id'      => json_encode($request->category_id),
+            'meta_title'       => $request->meta_title,
             'meta_description' => $request->meta_description,
-            'meta_tag' => $request->meta_tag,
+            'meta_tag'         => json_encode($request->meta_tag),
 
         ];
-        Blog::firstWhere('id',$id)->update($data);
-        Session::flash('update');
+        Blog                   :: firstWhere('id', $id)->update($data);
+        Session                :: flash('update');
         return redirect()->route('blog.index');
     }
 
@@ -146,12 +149,12 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        $file = Blog::firstwhere('id', $id)->thumbnail;
-        if($file){
-            Storage::disk('public')->delete('blog/' . $file);
+        $file                  =  Blog::firstwhere('id', $id)->thumbnail;
+        if ($file) {
+            Storage            :: disk('public')->delete('blog/' . $file);
         }
-        Blog::firstwhere('id', $id)->delete();
-        Session::flash('delete');
+        Blog                   :: firstwhere('id', $id)->delete();
+        Session                :: flash('delete');
         return redirect()->route('blog.index');
     }
 }

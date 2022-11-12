@@ -43,7 +43,7 @@
                                 {{-- <td>
                                     {{$jobindustry->photo}}
                                 </td> --}}
-                                <td><img src="{{ asset('storage/blog/' . $blog->thumbnail) }}" alt=""></td>
+                                <td><img src="{{ asset('uploads/blog/' . $blog->thumbnail) }}" alt=""></td>
 
                             </tr>
                             <tr>

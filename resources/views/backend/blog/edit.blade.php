@@ -28,7 +28,7 @@
                                                 <div class="card-body p-0">
                                                     <h6 class="card-title">Description</h6>
                                                     <textarea class="form-control" name="description" id="tinymceExample" rows="10">
-                                                       {{ $blog->description }}
+                                                       {!! $blog->description !!}
                                                     </textarea>
                                                 </div>
                                             </div>
@@ -47,7 +47,7 @@
                                                 <div class="mb-3">
                                                     <label for="exampleInputUsername1" class="form-label"> Meta Description</label>
                                                     <textarea name="meta_description" id="meta_description" cols="30" rows="10" class="form-control">
-                                                        {{ $blog->meta_description }}
+                                                        {!! $blog->meta_description !!}
                                                     </textarea>
                                                 </div>
                                                 {{-- Tag input --}}

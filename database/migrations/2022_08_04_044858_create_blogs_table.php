@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
             $table->string('meta_tag')->nullable();
+            $table->integer('view_count')->default(0);
             $table->timestamps();
         });
     }
