@@ -30,8 +30,8 @@
                                             <div class="card blog-grid-box p-2">
 
                                                 @if ($blog->thumbnail)
-                                                    <img src="{{ url('uploads/blog/'.$blog->thumbnail) }}"
-                                                        alt="" class="img-fluid">
+                                                    <img src="{{ url('uploads/blog/' . $blog->thumbnail) }}" alt=""
+                                                        class="img-fluid">
                                                 @else
                                                     <img src="{{ asset('frontend/') }}/assets/images/blog/img-04.jpg"
                                                         alt="" class="img-fluid">
@@ -42,10 +42,12 @@
                                                         <li class="list-inline-item">
                                                             <p class="text-muted mb-0"><a
                                                                     href="{{ route('singleblog', $blog->id) }}"
-                                                                    class="text-muted fw-medium">{{$blog->user->name}}</a> - {{$blog->created_at}}</p>
+                                                                    class="text-muted fw-medium">{{ $blog->user->name }}</a>
+                                                                - {{ $blog->created_at->format('d M Y') }}</p>
                                                         </li>
                                                         <li class="list-inline-item">
-                                                            <p class="text-muted mb-0"><i class="mdi mdi-eye"></i> {{$blog->view_count}}
+                                                            <p class="text-muted mb-0"><i class="mdi mdi-eye"></i>
+                                                                {{ $blog->view_count }}
                                                             </p>
                                                         </li>
                                                     </ul>
@@ -159,39 +161,28 @@
                                         <h6 class="fs-16 mb-3">Popular Post</h6>
                                     </div>
                                     <ul class="widget-popular-post list-unstyled my-4">
-                                        <li class="d-flex mb-3 align-items-center pb-3 border-bottom">
-                                            <img src="{{ asset('frontend/') }}/assets/images/blog/img-01.jpg"
-                                                alt="" class="widget-popular-post-img rounded" />
-                                            <div class="flex-grow-1 text-truncate ms-3">
-                                                <a href="#" class="text-dark">The evolution of landing
-                                                    page creativity</a>
-                                                <span class="d-block text-muted fs-14">Aug 10, 2021</span>
-                                            </div>
-                                        </li>
-                                        {{-- <li class="d-flex mb-3 align-items-center pb-3 border-bottom">
-                                            <img src="{{ asset('frontend/') }}/assets/images/blog/img-02.jpg"
-                                                alt="" class="widget-popular-post-img rounded" />
-                                            <div class="flex-grow-1 text-truncate ms-3"><a href="blog-details.html"
-                                                    class="text-dark">Beautiful day with friends in paris</a>
-                                                <span class="d-block text-muted fs-14">Jun 24, 2021</span>
-                                            </div>
-                                        </li> --}}
-                                        {{-- <li class="d-flex mb-3 align-items-center pb-3 border-bottom">
-                                            <img src="{{ asset('frontend/') }}/assets/images/blog/img-03.jpg"
-                                                alt="" class="widget-popular-post-img rounded" />
-                                            <div class="flex-grow-1 text-truncate ms-3"><a href="blog-details.html"
-                                                    class="text-dark">Project discussion with team</a>
-                                                <span class="d-block text-muted fs-14">July 13, 2021</span>
-                                            </div>
-                                        </li> --}}
-                                        {{-- <li class="d-flex mb-3 align-items-center">
-                                            <img src="{{ asset('frontend/') }}/assets/images/blog/img-10.jpg"
-                                                alt="" class="widget-popular-post-img rounded" />
-                                            <div class="flex-grow-1 text-truncate ms-3"><a href="blog-details.html"
-                                                    class="text-dark">Smartest Applications for Business</a>
-                                                <span class="d-block text-muted fs-14">Feb 01, 2021</span>
-                                            </div>
-                                        </li> --}}
+
+                                        @foreach ($mostreadblog as $blog)
+                                            <li class="d-flex mb-3 align-items-center pb-3 border-bottom">
+
+                                                 @if ($blog->thumbnail)
+                                                    <img src="{{ url('uploads/blog/' . $blog->thumbnail) }}" alt=""
+                                                        class="widget-popular-post-img rounded">
+                                                @else
+                                                    <img src="{{ asset('frontend/') }}/assets/images/blog/img-03.jpg"
+                                                        alt="" class="widget-popular-post-img rounded">
+                                                @endif
+                                                {{-- <img src="{{ asset('frontend/') }}/assets/images/blog/img-01.jpg"
+                                                    alt="" class="widget-popular-post-img rounded" /> --}}
+                                                <div class="flex-grow-1 text-truncate ms-3">
+                                                    <a href="#" class="text-dark">{{ $blog->title }}</a>
+                                                    <span
+                                                        class="d-block text-muted fs-14">{{ $blog->created_at->format('d M Y') }}</span>
+                                                </div>
+                                            </li>
+                                        @endforeach
+
+
                                     </ul>
                                 </div>
                                 <!--end Polular Post-->
@@ -249,15 +240,15 @@
                                         <h6 class="fs-16 mb-3">Follow & Connect</h6>
                                     </div>
                                     <ul class="widget-social-menu list-inline mb-0 mt-3">
+
+
                                         <li class="list-inline-item">
-                                            <a href="javascript:void(0)"><i class="uil uil-facebook-f"></i></a>
+                                            <a href="{{$settings->facebook}}"><i class="uil uil-facebook-f"></i></a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="javascript:void(0)"><i class="uil uil-whatsapp"></i></a>
+                                            <a href="{{$settings->whatsapp}}"><i class="uil uil-whatsapp"></i></a>
                                         </li>
-                                        <li class="list-inline-item">
-                                            <a href="javascript:void(0)"><i class="uil uil-twitter-alt"></i></a>
-                                        </li>
+
                                         <li class="list-inline-item">
                                             <a href="javascript:void(0)"><i class="uil uil-dribbble"></i></a>
                                         </li>

@@ -43,18 +43,7 @@
                                                     alt="" class="img-fluid rounded-3">
                                             </div>
                                         @endif
-                                        {{-- <div class="swiper-slide">
-                                            <img src="{{ asset('frontend/') }}/assets/images/blog/img-11.jpg" alt=""
-                                                class="img-fluid rounded-3">
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('frontend/') }}/assets/images/blog/img-14.jpg" alt=""
-                                                class="img-fluid rounded-3">
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('frontend/') }}/assets/images/blog/img-15.jpg" alt=""
-                                                class="img-fluid rounded-3">
-                                        </div> --}}
+
                                     </div>
                                 </div>
 
@@ -384,39 +373,26 @@
                                         <h6 class="fs-16 mb-3">Polular Post</h6>
                                     </div>
                                     <ul class="widget-popular-post list-unstyled my-4">
-                                        <li class="d-flex mb-3 align-items-center pb-3 border-bottom">
-                                            <img src="{{ asset('frontend/') }}/assets/images/blog/img-01.jpg"
-                                                alt="" class="widget-popular-post-img rounded" />
-                                            <div class="flex-grow-1 text-truncate ms-3">
-                                                <a href="blog-details.html" class="text-dark">The evolution of landing
-                                                    page creativity</a>
-                                                <span class="d-block text-muted fs-14">Aug 10, 2021</span>
-                                            </div>
-                                        </li>
-                                        <li class="d-flex mb-3 align-items-center pb-3 border-bottom">
-                                            <img src="{{ asset('frontend/') }}/assets/images/blog/img-02.jpg"
-                                                alt="" class="widget-popular-post-img rounded" />
-                                            <div class="flex-grow-1 text-truncate ms-3"><a href="blog-details.html"
-                                                    class="text-dark">Beautiful day with friends in paris</a>
-                                                <span class="d-block text-muted fs-14">Jun 24, 2021</span>
-                                            </div>
-                                        </li>
-                                        <li class="d-flex mb-3 align-items-center pb-3 border-bottom">
-                                            <img src="{{ asset('frontend/') }}/assets/images/blog/img-03.jpg"
-                                                alt="" class="widget-popular-post-img rounded" />
-                                            <div class="flex-grow-1 text-truncate ms-3"><a href="blog-details.html"
-                                                    class="text-dark">Project discussion with team</a>
-                                                <span class="d-block text-muted fs-14">July 13, 2021</span>
-                                            </div>
-                                        </li>
-                                        <li class="d-flex mb-3 align-items-center">
-                                            <img src="{{ asset('frontend/') }}/assets/images/blog/img-10.jpg"
-                                                alt="" class="widget-popular-post-img rounded" />
-                                            <div class="flex-grow-1 text-truncate ms-3"><a href="blog-details.html"
-                                                    class="text-dark">Smartest Applications for Business</a>
-                                                <span class="d-block text-muted fs-14">Feb 01, 2021</span>
-                                            </div>
-                                        </li>
+
+                                        @foreach ($mostreadblog as $blog)
+                                            <li class="d-flex mb-3 align-items-center pb-3 border-bottom">
+
+                                                 @if ($blog->thumbnail)
+                                                    <img src="{{ url('uploads/blog/' . $blog->thumbnail) }}" alt=""
+                                                        class="widget-popular-post-img rounded">
+                                                @else
+                                                    <img src="{{ asset('frontend/') }}/assets/images/blog/img-03.jpg"
+                                                        alt="" class="widget-popular-post-img rounded">
+                                                @endif
+
+                                                <div class="flex-grow-1 text-truncate ms-3">
+                                                    <a href="#" class="text-dark">{{ $blog->title }}</a>
+                                                    <span
+                                                        class="d-block text-muted fs-14">{{ $blog->created_at->format('d M Y') }}</span>
+                                                </div>
+                                            </li>
+                                        @endforeach
+
                                     </ul>
                                 </div>
                                 <!--end Polular Post-->
@@ -563,12 +539,12 @@
                         <div class="footer-item mt-4 mt-lg-0">
                             <p class="fs-16 text-white mb-4">Company</p>
                             <ul class="list-unstyled footer-list mb-0">
-                                <li><a href="about.html"><i class="mdi mdi-chevron-right"></i> About Us</a></li>
-                                <li><a href="contact.html"><i class="mdi mdi-chevron-right"></i> Contact Us</a></li>
-                                <li><a href="services.html"><i class="mdi mdi-chevron-right"></i> Services</a></li>
-                                <li><a href="blog.html"><i class="mdi mdi-chevron-right"></i> Blog</a></li>
-                                <li><a href="team.html"><i class="mdi mdi-chevron-right"></i> Team</a></li>
-                                <li><a href="pricing.html"><i class="mdi mdi-chevron-right"></i> Pricing</a></li>
+                                <li><a href="{{route('about')}}"><i class="mdi mdi-chevron-right"></i> About Us</a></li>
+                                <li><a href="{{route('contact')}}"><i class="mdi mdi-chevron-right"></i> Contact Us</a></li>
+                                <li><a href="{{route('service')}}"><i class="mdi mdi-chevron-right"></i> Services</a></li>
+                                <li><a href="{{route('blog.index')}}"><i class="mdi mdi-chevron-right"></i> Blog</a></li>
+                                <li><a href="#"><i class="mdi mdi-chevron-right"></i> Team</a></li>
+                                <li><a href="#"><i class="mdi mdi-chevron-right"></i> Pricing</a></li>
                             </ul>
                         </div>
                     </div>

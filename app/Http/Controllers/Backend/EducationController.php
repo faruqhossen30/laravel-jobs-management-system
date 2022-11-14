@@ -19,7 +19,7 @@ class EducationController extends Controller
     public function index()
     {
         $educations = Education::get();
-        return view('backend.education.index',compact('educations'));
+        return view('backend.education.index', compact('educations'));
     }
 
     /**
@@ -64,7 +64,7 @@ class EducationController extends Controller
      */
     public function show($id)
     {
-        $education = Education::firstWhere('id',$id);
+        $education = Education::firstWhere('id', $id);
         return view('backend.education.show', compact('education'));
     }
 
@@ -76,7 +76,7 @@ class EducationController extends Controller
      */
     public function edit($id)
     {
-        $education = Education::firstWhere('id',$id);
+        $education = Education::firstWhere('id', $id);
         return view('backend.education.edit', compact('education'));
     }
 
@@ -114,7 +114,7 @@ class EducationController extends Controller
     public function destroy($id)
     {
         $file = Education::firstwhere('id', $id)->thumbnail;
-        if($file){
+        if ($file) {
             Storage::disk('local')->delete('public/education/' . $file);
         }
         Education::firstwhere('id', $id)->delete();

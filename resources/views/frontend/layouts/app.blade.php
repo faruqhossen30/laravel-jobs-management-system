@@ -100,7 +100,7 @@
                             will be of at its layout.</p>
                         <p class="text-white mt-3">Follow Us on:</p>
                         <ul class="footer-social-menu list-inline mb-0">
-                            <li class="list-inline-item"><a href="#"><i class="uil uil-facebook-f"></i></a></li>
+                            <li class="list-inline-item"><a href="{{$settings->facebook}}"><i class="uil uil-facebook-f"></i></a></li>
                             <li class="list-inline-item"><a href="#"><i class="uil uil-linkedin-alt"></i></a></li>
                             <li class="list-inline-item"><a href="#"><i class="uil uil-google"></i></a></li>
                             <li class="list-inline-item"><a href="#"><i class="uil uil-twitter"></i></a></li>

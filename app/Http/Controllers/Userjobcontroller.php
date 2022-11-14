@@ -46,15 +46,15 @@ class Userjobcontroller extends Controller
     public function create()
     {
         $categories = Category::get();
-        $companies=Company::get();
+        $companies = Company::get();
         $educatios = Education::get();
         $skills = Skill::get();
-        $jobindustries = JobIndustry::orderBy('name','asc')->get();
+        $jobindustries = JobIndustry::orderBy('name', 'asc')->get();
         $careerlabels = CareerLevel::get();
         $salarypreiods = SalaryPeriod::get();
         $jobtypes = JobTypes::get();
 
-        return view('userend.job.create', compact('categories','companies', 'educatios','skills','jobindustries','careerlabels','salarypreiods','jobtypes'));
+        return view('userend.job.create', compact('categories', 'companies', 'educatios', 'skills', 'jobindustries', 'careerlabels', 'salarypreiods', 'jobtypes'));
     }
 
     /**
@@ -92,7 +92,7 @@ class Userjobcontroller extends Controller
             'end_date'             => $request->end_date,
             'min_salary'           => $request->min_salary,
             'max_salary'           => $request->max_salary,
-            'company_id'    => $request->company_id,
+            'company_id'           => $request->company_id,
             'organization_name'    => $request->organization_name,
             'organization_website' => $request->organization_website,
             'apply_link'           => $request->apply_link,
@@ -103,10 +103,10 @@ class Userjobcontroller extends Controller
 
         $circular = Circular::create($data);
 
-        if($circular){
+        if ($circular) {
             // Education
-            if(!empty($request->education)){
-                foreach($request->education as $education){
+            if (!empty($request->education)) {
+                foreach ($request->education as $education) {
                     CircularEducation::create([
                         'circular_id' => $circular->id,
                         'education_id' => $education
@@ -114,8 +114,8 @@ class Userjobcontroller extends Controller
                 }
             }
             // Skill
-            if(!empty($request->skill)){
-                foreach($request->skill as $skill){
+            if (!empty($request->skill)) {
+                foreach ($request->skill as $skill) {
                     CircularSkill::create([
                         'circular_id' => $circular->id,
                         'skill_id' => $skill
@@ -123,8 +123,8 @@ class Userjobcontroller extends Controller
                 }
             }
             // job_industry
-            if(!empty($request->job_industry)){
-                foreach($request->job_industry as $job_industry){
+            if (!empty($request->job_industry)) {
+                foreach ($request->job_industry as $job_industry) {
                     CircularJobindustry::create([
                         'circular_id' => $circular->id,
                         'job_industry_id' => $job_industry
@@ -132,8 +132,8 @@ class Userjobcontroller extends Controller
                 }
             }
             // career_label
-            if(!empty($request->career_label)){
-                foreach($request->career_label as $career_label){
+            if (!empty($request->career_label)) {
+                foreach ($request->career_label as $career_label) {
                     CircularCareerlabel::create([
                         'circular_id' => $circular->id,
                         'career_label_id' => $career_label
@@ -141,8 +141,8 @@ class Userjobcontroller extends Controller
                 }
             }
             // salary_period
-            if(!empty($request->salary_period)){
-                foreach($request->salary_period as $salary_period){
+            if (!empty($request->salary_period)) {
+                foreach ($request->salary_period as $salary_period) {
                     CircularSalaryperiod::create([
                         'circular_id' => $circular->id,
                         'salary_period_id' => $salary_period
@@ -150,16 +150,14 @@ class Userjobcontroller extends Controller
                 }
             }
             // job_type
-            if(!empty($request->job_type)){
-                foreach($request->job_type as $job_type){
+            if (!empty($request->job_type)) {
+                foreach ($request->job_type as $job_type) {
                     CircularJobtype::create([
                         'circular_id' => $circular->id,
                         'job_type_id' => $job_type
                     ]);
                 }
             }
-
-
         }
 
 
@@ -175,7 +173,7 @@ class Userjobcontroller extends Controller
      */
     public function show($id)
     {
-        $circular = Circular::firstWhere('id',$id);
+        $circular = Circular::firstWhere('id', $id);
         return view('userend.job.show', compact('circular'));
     }
 
@@ -187,7 +185,7 @@ class Userjobcontroller extends Controller
      */
     public function edit($id)
     {
-        $circular = Circular::with('educations', 'skills','jobindustries','careerlabels','jobtypes','salaryperiods')->firstWhere('id',$id);
+        $circular = Circular::with('educations', 'skills', 'jobindustries', 'careerlabels', 'jobtypes', 'salaryperiods')->firstWhere('id', $id);
         // return $circular;
 
         // return gettype($circular->educations->toArray());
@@ -195,7 +193,7 @@ class Userjobcontroller extends Controller
 
 
         $categories = Category::get();
-        $companies=Company::get();
+        $companies = Company::get();
         $educatios = Education::get();
         $skills = Skill::get();
         $jobindustries = JobIndustry::get();
@@ -211,10 +209,7 @@ class Userjobcontroller extends Controller
         // return gettype($circular->skill);
         //   return $circular->job_industry;
 
-        return view('userend.job.edit', compact('circular','categories','companies','categories','educatios','skills','jobindustries','careerlabels','salarypreiods','jobtypes', 'salaryperiods'));
-
-
-
+        return view('userend.job.edit', compact('circular', 'categories', 'companies', 'categories', 'educatios', 'skills', 'jobindustries', 'careerlabels', 'salarypreiods', 'jobtypes', 'salaryperiods'));
     }
 
     /**
@@ -232,7 +227,7 @@ class Userjobcontroller extends Controller
             'title' => 'required',
             'description' => 'required'
         ]);
-        $circular = Circular::firstWhere('id',$id);
+        $circular = Circular::firstWhere('id', $id);
         // return $circular->thumbnail;
 
 
@@ -242,12 +237,10 @@ class Userjobcontroller extends Controller
             $extension = $job_thumbnail->getClientOriginalExtension();
             $logo_name = Str::uuid() . '.' . $extension;
             Image::make($job_thumbnail)->save('uploads/circular/' . $logo_name);
-
-
         }
 
 
-            $data = [
+        $data = [
             'title' => $request->title,
             'slug' => $request->title,
             'description' => $request->description,
@@ -264,29 +257,29 @@ class Userjobcontroller extends Controller
             'apply_link' => $request->apply_link,
             'vacancy' => $request->vacancy,
 
-            ];
+        ];
 
 
 
 
-            $circular = Circular::firstwhere('id', $id)->update($data);
+        $circular = Circular::firstwhere('id', $id)->update($data);
 
-            if($circular){
-                // Education
-                if(!empty($request->education)){
-                    CircularEducation::where('circular_id', $id)->delete();
-                    foreach($request->education as $education){
-                        CircularEducation::create([
-                            'circular_id' =>$id,
-                            'education_id' => $education,
-                        ]);
-                    }
+        if ($circular) {
+            // Education
+            if (!empty($request->education)) {
+                CircularEducation::where('circular_id', $id)->delete();
+                foreach ($request->education as $education) {
+                    CircularEducation::create([
+                        'circular_id' => $id,
+                        'education_id' => $education,
+                    ]);
                 }
+            }
 
-                // Skill
-            if(!empty($request->skill)){
-                  CircularSkill::where('circular_id', $id)->delete();
-                foreach($request->skill as $skill){
+            // Skill
+            if (!empty($request->skill)) {
+                CircularSkill::where('circular_id', $id)->delete();
+                foreach ($request->skill as $skill) {
                     CircularSkill::create([
                         'circular_id' => $id,
                         'skill_id' => $skill
@@ -294,9 +287,9 @@ class Userjobcontroller extends Controller
                 }
             }
             // job_industry
-            if(!empty($request->job_industry)){
-                  CircularJobindustry::where('circular_id', $id)->delete();
-                foreach($request->job_industry as $job_industry){
+            if (!empty($request->job_industry)) {
+                CircularJobindustry::where('circular_id', $id)->delete();
+                foreach ($request->job_industry as $job_industry) {
                     CircularJobindustry::create([
                         'circular_id' => $id,
                         'job_industry_id' => $job_industry
@@ -304,9 +297,9 @@ class Userjobcontroller extends Controller
                 }
             }
             // career_label
-            if(!empty($request->career_label)){
+            if (!empty($request->career_label)) {
                 CircularCareerlabel::where('circular_id', $id)->delete();
-                foreach($request->career_label as $career_label){
+                foreach ($request->career_label as $career_label) {
                     CircularCareerlabel::create([
                         'circular_id' => $id,
                         'career_label_id' => $career_label
@@ -314,9 +307,9 @@ class Userjobcontroller extends Controller
                 }
             }
             // salary_period
-            if(!empty($request->salary_period)){
+            if (!empty($request->salary_period)) {
                 CircularSalaryperiod::where('circular_id', $id)->delete();
-                foreach($request->salary_period as $salary_period){
+                foreach ($request->salary_period as $salary_period) {
                     CircularSalaryperiod::create([
                         'circular_id' => $id,
                         'salary_period_id' => $salary_period
@@ -324,25 +317,21 @@ class Userjobcontroller extends Controller
                 }
             }
             // job_type
-            if(!empty($request->job_type)){
+            if (!empty($request->job_type)) {
                 CircularJobtype::where('circular_id', $id)->delete();
-                foreach($request->job_type as $job_type){
+                foreach ($request->job_type as $job_type) {
                     CircularJobtype::create([
                         'circular_id' => $id,
                         'job_type_id' => $job_type
                     ]);
                 }
             }
-
-            }
-
-
-
-            Session::flash('update');
-            return redirect()->route('job.index');
+        }
 
 
 
+        Session::flash('update');
+        return redirect()->route('job.index');
     }
 
     /**

@@ -76,14 +76,7 @@
                                             </div>
                                         </div>
                                         <!--end col-->
-                                        {{-- <div class="col-md-3">
-                                            <div class="d-flex mb-2">
-                                                <div class="flex-shrink-0">
-                                                    <i class="mdi mdi-map-marker text-primary me-1"></i>
-                                                </div>
-                                                <p class="text-muted mb-0">Oakridge Lane ssRichardson</p>
-                                            </div>
-                                        </div> --}}
+                                       
                                         <!--end col-->
                                         <div class="col-md-2">
                                             <div>

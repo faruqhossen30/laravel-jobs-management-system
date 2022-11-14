@@ -16,16 +16,16 @@ class SettingSeeder extends Seeder
     public function run()
     {
         Setting::create([
-            'facebook'     => "wwww.facebook.com",
-            'twitter'      => 'www.twitter.com',
-            'linkedin'     => 'www.linkedin.com',
-            'instagram'    => 'www.instagram.com',
-            'youtube'      => 'www.youtube.com',
+            'facebook'     => "https://www.facebook.com/",
+            'twitter'      => 'https://twitter.com/home',
+            'linkedin'     => 'https://www.linkedin.com/',
+            'instagram'    => 'https://www.instagram.com/',
+            'youtube'      => 'https://www.youtube.com/',
             'address'      => 'jashore',
             'mobile'       => '+08801xxxxxxxx',
             'phone'        => '+02xxxxxx',
             'email'        => 'example@gmail.com',
-            'whatsapp'     => '+8801xxxxxxxxx',
+            'whatsapp'     => 'https://web.whatsapp.com/',
             'working_day'  => '9.00 -5.00',
             'working_time' => '8 hour',
         ]);
